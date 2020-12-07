@@ -11,3 +11,10 @@ Route::get('/login', function () {
     return view('admin.login');
 });
 
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::get('/admin/change_password', function () {
+    return view('admin.admin-chnage-password');
+});

@@ -124,18 +124,18 @@
                   <div class="col-sm-12">
                     <div class="input-group mb-0">
                       <!-- Submit -->
-                      <input
+                      {{-- <input
                         class="btn btn-primary btn-lg btn-block"
                         type="submit"
                         name="submit"
                         value="Sign In"
-                      />
+                      /> --}}
 
-                      <!-- <a
+                      <a
                         class="btn btn-primary btn-lg btn-block"
-                        href="index.html"
+                        href="/admin"
                         >Sign In</a
-                      > -->
+                      >
                     </div>
                   </div>
                 </div>
