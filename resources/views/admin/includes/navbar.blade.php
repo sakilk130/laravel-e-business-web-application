@@ -67,6 +67,15 @@
       <div class="menu-icon dw dw-menu"></div>
     </div>
     <div class="header-right">
+        <div class="user-notification">
+            <a style="color: white; height: 10px; width: 10px" href="/store">
+              <i
+                style="height: 10px; width: 10px"
+                class="icon-copy dw dw-worldwide-1"
+              ></i>
+              Go To Store
+            </a>
+          </div>
       <div class="user-info-dropdown">
         <div class="dropdown">
           <a
@@ -117,12 +126,12 @@
               ><span class="mtext">Products</span>
             </a>
             <ul class="submenu">
-              <li><a href="all-products.html">All Products</a></li>
+              <li><a href="/admin/all_products">All Products</a></li>
               <li>
-                <a href="add-new-product.html">Add New Product</a>
+                <a href="/admin/add_new_product">Add New Product</a>
               </li>
               <li>
-                <a href="manage-product.html">Manage Products</a>
+                <a href="/admin/manage_product">Manage Products</a>
               </li>
             </ul>
           </li>
@@ -132,10 +141,10 @@
               ><span class="mtext">Orders</span>
             </a>
             <ul class="submenu">
-              <li><a href="all-orders.html">All Orders</a></li>
-              <li><a href="pending-orders.html">Peding Orders</a></li>
-              <li><a href="delivered-orders.html">Delivered Orders</a></li>
-              <li><a href="manage-orders.html">Manage Orders</a></li>
+              <li><a href="/admin/all_orders">All Orders</a></li>
+              <li><a href="/admin/pending_orders">Peding Orders</a></li>
+              <li><a href="/admin/in_process_orders">In Process Orders</a></li>
+              <li><a href="/admin/delivered_orders">Delivered Orders</a></li>
             </ul>
           </li>
           <li class="dropdown">

@@ -148,6 +148,12 @@
                         name="submit"
                         value="Create My Store"
                       />
+
+                      <a
+                      class="btn btn-primary btn-lg btn-block"
+                      href="/login"
+                      >Sign Up</a
+                    >
                     </div>
                   </div>
                 </div>
