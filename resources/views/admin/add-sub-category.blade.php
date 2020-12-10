@@ -36,20 +36,7 @@
                 />
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-sm-12 col-md-2 col-form-label"
-                >Creation Date</label
-              >
 
-              <div class="col-sm-12 col-md-10">
-                <input
-                  type="date"
-                  name="product-details"
-                  class="form-control"
-                  placeholder="Drescription"
-                />
-              </div>
-            </div>
             <div class="col-sm-12 col-md-2" style="text-align: center">
               <input
                 class="btn btn-primary"

@@ -24,6 +24,7 @@
                 </select>
               </div>
             </div>
+
             <!-- Select Sub-Category -->
             <div class="form-group row">
               <label class="col-sm-12 col-md-2 col-form-label"
@@ -39,6 +40,7 @@
                 </select>
               </div>
             </div>
+
             <!-- Product Name -->
             <div class="form-group row">
               <label class="col-sm-12 col-md-2 col-form-label"
@@ -48,7 +50,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="MacBook Pro 16GB 2021.."
+                  placeholder="Product Name..."
                 />
               </div>
             </div>
@@ -59,9 +61,10 @@
                 >Product Brand</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" placeholder="Apple" />
+                <input class="form-control" type="text" placeholder="Product Brand..." />
               </div>
             </div>
+
             <!-- Description -->
             <div class="form-group row">
               <label class="col-sm-12 col-md-2 col-form-label"
@@ -87,7 +90,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="100 BDT"
+                  placeholder="Shipping Charge..."
                 />
               </div>
             </div>
@@ -104,6 +107,7 @@
                 </select>
               </div>
             </div>
+
             <!-- Stock Count -->
             <div class="form-group row">
               <label class="col-sm-12 col-md-2 col-form-label"
@@ -121,10 +125,22 @@
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="2,20,000 BDT"
+                  placeholder="Price..."
                 />
               </div>
             </div>
+
+            {{-- Discount --}}
+            <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label">Price</label>
+                <div class="col-sm-12 col-md-10">
+                  <input
+                    class="form-control"
+                    type="text"
+                    placeholder="Optional"
+                  />
+                </div>
+              </div>
 
             <!-- Image -->
             <div class="form-group row">
@@ -136,6 +152,7 @@
               </div>
             </div>
 
+            {{-- Submit --}}
             <div class="col-sm-12 col-md-2" style="text-align: center">
               <input
                 class="btn btn-primary"

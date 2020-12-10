@@ -20,6 +20,7 @@
               <th>In Stock</th>
               <th>Price</th>
               <th>Creation Date</th>
+              <th>Last Update</th>
             </tr>
           </thead>
           <tbody>
@@ -33,6 +34,7 @@
               <td>100</td>
               <td>20,000 BDT</td>
               <td>17/11/2020</td>
+              <td></td>
             </tr>
           </tbody>
         </table>

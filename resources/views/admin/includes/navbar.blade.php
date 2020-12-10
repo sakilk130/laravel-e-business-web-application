@@ -93,6 +93,9 @@
           <div
             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
           >
+          <a class="dropdown-item" href="/admin/profile"
+              ><i class="dw dw-user2"></i>Profile</a
+            >
             <a class="dropdown-item" href="/admin/change_password"
               ><i class="dw dw-settings2"></i>Change Password</a
             >
@@ -170,6 +173,40 @@
               <li><a href="/admin/all_customers">All Customers</a></li>
               <li><a href="/admin/add_new_customer">Add New Customer</a></li>
               <li><a href="/admin/manage_customer">Manage Customer</a></li>
+            </ul>
+          </li>
+          {{-- Poster --}}
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+              <span class="micon dw dw-photo-camera-1"></span
+              ><span class="mtext">Poster</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="/admin/all_poster">All Poster</a></li>
+              <li><a href="/admin/add_new_poster">Add New Poster</a></li>
+            </ul>
+          </li>
+
+          {{-- Blog --}}
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+              <span class="micon dw dw-pencil"></span
+              ><span class="mtext">Blog</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="/admin/all_blog">All Blog</a></li>
+              <li><a href="/admin/add_new_blog">Add New Blog</a></li>
+            </ul>
+          </li>
+
+          {{-- Notice --}}
+          <li class="dropdown">
+            <a href="javascript:;" class="dropdown-toggle">
+              <span class="micon dw dw-notification"></span
+              ><span class="mtext">Notice</span>
+            </a>
+            <ul class="submenu">
+              <li><a href="/admin/all_notice">All Notice</a></li>
             </ul>
           </li>
         </ul>

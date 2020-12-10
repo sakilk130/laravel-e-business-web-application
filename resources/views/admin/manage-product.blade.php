@@ -20,6 +20,7 @@
               <th>In Stock</th>
               <th>Price</th>
               <th>Creation Date</th>
+              <th>Last Update</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -34,10 +35,9 @@
               <td>100</td>
               <td>20,000 BDT</td>
               <td>17/11/2020</td>
+              <th></th>
               <th>
-                <a style="color: green; font-weight: 800" href="edit-product.html" class="micon dw dw-edit-1"
-                  >Edit
-                </a>
+                <a style="color: green; font-weight: 800" href="" class="micon dw dw-edit-1">Edit</a>
                 |
                 <a style="color: red; font-weight: 800" href="" class="micon dw dw-delete-3"> Delete</a>
               </th>

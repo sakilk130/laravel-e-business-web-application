@@ -1,7 +1,6 @@
 <?php
 
 // Shop Admin
-
 Route::get('/', function () {
     return view('index');
 });
@@ -13,6 +12,9 @@ Route::get('/login', function () {
 });
 Route::get('/admin', function () {
     return view('admin.index');
+});
+Route::get('/admin/profile', function () {
+    return view("admin.admin-profile");
 });
 Route::get('/admin/change_password', function () {
     return view('admin.admin-chnage-password');
@@ -59,5 +61,4 @@ Route::get('/admin/add_new_customer', function () {
 Route::get('/admin/manage_customer', function () {
     return view('admin./manage-customer');
 });
-
 // End Shop Admin

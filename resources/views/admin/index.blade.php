@@ -45,8 +45,8 @@
                 </div>
               </div>
               <div class="widget-data">
-                <div class="h4 mb-0">Total Orders</div>
-                <div class="weight-600 font-14">500 products</div>
+                <div class="h4 mb-0">Pending Orders</div>
+                <div class="weight-600 font-14">500 Orders</div>
               </div>
             </div>
           </div>
@@ -83,28 +83,37 @@
       </div>
 
       <div class="card-box mb-30">
-        <h2 class="h4 pd-20">Selling Products</h2>
-        <table class="data-table table nowrap">
+        <h2 class="h4 pd-20">Recent Orders</h2>
+        <table class="table table-bordered">
           <thead>
             <tr>
-              <th class="table-plus datatable-nosort">Product Name</th>
+              <th>S.N</th>
               <th>Name</th>
-              <th>Color</th>
+              <th>Email</th>
+              <th>Contact No.</th>
+              <th>Shipping Address</th>
+              <th>Product Details</th>
               <th>Quantity</th>
               <th>Price</th>
+              <th>Order Date</th>
               <th>Status</th>
             </tr>
           </thead>
           <tbody>
+
             <tr>
-              <td class="table-plus">ASUS Laptop</td>
-              <td>by Sakil Khan</td>
-              <td>Black</td>
+              <td class="table-plus">1</td>
+              <td>Sakil Khan</td>
+              <td>sakilk130@gmail.com</td>
+              <td>01721214996</td>
+              <td>Dhaka, Bangladesh</td>
+              <td>Apple, imac-2017, Ram:8GB,256GB SSD</td>
               <td>1</td>
-              <td>20,000 BDT</td>
-              <td>Paid</td>
-              <td></td>
+              <td>98000</td>
+              <td>10/12/2020</td>
+              <td>Pending</td>
             </tr>
+
           </tbody>
         </table>
       </div>
