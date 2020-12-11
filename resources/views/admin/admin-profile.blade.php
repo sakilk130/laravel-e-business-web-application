@@ -7,7 +7,7 @@
     <div class="main-container">
       <div class="pd-ltr-20">
         <div class="card-box mb-30">
-          <h2 class="h4 pd-20">Profile</h2>
+          <h2 class="h4 pd-20 text-blue">Profile</h2>
           <div class="pd-20 card-box mb-30">
             <form>
                  <!-- image -->

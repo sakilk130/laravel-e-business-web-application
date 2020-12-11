@@ -61,4 +61,19 @@ Route::get('/admin/add_new_customer', function () {
 Route::get('/admin/manage_customer', function () {
     return view('admin./manage-customer');
 });
+Route::get('/admin/all_poster', function () {
+    return view('admin.all-poster');
+});
+Route::get('/admin/add_new_poster', function () {
+    return view('admin.add-new-poster');
+});
+Route::get('/admin/all_blog', function () {
+    return view('admin.all-blog');
+});
+Route::get('/admin/add_new_blog', function () {
+    return view('admin.add-new-blog');
+});
+Route::get('/admin/all_notice', function () {
+    return view('admin.all-notice');
+});
 // End Shop Admin

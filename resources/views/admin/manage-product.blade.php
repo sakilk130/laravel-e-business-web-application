@@ -7,7 +7,7 @@
 <div class="main-container">
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
-        <h2 class="h4 pd-20">Manage Products</h2>
+        <h2 class="h4 pd-20 text-blue">Manage Products</h2>
         <table class="table table-bordered">
           <thead>
             <tr>
