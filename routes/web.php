@@ -1,99 +1,68 @@
 <?php
+
 // Shop Admin
-Route::get('/', function () {
-    return view('index');
-});
-Route::get('/register', function () {
-    return view('register');
-});
-Route::get('/login', function () {
-    return view('admin.login');
-});
-Route::get('/admin', function () {
-    return view('admin.index');
-});
-Route::get('/admin/profile', function () {
-    return view("admin.admin-profile");
-});
-Route::get('/admin/change_password', function () {
-    return view('admin.admin-chnage-password');
-});
-Route::get('/admin/all_products', function () {
-    return view('admin.all-products');
-});
-Route::get('/admin/add_new_product', function () {
-    return view('admin.add-new-product');
-});
-Route::get('/admin/manage_product', function () {
-    return view('admin.manage-product');
-});
-Route::get('/admin/edit_product', function () {
-    return view('admin.edit-product');
-});
-Route::get('/admin/all_orders', function () {
-    return view('admin.all-orders');
-});
-Route::get('/admin/pending_orders', function () {
-    return view('admin.pending-orders');
-});
-Route::get('/admin/edit_orders', function () {
-    return view('admin.edit-orders');
-});
-Route::get('/admin/in_process_orders', function () {
-    return view('admin.in-process-orders');
-});
-Route::get('/admin/delivered_orders', function () {
-    return view('admin.delivered-orders');
-});
-Route::get('/admin/all_categories', function () {
-    return view('admin.all-categories');
-});
-Route::get('/admin/edit_category', function () {
-    return view('admin.edit-category');
-});
-Route::get('/admin/all_sub_categories', function () {
-    return view('admin.all-sub-categories');
-});
-Route::get('/admin/edit_sub_category', function () {
-    return view('admin.edit-sub-category');
-});
-Route::get('/admin/add_category', function () {
-    return view('admin.add-category');
-});
-Route::get('/admin/add_sub_category', function () {
-    return view('admin.add-sub-category');
-});
-Route::get('/admin/all_customers', function () {
-    return view('admin.all-customers');
-});
-Route::get('/admin/add_new_customer', function () {
-    return view('admin.add-new-customer');
-});
-Route::get('/admin/manage_customer', function () {
-    return view('admin./manage-customer');
-});
-Route::get('/admin/edit_customer', function () {
-    return view('admin./edit-customer');
-});
-Route::get('/admin/all_poster', function () {
-    return view('admin.all-poster');
-});
-Route::get('/admin/add_new_poster', function () {
-    return view('admin.add-new-poster');
-});
-Route::get('/admin/edit_poster', function () {
-    return view('admin.edit-poster');
-});
-Route::get('/admin/all_blog', function () {
-    return view('admin.all-blog');
-});
-Route::get('/admin/edit_blog', function () {
-    return view('admin.edit-blog');
-});
-Route::get('/admin/add_new_blog', function () {
-    return view('admin.add-new-blog');
-});
-Route::get('/admin/all_notice', function () {
-    return view('admin.all-notice');
-});
+Route::get('/','indexController@index');
+
+Route::get('/register','registerController@register');
+
+Route::get('/login','loginController@login');
+
+Route::get('/admin','adminController@index');
+
+Route::get('/admin/profile','adminController@profile');
+
+Route::get('/admin/change_password','adminController@change_password');
+
+Route::get('/admin/all_products', 'adminController@all_products');
+
+Route::get('/admin/add_new_product', 'adminController@add_new_product');
+
+Route::get('/admin/manage_product','adminController@manage_product' );
+
+Route::get('/admin/edit_product','adminController@edit_product' );
+
+Route::get('/admin/all_orders','adminController@all_orders');
+
+Route::get('/admin/pending_orders','adminController@pending_orders');
+
+Route::get('/admin/edit_orders','adminController@edit_orders');
+
+Route::get('/admin/in_process_orders','adminController@in_process_orders');
+
+Route::get('/admin/delivered_orders', 'adminController@delivered_orders');
+
+Route::get('/admin/all_categories','adminController@all_categories');
+
+Route::get('/admin/edit_category', 'adminController@edit_category');
+
+Route::get('/admin/all_sub_categories','adminController@all_sub_categories');
+
+Route::get('/admin/edit_sub_category','adminController@edit_sub_category');
+
+Route::get('/admin/add_category', 'adminController@add_category');
+
+Route::get('/admin/add_sub_category', 'adminController@add_sub_category');
+
+Route::get('/admin/all_customers', 'adminController@all_customers');
+
+Route::get('/admin/add_new_customer','adminController@add_new_customer' );
+
+Route::get('/admin/manage_customer', 'adminController@manage_customer');
+
+Route::get('/admin/edit_customer', 'adminController@edit_customer');
+
+Route::get('/admin/all_poster', 'adminController@all_poster');
+
+Route::get('/admin/add_new_poster', 'adminController@add_new_poster');
+
+Route::get('/admin/edit_poster', 'adminController@edit_poster');
+
+Route::get('/admin/all_blog','adminController@all_blog');
+
+Route::get('/admin/edit_blog', 'adminController@edit_blog');
+
+Route::get('/admin/add_new_blog', 'adminController@add_new_blog');
+
+Route::get('/admin/all_notice', 'adminController@all_notice');
+
 // End Shop Admin
