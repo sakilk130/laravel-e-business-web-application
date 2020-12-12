@@ -28,7 +28,7 @@
               <td>Dhaka, Bangladesh.</td>
               <td>17/11/2020</td>
               <td>
-                <a href="edit-customer.html" style="color: green; font-weight:800" class="micon dw dw-edit-1"
+                <a href="/admin/edit_customer" style="color: green; font-weight:800" class="micon dw dw-edit-1"
                   >Edit
                 </a>
                 |

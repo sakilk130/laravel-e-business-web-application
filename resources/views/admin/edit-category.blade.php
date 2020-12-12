@@ -1,71 +1,63 @@
+@extends('admin.includes.navbar')
+@section('title',"Shop Name")
+@section('profileName',"Profile Name")
+@section('storeName',"Store Name")
+@section('content')
 <div class="main-container">
     <div class="pd-ltr-20">
         <div class="card-box mb-30">
-            <h2 class="h4 pd-20">Edit Customer</h2>
+            <h2 class="h4 pd-20 text-blue">Edit Category</h2>
             <div class="pd-20 card-box mb-30">
                 <form>
-                    <!-- Customer Name -->
+                    <!-- Category Name-->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
-                            >Name</label
+                            >Category Name</label
                         >
                         <div class="col-sm-12 col-md-10">
                             <input
                                 class="form-control"
                                 type="text"
-                                value="Sakil Khan"
+                                name="name"
+                                value="Electronics"
                             />
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label"
+                            >Drescription</label
+                        >
 
-                    <!-- Customer Email -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Email</label
-                        >
                         <div class="col-sm-12 col-md-10">
                             <input
-                                class="form-control"
                                 type="text"
-                                value="sakilk130@gmail.com"
+                                name="product-details"
+                                class="form-control"
+                                value="Mobile Phones"
                             />
                         </div>
                     </div>
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label"
+                            >Creation Date</label
+                        >
 
-                    <!-- Contact No. -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Contact No.</label
-                        >
-                        <div class="col-sm-12 col-md-10">
-                            <input
-                                class="form-control"
-                                type="text"
-                                value="01721214996"
-                            />
-                        </div>
-                    </div>
-                    <!-- Shipping Address -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Shipping Address</label
-                        >
                         <div class="col-sm-12 col-md-10">
                             <input
                                 type="text"
-                                name="product-description"
+                                name="product-details"
                                 class="form-control"
-                                value="Dhaka, Bangladesh"
+                                value="17/11/2020"
                             />
                         </div>
                     </div>
-                    <!-- Submit -->
                     <div class="col-sm-12 col-md-2" style="text-align: center">
                         <input
                             class="btn btn-primary"
                             type="submit"
                             name="submit"
-                            value="Edit Customer"
+                            id=""
+                            value="Edit Category"
                         />
                     </div>
                 </form>
@@ -73,3 +65,4 @@
         </div>
     </div>
 </div>
+@endsection

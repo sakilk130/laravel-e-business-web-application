@@ -37,7 +37,7 @@
               <td>17/11/2020</td>
               <th></th>
               <th>
-                <a style="color: green; font-weight: 800" href="" class="micon dw dw-edit-1">Edit</a>
+                <a style="color: green; font-weight: 800" href="/admin/edit_product" class="micon dw dw-edit-1">Edit</a>
                 |
                 <a style="color: red; font-weight: 800" href="" class="micon dw dw-delete-3"> Delete</a>
               </th>

@@ -1,122 +1,91 @@
+@extends('admin.includes.navbar')
+@section('title',"Shop Name")
+@section('profileName',"Profile Name")
+@section('storeName',"Store Name")
+@section('content')
 <div class="main-container">
     <div class="pd-ltr-20">
         <div class="card-box mb-30">
-            <h2 class="h4 pd-20">Edit Product</h2>
+            <h2 class="h4 pd-20 text-blue">Edit Orders</h2>
             <div class="pd-20 card-box mb-30">
                 <form>
-                    <!-- Select Category -->
+                    <!-- Customer Name-->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
-                            >Select Category</label
-                        >
-                        <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
-                                <option value="">---Select Category---</option>
-                                <option value="Books">Books</option>
-                                <option value="Electronics">Electronics</option>
-                                <option value="Fashion">Fashion</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Select Sub-Category -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Select Sub-Category</label
-                        >
-                        <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
-                                <option value="">
-                                    ---Select Sub-Category---
-                                </option>
-                                <option value="Mobile">Mobile</option>
-                                <option value="Laptop">Laptop</option>
-                                <option value="TV">TV</option>
-                                <option value="AC">AC</option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Product Name -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Product Name</label
+                            >Name</label
                         >
                         <div class="col-sm-12 col-md-10">
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="MacBook Pro 16GB 2021.."
+                                name="name"
+                                value="Sakil Khan"
+                            />
+                        </div>
+                    </div>
+                    <!-- Customer Email -->
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label"
+                            >Email</label
+                        >
+                        <div class="col-sm-12 col-md-10">
+                            <input
+                                class="form-control"
+                                type="email"
+                                name="email"
+                                value="sakilk130@gmail.com"
+                            />
+                        </div>
+                    </div>
+                    <!-- Contact No. -->
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label"
+                            >Contact No.</label
+                        >
+                        <div class="col-sm-12 col-md-10">
+                            <input
+                                class="form-control"
+                                type="text"
+                                value="01721214996"
                             />
                         </div>
                     </div>
 
-                    <!-- Product Brand -->
+                    <!-- Shipping Address -->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
-                            >Product Brand</label
+                            >Shipping Address</label
                         >
                         <div class="col-sm-12 col-md-10">
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="Apple"
+                                value="Dhaka, Bangladesh"
                             />
                         </div>
                     </div>
-                    <!-- Description -->
+                    <!-- Product Details -->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
-                            >Product Description</label
-                        >
-                        <div class="col-sm-12 col-md-10">
-                            <textarea
-                                name="product-description"
-                                class="form-control"
-                                cols="30"
-                                rows="10"
-                                placeholder="Product Description....."
-                            ></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Shipping Charge -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Shipping Charge</label
+                            >Product Details</label
                         >
                         <div class="col-sm-12 col-md-10">
                             <input
-                                class="form-control"
                                 type="text"
-                                placeholder="100 BDT"
+                                name="product-details"
+                                class="form-control"
+                                value="MacBook Pro 16GB 2021"
                             />
                         </div>
                     </div>
 
-                    <!-- Product Availability -->
+                    <!-- Quantity -->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
-                            >Product Availability</label
+                            >Quantity</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
-                                <option value="In Stock">In Stock</option>
-                                <option value="Out Of Stock">
-                                    Out Of Stock
-                                </option>
-                            </select>
-                        </div>
-                    </div>
-                    <!-- Stock Count -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Product Stock</label
-                        >
-                        <div class="col-sm-12 col-md-10">
-                            <input
-                                class="form-control"
-                                type="text"
-                                placeholder="200"
-                            />
+                            <input class="form-control" type="text" value="1" />
                         </div>
                     </div>
 
@@ -127,30 +96,49 @@
                         >
                         <div class="col-sm-12 col-md-10">
                             <input
+                                type="text"
+                                class="form-control"
+                                name="price"
+                                value="2,20,000 BDT"
+                            />
+                        </div>
+                    </div>
+                    <!-- Order Date -->
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label"
+                            >Order Date</label
+                        >
+                        <div class="col-sm-12 col-md-10">
+                            <input
                                 class="form-control"
                                 type="text"
-                                placeholder="2,20,000 BDT"
+                                value="17/11/2020"
                             />
                         </div>
                     </div>
 
-                    <!-- Image -->
+                    <!-- Status -->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
-                            >Add Image</label
+                            >Status</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="file" />
+                            <select class="custom-select form-control">
+                                <option value="">---Select Status---</option>
+                                <option value="Pending" selected>
+                                    Pending
+                                </option>
+                                <option value="Delivered">Delivered</option>
+                            </select>
                         </div>
                     </div>
-
                     <div class="col-sm-12 col-md-2" style="text-align: center">
                         <input
                             class="btn btn-primary"
                             type="submit"
                             name="submit"
                             id=""
-                            value="Edit Product"
+                            value="Edit Orders"
                         />
                     </div>
                 </form>
@@ -158,3 +146,4 @@
         </div>
     </div>
 </div>
+@endsection

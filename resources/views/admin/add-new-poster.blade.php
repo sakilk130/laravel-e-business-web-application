@@ -49,7 +49,7 @@
                     <td>
                         <a
                         style="color: green; font-weight:800"
-                          href="#"
+                          href="/admin/edit_poster"
                           class="micon dw dw-edit-1"
                         >
                           Edit</a

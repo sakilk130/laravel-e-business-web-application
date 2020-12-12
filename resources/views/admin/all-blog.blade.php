@@ -19,7 +19,7 @@
                             <h5 class="card-title weight-500">Blog title</h5>
                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         </a>
-                            <a href="#" class="btn btn-primary">Edit</a>
+                            <a href="/admin/edit_blog" class="btn btn-primary">Edit</a>
                             <a href="#" class="btn btn-danger">Delete</a>
                         </div>
                     </div>

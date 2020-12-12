@@ -36,7 +36,7 @@
               <td>17/11/2020</td>
               <td>Delivered</td>
               <td>
-                <a style="color: green; font-weight:800" href="edit-orders.html" class="micon dw dw-edit-1"
+                <a style="color: green; font-weight:800" href="/admin/edit_orders" class="micon dw dw-edit-1"
                   >Edit
                 </a>
 

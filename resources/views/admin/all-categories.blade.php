@@ -28,14 +28,14 @@
               <td>
                 <a
                 style="color: green; font-weight:800"
-                  href="/admin/edit_orders"
+                  href="/admin/edit_category"
                   class="micon dw dw-edit-1"
                 >
                   Edit</a
                 > |
                 <a
                 style="color: red; font-weight:800"
-                  href="/admin/edit_orders"
+                  href="#"
                   class="micon dw dw-delete-3"
                 >
                   Delete</a
