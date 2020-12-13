@@ -12,10 +12,10 @@ class loginController extends Controller
     public function verify(Request $req){
         if($req->username == $req->password){
             $req->session()->put('username',$req->username);
-            return redirect('/admin');
+            return redirect()->route('admin.index');
         }else{
             $req->session()->flash('msg','invalid username/password');
-            return redirect('/login');
+            return redirect()->route('login.login');
         }
     }
 }

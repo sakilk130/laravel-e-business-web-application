@@ -11,7 +11,7 @@ class adminController extends Controller
             return view('admin.index');
         }else{
             $req->session()->flash('msg','invalid request!!!');
-            return redirect('/login');
+            return redirect()->route('login.login');
         }
     }
     public function profile(){

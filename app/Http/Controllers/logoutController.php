@@ -8,6 +8,6 @@ class logoutController extends Controller
 {
     public function logout(){
         Session::forget('username');
-        return redirect('/login');
+        return redirect()->route('login.login');
     }
 }

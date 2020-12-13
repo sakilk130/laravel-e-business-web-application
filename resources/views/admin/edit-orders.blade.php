@@ -9,6 +9,8 @@
             <h2 class="h4 pd-20 text-blue">Edit Orders</h2>
             <div class="pd-20 card-box mb-30">
                 <form>
+                    {{-- Token --}}
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <!-- Customer Name-->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"

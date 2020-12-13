@@ -75,6 +75,9 @@
                 <h2 class="text-center text-primary">Login To Your Shop</h2>
               </div>
               <form method="POST">
+                  {{-- Token --}}
+
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
                   {{-- Username --}}
                 <div class="input-group custom">
                   <input
