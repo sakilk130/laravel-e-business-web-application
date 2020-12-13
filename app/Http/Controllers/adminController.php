@@ -7,12 +7,7 @@ use Illuminate\Http\Request;
 class adminController extends Controller
 {
     public function index(Request $req){
-        if($req->session()->has('username')){
-            return view('admin.index');
-        }else{
-            $req->session()->flash('msg','invalid request!!!');
-            return redirect()->route('login.login');
-        }
+        return view('admin.index');
     }
     public function profile(){
         return view("admin.admin-profile");
