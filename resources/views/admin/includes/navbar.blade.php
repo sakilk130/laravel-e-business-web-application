@@ -93,13 +93,13 @@
           <div
             class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
           >
-          <a class="dropdown-item" href="/admin/profile"
+          <a class="dropdown-item" href="{{ route('admin.profile') }}"
               ><i class="dw dw-user2"></i>Profile</a
             >
-            <a class="dropdown-item" href="/admin/change_password"
+            <a class="dropdown-item" href="{{ route('admin.change_password') }}"
               ><i class="dw dw-settings2"></i>Change Password</a
             >
-            <a class="dropdown-item" href="/logout"
+            <a class="dropdown-item" href="{{ route('logout.logout') }}"
               ><i class="dw dw-logout"></i> Log Out</a
             >
           </div>
@@ -109,7 +109,7 @@
   </div>
   <div class="left-side-bar">
     <div class="brand-logo">
-      <a href="/admin">@yield('storeName') </a>
+      <a href="{{ route('admin.index') }}">@yield('storeName') </a>
       <div class="close-sidebar" data-toggle="left-sidebar-close">
         <i class="ion-close-round"></i>
       </div>
@@ -118,7 +118,7 @@
       <div class="sidebar-menu">
         <ul id="accordion-menu">
           <li class="dropdown">
-            <a href="/admin" class="dropdown-toggle no-arrow">
+            <a href="{{ route('admin.index') }}" class="dropdown-toggle no-arrow">
               <span class="micon dw dw-house-1"></span
               ><span class="mtext">Dashboard</span>
             </a>
@@ -129,12 +129,12 @@
               ><span class="mtext">Products</span>
             </a>
             <ul class="submenu">
-              <li><a href="/admin/all_products">All Products</a></li>
+              <li><a href="{{ route('admin.all_products') }}">All Products</a></li>
               <li>
-                <a href="/admin/add_new_product">Add New Product</a>
+                <a href="{{ route('admin.add_new_product') }}">Add New Product</a>
               </li>
               <li>
-                <a href="/admin/manage_product">Manage Products</a>
+                <a href="{{ route('admin.manage_product') }}">Manage Products</a>
               </li>
             </ul>
           </li>
@@ -144,10 +144,10 @@
               ><span class="mtext">Orders</span>
             </a>
             <ul class="submenu">
-              <li><a href="/admin/all_orders">All Orders</a></li>
-              <li><a href="/admin/pending_orders">Peding Orders</a></li>
-              <li><a href="/admin/in_process_orders">In Process Orders</a></li>
-              <li><a href="/admin/delivered_orders">Delivered Orders</a></li>
+              <li><a href="{{ route('admin.all_orders') }}">All Orders</a></li>
+              <li><a href="{{ route('admin.pending_orders') }}">Peding Orders</a></li>
+              <li><a href="{{ route('admin.in_process_orders') }}">In Process Orders</a></li>
+              <li><a href="{{ route('admin.delivered_orders') }}">Delivered Orders</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -156,12 +156,12 @@
               ><span class="mtext"> Categories </span>
             </a>
             <ul class="submenu">
-              <li><a href="/admin/all_categories">All Categories </a></li>
+              <li><a href="{{ route('admin.all_categories') }}">All Categories </a></li>
               <li>
-                <a href="/admin/all_sub_categories">All Sub-Categories</a>
+                <a href="{{ route('admin.all_sub_categories') }}">All Sub-Categories</a>
               </li>
-              <li><a href="/admin/add_category">Add Category</a></li>
-              <li><a href="/admin/add_sub_category">Add Sub-Category</a></li>
+              <li><a href="{{ route('admin.add_category') }}">Add Category</a></li>
+              <li><a href="{{ route('admin.add_sub_category') }}">Add Sub-Category</a></li>
             </ul>
           </li>
           <li class="dropdown">
@@ -170,9 +170,9 @@
               ><span class="mtext">Customers</span>
             </a>
             <ul class="submenu">
-              <li><a href="/admin/all_customers">All Customers</a></li>
-              <li><a href="/admin/add_new_customer">Add New Customer</a></li>
-              <li><a href="/admin/manage_customer">Manage Customer</a></li>
+              <li><a href="{{ route('admin.all_customers') }}">All Customers</a></li>
+              <li><a href="{{ route('admin.add_new_customer') }}">Add New Customer</a></li>
+              <li><a href="{{ route('admin.manage_customer') }}">Manage Customer</a></li>
             </ul>
           </li>
           {{-- Poster --}}
@@ -182,8 +182,8 @@
               ><span class="mtext">Poster</span>
             </a>
             <ul class="submenu">
-              <li><a href="/admin/all_poster">All Poster</a></li>
-              <li><a href="/admin/add_new_poster">Add New Poster</a></li>
+              <li><a href="{{ route('admin.all_poster') }}">All Poster</a></li>
+              <li><a href="{{ route('admin.add_new_poster') }}">Add New Poster</a></li>
             </ul>
           </li>
 
@@ -194,8 +194,8 @@
               ><span class="mtext">Blog</span>
             </a>
             <ul class="submenu">
-              <li><a href="/admin/all_blog">All Blog</a></li>
-              <li><a href="/admin/add_new_blog">Add New Blog</a></li>
+              <li><a href="{{ route('admin.all_blog') }}">All Blog</a></li>
+              <li><a href="{{ route('admin.add_new_blog') }}">Add New Blog</a></li>
             </ul>
           </li>
 
@@ -206,7 +206,7 @@
               ><span class="mtext">Notice</span>
             </a>
             <ul class="submenu">
-              <li><a href="/admin/all_notice">All Notice</a></li>
+              <li><a href="{{ route('admin.all_notice') }}">All Notice</a></li>
             </ul>
           </li>
         </ul>

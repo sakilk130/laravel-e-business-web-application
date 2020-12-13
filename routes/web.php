@@ -1,68 +1,84 @@
 <?php
 
 // Shop Admin
+
 Route::get('/','indexController@index');
 
-Route::get('/register','registerController@register');
+Route::get('/register','registerController@register')->name('register.register');
 
-Route::get('/login','loginController@login');
+Route::post('/register','registerController@new_user');
 
-Route::get('/admin','adminController@index');
+Route::get('/login','loginController@login')->name('login.login');
 
-Route::get('/admin/profile','adminController@profile');
+Route::post('/login','loginController@verify');
 
-Route::get('/admin/change_password','adminController@change_password');
+// Admin
+Route::get('/admin','adminController@index')->name('admin.index');
 
-Route::get('/admin/all_products', 'adminController@all_products');
+Route::get('/admin/profile','adminController@profile')->name('admin.profile');
 
-Route::get('/admin/add_new_product', 'adminController@add_new_product');
+Route::get('/admin/change_password','adminController@change_password')->name('admin.change_password');
 
-Route::get('/admin/manage_product','adminController@manage_product' );
+// Product
+Route::get('/admin/all_products', 'adminController@all_products')->name('admin.all_products');
+
+Route::get('/admin/add_new_product', 'adminController@add_new_product')->name('admin.add_new_product');
+
+Route::get('/admin/manage_product','adminController@manage_product')->name('admin.manage_product');
 
 Route::get('/admin/edit_product','adminController@edit_product' );
 
-Route::get('/admin/all_orders','adminController@all_orders');
+// Orders
+Route::get('/admin/all_orders','adminController@all_orders')->name('admin.all_orders');
 
-Route::get('/admin/pending_orders','adminController@pending_orders');
+Route::get('/admin/pending_orders','adminController@pending_orders')->name('admin.pending_orders');
 
 Route::get('/admin/edit_orders','adminController@edit_orders');
 
-Route::get('/admin/in_process_orders','adminController@in_process_orders');
+Route::get('/admin/in_process_orders','adminController@in_process_orders')->name('admin.in_process_orders');
 
-Route::get('/admin/delivered_orders', 'adminController@delivered_orders');
+Route::get('/admin/delivered_orders', 'adminController@delivered_orders')->name('admin.delivered_orders');
 
-Route::get('/admin/all_categories','adminController@all_categories');
+// Category
+Route::get('/admin/all_categories','adminController@all_categories')->name('admin.all_categories');
 
 Route::get('/admin/edit_category', 'adminController@edit_category');
 
-Route::get('/admin/all_sub_categories','adminController@all_sub_categories');
+Route::get('/admin/all_sub_categories','adminController@all_sub_categories')->name('admin.all_sub_categories');
 
 Route::get('/admin/edit_sub_category','adminController@edit_sub_category');
 
-Route::get('/admin/add_category', 'adminController@add_category');
+Route::get('/admin/add_category', 'adminController@add_category')->name('admin.add_category');
 
-Route::get('/admin/add_sub_category', 'adminController@add_sub_category');
+Route::get('/admin/add_sub_category', 'adminController@add_sub_category')->name('admin.add_sub_category');
 
-Route::get('/admin/all_customers', 'adminController@all_customers');
+// Customers
+Route::get('/admin/all_customers', 'adminController@all_customers')->name('admin.all_customers');
 
-Route::get('/admin/add_new_customer','adminController@add_new_customer' );
+Route::get('/admin/add_new_customer','adminController@add_new_customer' )->name('admin.add_new_customer');
 
-Route::get('/admin/manage_customer', 'adminController@manage_customer');
+Route::get('/admin/manage_customer', 'adminController@manage_customer')->name('admin.manage_customer');
 
 Route::get('/admin/edit_customer', 'adminController@edit_customer');
 
-Route::get('/admin/all_poster', 'adminController@all_poster');
+// Poster
+Route::get('/admin/all_poster', 'adminController@all_poster')->name('admin.all_poster');
 
-Route::get('/admin/add_new_poster', 'adminController@add_new_poster');
+Route::get('/admin/add_new_poster', 'adminController@add_new_poster')->name('admin.add_new_poster');
 
 Route::get('/admin/edit_poster', 'adminController@edit_poster');
 
-Route::get('/admin/all_blog','adminController@all_blog');
+// Blog
+Route::get('/admin/all_blog','adminController@all_blog')->name('admin.all_blog');
 
 Route::get('/admin/edit_blog', 'adminController@edit_blog');
 
-Route::get('/admin/add_new_blog', 'adminController@add_new_blog');
+Route::get('/admin/add_new_blog', 'adminController@add_new_blog')->name('admin.add_new_blog');
 
-Route::get('/admin/all_notice', 'adminController@all_notice');
+// Notice
+Route::get('/admin/all_notice', 'adminController@all_notice')->name('admin.all_notice');
+
+// Logout
+Route::get('/logout', 'logoutController@logout')->name('logout.logout');
 
 // End Shop Admin

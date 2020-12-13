@@ -75,12 +75,14 @@
                 <h2 class="text-center text-primary">Login To Your Shop</h2>
               </div>
               <form method="POST">
+                  {{-- Username --}}
                 <div class="input-group custom">
                   <input
                     type="text"
                     class="form-control form-control-lg"
                     name="username"
                     placeholder="Username"
+                    required
                   />
                   <div class="input-group-append custom">
                     <span class="input-group-text"
@@ -88,12 +90,14 @@
                     ></span>
                   </div>
                 </div>
+                {{-- Password --}}
                 <div class="input-group custom">
                   <input
                     type="password"
                     class="form-control form-control-lg"
                     name="password"
                     placeholder="**********"
+                    required
                   />
                   <div class="input-group-append custom">
                     <span class="input-group-text"
@@ -101,6 +105,12 @@
                     ></span>
                   </div>
                 </div>
+
+                {{-- Error Message --}}
+                <span style="color: red">
+                    {{ session('msg') }}
+                </span>
+
                 <div class="row pb-30">
                   <div class="col-6">
                     <div class="custom-control custom-checkbox">
@@ -124,18 +134,17 @@
                   <div class="col-sm-12">
                     <div class="input-group mb-0">
                       <!-- Submit -->
-                      {{-- <input
+                      <input
                         class="btn btn-primary btn-lg btn-block"
                         type="submit"
                         name="submit"
                         value="Sign In"
-                      /> --}}
-
-                      <a
+                      />
+                      {{-- <a
                         class="btn btn-primary btn-lg btn-block"
                         href="/admin"
                         >Sign In</a
-                      >
+                      > --}}
                     </div>
                   </div>
                 </div>

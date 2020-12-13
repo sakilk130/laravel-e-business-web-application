@@ -149,11 +149,11 @@
                         value="Create My Store"
                       />
 
-                      <a
+                      {{-- <a
                       class="btn btn-primary btn-lg btn-block"
                       href="/login"
                       >Sign Up</a
-                    >
+                    > --}}
                     </div>
                   </div>
                 </div>

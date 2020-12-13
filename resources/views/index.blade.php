@@ -117,7 +117,7 @@
                 <div class="dropdown">
                   <button class="main-btn">Login</button>
                   <div class="dropdown-content">
-                    <a href="/login">User Login</a>
+                    <a href="{{ route('login.login') }}">User Login</a>
                     <a href="/superadminlogin">Admin Login</a>
                   </div>
                 </div>
@@ -180,7 +180,7 @@
                   services you need to start and manage your business.
                 </p>
                 <a
-                  href="/register"
+                  href="{{ route('register.register') }}"
                   class="main-btn wow fadeInUp"
                   data-wow-duration="1.3s"
                   data-wow-delay="1.1s"
