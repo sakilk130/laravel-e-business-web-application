@@ -86,6 +86,7 @@
                     name="username"
                     placeholder="Username"
                     required
+                    value="{{ old('username') }}"
                   />
                   <div class="input-group-append custom">
                     <span class="input-group-text"
@@ -101,6 +102,7 @@
                     name="password"
                     placeholder="**********"
                     required
+                    value="{{ old('password') }}"
                   />
                   <div class="input-group-append custom">
                     <span class="input-group-text"
@@ -114,6 +116,12 @@
                     {{ session('msg') }}
                 </span>
 
+                {{-- Server Validation --}}
+                <span style="color: red">
+                    @foreach($errors->all() as $err)
+                    {{ $err }}<br>
+                    @endforeach
+                </span>
                 <div class="row pb-30">
                   <div class="col-6">
                     <div class="custom-control custom-checkbox">
