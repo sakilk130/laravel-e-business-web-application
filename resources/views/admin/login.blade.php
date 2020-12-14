@@ -75,9 +75,10 @@
                 <h2 class="text-center text-primary">Login To Your Shop</h2>
               </div>
               <form method="POST">
-                  {{-- Token --}}
 
+                  {{-- Token --}}
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                   {{-- Username --}}
                 <div class="input-group custom">
                   <input
@@ -88,12 +89,19 @@
                     required
                     value="{{ old('username') }}"
                   />
+
+                  {{-- Server side validation --}}
+                  @error('username')
+                    <span style="color: red">{{ $message }}</span>
+                  @enderror
+
                   <div class="input-group-append custom">
                     <span class="input-group-text"
                       ><i class="icon-copy dw dw-user1"></i
                     ></span>
                   </div>
                 </div>
+
                 {{-- Password --}}
                 <div class="input-group custom">
                   <input
@@ -104,6 +112,12 @@
                     required
                     value="{{ old('password') }}"
                   />
+
+                  {{-- Server Validation --}}
+                  @error('password')
+                    <span style="color: red">{{ $message }}</span>
+                  @enderror
+
                   <div class="input-group-append custom">
                     <span class="input-group-text"
                       ><i class="dw dw-padlock1"></i
@@ -116,12 +130,6 @@
                     {{ session('msg') }}
                 </span>
 
-                {{-- Server Validation --}}
-                <span style="color: red">
-                    @foreach($errors->all() as $err)
-                    {{ $err }}<br>
-                    @endforeach
-                </span>
                 <div class="row pb-30">
                   <div class="col-6">
                     <div class="custom-control custom-checkbox">
@@ -151,11 +159,6 @@
                         name="submit"
                         value="Sign In"
                       />
-                      {{-- <a
-                        class="btn btn-primary btn-lg btn-block"
-                        href="/admin"
-                        >Sign In</a
-                      > --}}
                     </div>
                   </div>
                 </div>

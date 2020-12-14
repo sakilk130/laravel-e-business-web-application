@@ -9,22 +9,29 @@
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Add Product</h2>
         <div class="pd-20 card-box mb-30">
-          <form>
+          <form method="POST">
               {{-- Token --}}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             <!-- Select Category -->
             <div class="form-group row">
               <label class="col-sm-12 col-md-2 col-form-label"
                 >Select Category</label
               >
               <div class="col-sm-12 col-md-10">
-                <select class="custom-select form-control">
-                  <option value="">---Select Category---</option>
+                <select class="custom-select form-control" name="category" required >
+                  <option value=''>---Select Category---</option>
                   <option value="Books">Books</option>
                   <option value="Electronics">Electronics</option>
                   <option value="Fashion">Fashion</option>
                 </select>
               </div>
+
+              {{-- Server Side validation --}}
+                @error('category')
+                <span style="margin:auto; color:red">{{ $message }}</span>
+                @enderror
+
             </div>
 
             <!-- Select Sub-Category -->
@@ -33,7 +40,7 @@
                 >Select Sub-Category</label
               >
               <div class="col-sm-12 col-md-10">
-                <select class="custom-select form-control">
+                <select class="custom-select form-control" name="sub_category" required>
                   <option value="">---Select Sub-Category---</option>
                   <option value="Mobile">Mobile</option>
                   <option value="Laptop">Laptop</option>
@@ -41,6 +48,12 @@
                   <option value="AC">AC</option>
                 </select>
               </div>
+
+               {{-- Server Side validation --}}
+               @error('sub_category')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
 
             <!-- Product Name -->
@@ -52,9 +65,18 @@
                 <input
                   class="form-control"
                   type="text"
+                  name="product_name"
                   placeholder="Product Name..."
+                  required
+                  value="{{ old('product_name') }}"
                 />
               </div>
+
+               {{-- Server Side validation --}}
+               @error('product_name')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
 
             <!-- Product Brand -->
@@ -63,8 +85,14 @@
                 >Product Brand</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" placeholder="Product Brand..." />
+                <input class="form-control" type="text" placeholder="Product Brand..." name="product_brand" required value="{{ old('product_brand') }}"/>
               </div>
+
+              {{-- Server Side validation --}}
+              @error('product_brand')
+              <span style="margin:auto; color:red">{{ $message }}</span>
+              @enderror
+
             </div>
 
             <!-- Description -->
@@ -79,8 +107,16 @@
                   cols="30"
                   rows="10"
                   placeholder="Product Description....."
-                ></textarea>
+                  name="product_description"
+                  required
+                >{{ old('product_description') }}</textarea>
               </div>
+
+                {{-- Server Side validation --}}
+                @error('product_description')
+                <span style="margin:auto; color:red">{{ $message }}</span>
+                @enderror
+
             </div>
 
             <!-- Shipping Charge -->
@@ -93,8 +129,17 @@
                   class="form-control"
                   type="text"
                   placeholder="Shipping Charge..."
+                  name="shipping_charge"
+                  required
+                  value="{{ old('shipping_charge') }}"
                 />
               </div>
+
+              {{-- Server Side validation --}}
+              @error('shipping_charge')
+              <span style="margin:auto; color:red">{{ $message }}</span>
+              @enderror
+
             </div>
 
             <!-- Product Availability -->
@@ -103,11 +148,17 @@
                 >Product Availability</label
               >
               <div class="col-sm-12 col-md-10">
-                <select class="custom-select form-control">
+                <select class="custom-select form-control" name="product_availability" required>
                   <option value="In Stock">In Stock</option>
                   <option value="Out Of Stock">Out Of Stock</option>
                 </select>
               </div>
+
+               {{-- Server Side validation --}}
+               @error('product_availability')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
 
             <!-- Stock Count -->
@@ -116,9 +167,15 @@
                 >Product Stock</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" placeholder="200" />
+                <input class="form-control" type="text" placeholder="200" name="product_stock" required value="{{ old('product_stock') }}"/>
               </div>
-            </div>
+
+                 {{-- Server Side validation --}}
+                 @error('product_stock')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
+                </div>
 
             <!-- Price -->
             <div class="form-group row">
@@ -128,8 +185,17 @@
                   class="form-control"
                   type="text"
                   placeholder="Price..."
+                  name="price"
+                  required
+                  value="{{ old('price') }}"
                 />
               </div>
+
+               {{-- Server Side validation --}}
+               @error('price')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
 
             {{-- Discount --}}
@@ -140,9 +206,18 @@
                     class="form-control"
                     type="text"
                     placeholder="Optional"
+                    name="discount"
+                    required
+                    value="{{ old('discount') }}"
                   />
                 </div>
-              </div>
+
+                {{-- Server Side validation --}}
+               @error('discount')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
+            </div>
 
             <!-- Image -->
             <div class="form-group row">
@@ -150,12 +225,18 @@
                 >Add Image</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="file" />
+                <input class="form-control" type="file" name="product_image" required value="{{ old('product_image') }}"/>
               </div>
+
+                {{-- Server Side validation --}}
+                @error('product_image')
+                <span style="margin:auto; color:red">{{ $message }}</span>
+                @enderror
+
             </div>
 
             {{-- Submit --}}
-            <div class="col-sm-12 col-md-2" style="text-align: center">
+            <div class="col-sm-12 col-md-2"  style="margin: auto">
               <input
                 class="btn btn-primary"
                 type="submit"

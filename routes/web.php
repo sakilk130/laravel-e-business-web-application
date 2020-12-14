@@ -25,6 +25,7 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/all_products', 'adminController@all_products')->name('admin.all_products');
 
     Route::get('/admin/add_new_product', 'adminController@add_new_product')->name('admin.add_new_product');
+    Route::post('/admin/add_new_product', 'adminController@add_product');
 
     Route::get('/admin/manage_product','adminController@manage_product')->name('admin.manage_product');
 

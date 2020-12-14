@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+
 
 class adminController extends Controller
 {
@@ -18,8 +20,14 @@ class adminController extends Controller
     public function all_products() {
         return view('admin.all-products');
     }
+    // get
     public function add_new_product() {
+
         return view('admin.add-new-product');
+    }
+    // post
+    public function add_product(ProductRequest $req) {
+        return redirect()->route('admin.all_products');
     }
     public function manage_product() {
         return view('admin.manage-product');
