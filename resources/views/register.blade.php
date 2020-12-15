@@ -77,16 +77,27 @@
                 </h2>
               </div>
               <form method="POST">
+                  {{-- Token --}}
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                 <!-- Store Name -->
                 <div class="input-group custom">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    name="store_name"
-                    placeholder="Store Name"
-                    required
-                  />
+                    <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        name="store_name"
+                        placeholder="Store Name"
+                        required
+                        value="{{ old('store_name') }}"
+                    />
+
+                    {{-- Server Side Validation --}}
+                    @error('store_name')
+                    <span style="color: red">{{ $message }}</span>
+                    @enderror
+
                 </div>
+
                 <!-- Username -->
                 <div class="input-group custom">
                   <input
@@ -95,8 +106,15 @@
                     name="username"
                     placeholder="Username"
                     required
+                    value="{{ old('username') }}"
                   />
+                {{-- Server Side Validation --}}
+                @error('username')
+                <span style="color: red">{{ $message }}</span>
+                @enderror
+
                 </div>
+
                 <!-- Email -->
                 <div class="input-group custom">
                   <input
@@ -105,8 +123,16 @@
                     name="email"
                     placeholder="Email"
                     required
+                    value="{{ old('email') }}"
                   />
+                {{-- Server Side Validation --}}
+                @error('email')
+                <span style="color: red">{{ $message }}</span>
+                @enderror
+
                 </div>
+
+
 
                 <!-- Phone -->
                 <div class="input-group custom">
@@ -116,8 +142,16 @@
                     name="phone"
                     placeholder="Phone Number"
                     required
+                    value="{{ old('phone') }}"
                   />
+                  {{-- Server Side Validation --}}
+                @error('phone')
+                <span style="color: red">{{ $message }}</span>
+                @enderror
                 </div>
+
+
+
                 <!-- Address -->
                 <div class="input-group custom">
                   <input
@@ -126,34 +160,45 @@
                     name="address"
                     placeholder="Address"
                     required
+                    value="{{ old('address') }}"
                   />
+                   {{-- Server Side Validation --}}
+                 @error('address')
+                 <span style="color: red">{{ $message }}</span>
+                 @enderror
                 </div>
-                <!-- Password -->
+
+
+
+                 <!-- Password -->
                 <div class="input-group custom">
                   <input
                     type="password"
                     class="form-control form-control-lg"
                     name="password"
                     placeholder="Password"
+                    required
+                    value="{{ old('password') }}"
                   />
+                {{-- Server Side Validation --}}
+                @error('password')
+                <span style="color: red">{{ $message }}</span>
+                @enderror
                 </div>
 
+
+
+                  <!-- Submit -->
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="input-group mb-0">
-                      <!-- Submit -->
+
                       <input
                         class="btn btn-primary btn-lg btn-block"
                         type="submit"
                         name="submit"
                         value="Create My Store"
                       />
-
-                      {{-- <a
-                      class="btn btn-primary btn-lg btn-block"
-                      href="/login"
-                      >Sign Up</a
-                    > --}}
                     </div>
                   </div>
                 </div>

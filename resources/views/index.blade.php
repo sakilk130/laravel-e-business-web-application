@@ -666,7 +666,7 @@
               data-wow-delay="0.2s"
             >
               <div class="team-image">
-                <img src="assets/images/team-1.png" alt="Team" />
+                <img src="assets/images/sakil.jpeg" alt="Team" />
                 <div class="social">
                   <ul>
                     <li>
@@ -685,8 +685,8 @@
                 </div>
               </div>
               <div class="team-content">
-                <h5 class="holder-name"><a href="#">Isabela Moreira</a></h5>
-                <p class="text">Founder and CEO</p>
+                <h5 class="holder-name"><a href="#">Sakil Khan</a></h5>
+                <p class="text">Software Engineer</p>
               </div>
             </div>
             <!-- single team -->
@@ -698,7 +698,7 @@
               data-wow-delay="0.5s"
             >
               <div class="team-image">
-                <img src="assets/images/team-2.png" alt="Team" />
+                <img src="assets/images/tawheed.jpeg" alt="Team" />
                 <div class="social">
                   <ul>
                     <li>
@@ -717,8 +717,8 @@
                 </div>
               </div>
               <div class="team-content">
-                <h5 class="holder-name"><a href="#">Elon Musk</a></h5>
-                <p class="text">Sr. Software Engineer</p>
+                <h5 class="holder-name"><a href="#">Tawheed Anjum</a></h5>
+                <p class="text">Software Engineer</p>
               </div>
             </div>
             <!-- single team -->
@@ -730,7 +730,7 @@
               data-wow-delay="0.8s"
             >
               <div class="team-image">
-                <img src="assets/images/team-3.png" alt="Team" />
+                <img src="assets/images/asif.jpeg" alt="Team" />
                 <div class="social">
                   <ul>
                     <li>
@@ -749,8 +749,8 @@
                 </div>
               </div>
               <div class="team-content">
-                <h5 class="holder-name"><a href="#">Fiona Smith</a></h5>
-                <p class="text">Business Development Manager</p>
+                <h5 class="holder-name"><a href="#">Asif Shahriar Khan</a></h5>
+                <p class="text">Software Engineer</p>
               </div>
             </div>
             <!-- single team -->

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
-
+use App\Http\Requests\AdminProfileRequest;
 
 class adminController extends Controller
 {
@@ -14,6 +14,11 @@ class adminController extends Controller
     public function profile(){
         return view("admin.admin-profile");
     }
+    // post
+    public function edit_profile(AdminProfileRequest $req){
+        return redirect()->route('admin.profile');
+    }
+
     public function change_password(){
         return view('admin.admin-chnage-password');
     }
@@ -25,10 +30,12 @@ class adminController extends Controller
 
         return view('admin.add-new-product');
     }
+
     // post
     public function add_product(ProductRequest $req) {
         return redirect()->route('admin.all_products');
     }
+
     public function manage_product() {
         return view('admin.manage-product');
     }

@@ -4,9 +4,9 @@
 
 Route::get('/','indexController@index');
 
-Route::get('/register','registerController@register')->name('register.register');
+Route::get('/new','registerController@register')->name('register.register');
 
-Route::post('/register','registerController@new_user');
+Route::post('/new','registerController@add_new_store');
 
 Route::get('/login','loginController@login')->name('login.login');
 
@@ -18,6 +18,8 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin','adminController@index')->name('admin.index');
 
     Route::get('/admin/profile','adminController@profile')->name('admin.profile');
+    Route::post('/admin/profile','adminController@edit_profile');
+
 
     Route::get('/admin/change_password','adminController@change_password')->name('admin.change_password');
 
@@ -25,6 +27,7 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/all_products', 'adminController@all_products')->name('admin.all_products');
 
     Route::get('/admin/add_new_product', 'adminController@add_new_product')->name('admin.add_new_product');
+
     Route::post('/admin/add_new_product', 'adminController@add_product');
 
     Route::get('/admin/manage_product','adminController@manage_product')->name('admin.manage_product');

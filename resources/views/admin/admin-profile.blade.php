@@ -9,7 +9,7 @@
         <div class="card-box mb-30">
           <h2 class="h4 pd-20 text-blue">Profile</h2>
           <div class="pd-20 card-box mb-30">
-            <form>
+            <form method="POST">
                 {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                  <!-- image -->
@@ -21,6 +21,7 @@
                   <img src="/images/profile-photo.jpg" alt="" height="100px" width="100px">
                 </div>
               </div>
+
               <!-- Name -->
               <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label"
@@ -31,8 +32,16 @@
                     class="form-control"
                     type="text"
                     value="Admin Name"
+                    name="name"
+
                   />
                 </div>
+
+                {{-- Server side validation --}}
+                @error('name')
+                <span style="margin:auto; color:red">{{ $message }}</span>
+                @enderror
+
               </div>
 
               <!-- Email -->
@@ -45,8 +54,15 @@
                     class="form-control"
                     type="email"
                    value="Admin Mail"
+                   name="email"
                   />
                 </div>
+
+                {{-- Server side validation --}}
+                 @error('email')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
               </div>
 
               <!-- Phone -->
@@ -59,8 +75,15 @@
                     class="form-control"
                     type="text"
                    value="Admin Phone"
+                   name="phone"
                   />
                 </div>
+
+                {{-- Server side validation --}}
+                 @error('phone')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
               </div>
 
                <!-- Address -->
@@ -73,8 +96,15 @@
                     class="form-control"
                     type="text"
                    value="Admin Address"
+                   name="address"
                   />
                 </div>
+
+                {{-- Server side validation --}}
+                 @error('address')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
               </div>
 
                <!-- Shop -->
@@ -87,9 +117,16 @@
                     class="form-control"
                     type="text"
                    value="Shop Name"
+                   name="store_name"
                   />
                 </div>
-              </div>
+
+                 {{-- Server side validation --}}
+                 @error('store_name')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
+                </div>
 
                <!-- Image -->
                <div class="form-group row">
@@ -100,13 +137,20 @@
                   <input
                     class="form-control"
                     type="file"
+                    name="profile_image"
                   />
                 </div>
+
+                 {{-- Server side validation --}}
+                 @error('profile_image')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
               </div>
 
 
               <!-- Submit -->
-              <div class="col-sm-12 col-md-2" style="text-align: center">
+              <div class="col-sm-12 col-md-2" style="margin: auto">
                 <input
                   class="btn btn-primary"
                   type="submit"
