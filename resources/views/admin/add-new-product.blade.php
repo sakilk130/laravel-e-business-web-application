@@ -128,7 +128,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="Shipping Charge..."
+                  placeholder="Shipping Charge (BDT)"
                   name="shipping_charge"
                   required
                   value="{{ old('shipping_charge') }}"
@@ -167,7 +167,7 @@
                 >Product Stock</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" placeholder="200" name="product_stock" required value="{{ old('product_stock') }}"/>
+                <input class="form-control" type="text" placeholder="Product Stock..." name="product_stock" required value="{{ old('product_stock') }}"/>
               </div>
 
                  {{-- Server Side validation --}}
@@ -184,7 +184,7 @@
                 <input
                   class="form-control"
                   type="text"
-                  placeholder="Price..."
+                  placeholder="Price (BDT)"
                   name="price"
                   required
                   value="{{ old('price') }}"
@@ -200,12 +200,12 @@
 
             {{-- Discount --}}
             <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label">Price</label>
+                <label class="col-sm-12 col-md-2 col-form-label">Discount</label>
                 <div class="col-sm-12 col-md-10">
                   <input
                     class="form-control"
                     type="text"
-                    placeholder="Optional"
+                    placeholder="Discount (BDT)"
                     name="discount"
                     required
                     value="{{ old('discount') }}"

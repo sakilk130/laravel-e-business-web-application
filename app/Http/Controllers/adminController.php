@@ -3,34 +3,41 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ProductRequest;
-use App\Http\Requests\AdminProfileRequest;
+use App\Http\Requests\Admin\ProductRequest;
+use App\Http\Requests\Admin\AdminProfileRequest;
+use App\Http\Requests\Admin\AdminPassChangeRequest;
+use App\Http\Requests\Admin\EditProductRequest;
 
 class adminController extends Controller
 {
     public function index(Request $req){
         return view('admin.index');
     }
+
+    // admin_profile
     public function profile(){
         return view("admin.admin-profile");
     }
-    // post
     public function edit_profile(AdminProfileRequest $req){
         return redirect()->route('admin.profile');
     }
 
+    // Chnage_password
     public function change_password(){
         return view('admin.admin-chnage-password');
     }
+    public function edit_password(AdminPassChangeRequest $req){
+        return redirect()->route('admin.change_password');
+    }
+
     public function all_products() {
         return view('admin.all-products');
     }
-    // get
+    //Add new product
     public function add_new_product() {
 
         return view('admin.add-new-product');
     }
-
     // post
     public function add_product(ProductRequest $req) {
         return redirect()->route('admin.all_products');
@@ -39,9 +46,15 @@ class adminController extends Controller
     public function manage_product() {
         return view('admin.manage-product');
     }
+
+    // Edit Product
     public function edit_product() {
         return view('admin.edit-product');
     }
+    public function update_product(EditProductRequest $req) {
+        return redirect('/admin/edit_product');
+    }
+
     public function all_orders() {
         return view('admin.all-orders');
     }

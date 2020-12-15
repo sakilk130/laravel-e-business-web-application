@@ -8,22 +8,29 @@
         <div class="card-box mb-30">
             <h2 class="h4 pd-20 text-blue">Edit Product</h2>
             <div class="pd-20 card-box mb-30">
-                <form>
+                <form method="POST">
                     {{-- Token --}}
                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                     <!-- Select Category -->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
                             >Select Category</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
+                            <select class="custom-select form-control" name="category" required>
                                 <option value="">---Select Category---</option>
                                 <option value="Books">Books</option>
                                 <option value="Electronics">Electronics</option>
                                 <option value="Fashion">Fashion</option>
                             </select>
                         </div>
+
+                        {{-- Server Side validation Error--}}
+                        @error('category')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                         @enderror
+
                     </div>
                     <!-- Select Sub-Category -->
                     <div class="form-group row">
@@ -31,7 +38,7 @@
                             >Select Sub-Category</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
+                            <select class="custom-select form-control" name="sub_category" required>
                                 <option value="">
                                     ---Select Sub-Category---
                                 </option>
@@ -41,6 +48,12 @@
                                 <option value="AC">AC</option>
                             </select>
                         </div>
+
+                        {{-- Server Side validation Error--}}
+                        @error('sub_category')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
                     <!-- Product Name -->
                     <div class="form-group row">
@@ -51,9 +64,17 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="MacBook Pro 16GB 2021.."
+                                placeholder="Product Name.."
+                                name="product_name"
+                                required
+                                value="{{ old('product_name') }}"
                             />
                         </div>
+
+                        {{-- Server Side validation --}}
+                        @error('product_name')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <!-- Product Brand -->
@@ -65,9 +86,18 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="Apple"
+                                placeholder="Product Brand..."
+                                name="product_brand"
+                                required
+                                value="{{ old('product_brand') }}"
                             />
                         </div>
+
+                         {{-- Server Side validation Error --}}
+                        @error('product_brand')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
                     <!-- Description -->
                     <div class="form-group row">
@@ -76,13 +106,20 @@
                         >
                         <div class="col-sm-12 col-md-10">
                             <textarea
-                                name="product-description"
                                 class="form-control"
                                 cols="30"
                                 rows="10"
                                 placeholder="Product Description....."
-                            ></textarea>
+                                name="product_description"
+                                required
+                            >{{ old('product_description') }}</textarea>
                         </div>
+
+                        {{-- Server Side validation Error--}}
+                        @error('product_description')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
 
                     <!-- Shipping Charge -->
@@ -94,9 +131,18 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="100 BDT"
+                                placeholder="Shipping Charge (BDT)"
+                                name="shipping_charge"
+                                required
+                                value="{{ old('shipping_charge') }}"
                             />
                         </div>
+
+                        {{-- Server Side validation Error--}}
+                        @error('shipping_charge')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
 
                     <!-- Product Availability -->
@@ -105,13 +151,19 @@
                             >Product Availability</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
+                            <select class="custom-select form-control" name="product_availability" required>
                                 <option value="In Stock">In Stock</option>
                                 <option value="Out Of Stock">
                                     Out Of Stock
                                 </option>
                             </select>
                         </div>
+
+                         {{-- Server Side validation Error--}}
+                        @error('product_availability')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
                     <!-- Stock Count -->
                     <div class="form-group row">
@@ -122,10 +174,19 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="200"
+                                placeholder="Product Stock"
+                                name="product_stock"
+                                required
+                                value="{{ old('product_stock') }}"
                             />
                         </div>
-                    </div>
+
+                        {{-- Server Side validation Error--}}
+                          @error('product_stock')
+                          <span style="margin:auto; color:red">{{ $message }}</span>
+                          @enderror
+
+                        </div>
 
                     <!-- Price -->
                     <div class="form-group row">
@@ -136,9 +197,39 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                placeholder="2,20,000 BDT"
+                                placeholder="Price (BDT)"
+                                name="price"
+                                required
+                                value="{{ old('price') }}"
                             />
                         </div>
+
+                        {{-- Server Side validation Error--}}
+                        @error('price')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
+                    </div>
+
+                    {{-- Discount --}}
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label">Discount</label>
+                        <div class="col-sm-12 col-md-10">
+                        <input
+                            class="form-control"
+                            type="text"
+                            placeholder="Optional"
+                            name="discount"
+                            required
+                            value="{{ old('discount') }}"
+                        />
+                        </div>
+
+                        {{-- Server Side validation Error--}}
+                        @error('discount')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
 
                     <!-- Image -->
@@ -147,11 +238,17 @@
                             >Add Image</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="file" />
+                            <input class="form-control" type="file" name="product_image" value="{{ old('product_image') }}" required/>
                         </div>
+
+                         {{-- Server Side validation Error--}}
+                        @error('product_image')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
 
-                    <div class="col-sm-12 col-md-2" style="text-align: center">
+                    <div class="col-sm-12 col-md-2" style="margin: auto">
                         <input
                             class="btn btn-primary"
                             type="submit"

@@ -20,19 +20,21 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/profile','adminController@profile')->name('admin.profile');
     Route::post('/admin/profile','adminController@edit_profile');
 
-
     Route::get('/admin/change_password','adminController@change_password')->name('admin.change_password');
+    Route::post('/admin/change_password','adminController@edit_password');
+
 
     // Product
     Route::get('/admin/all_products', 'adminController@all_products')->name('admin.all_products');
 
     Route::get('/admin/add_new_product', 'adminController@add_new_product')->name('admin.add_new_product');
-
     Route::post('/admin/add_new_product', 'adminController@add_product');
 
     Route::get('/admin/manage_product','adminController@manage_product')->name('admin.manage_product');
 
     Route::get('/admin/edit_product','adminController@edit_product' );
+    Route::post('/admin/edit_product','adminController@update_product' );
+
 
     // Orders
     Route::get('/admin/all_orders','adminController@all_orders')->name('admin.all_orders');
