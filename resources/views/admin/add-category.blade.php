@@ -8,7 +8,7 @@
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Add Category</h2>
         <div class="pd-20 card-box mb-30">
-          <form>
+          <form method="POST">
               {{-- Token --}}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <!-- Category Name-->
@@ -20,10 +20,17 @@
                 <input
                   class="form-control"
                   type="text"
-                  name="name"
                   placeholder="Enter Category Name..."
+                  name="category_name"
+                  required
                 />
               </div>
+
+                 {{-- Server Side validation Error--}}
+                 @error('category_name')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
             </div>
             <div class="form-group row">
               <label class="col-sm-12 col-md-2 col-form-label"
@@ -31,16 +38,18 @@
               >
 
               <div class="col-sm-12 col-md-10">
-                <input
-                  type="text"
-                  name="product-details"
-                  class="form-control"
-                  placeholder="Drescription"
-                />
+                  <textarea class="form-control" name="category_details" id="" cols="30" rows="10" placeholder="Drescription..." required></textarea>
               </div>
+
+                 {{-- Server Side validation Error--}}
+                 @error('category_details')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
             </div>
 
-            <div class="col-sm-12 col-md-2" style="text-align: center">
+            {{-- Submit --}}
+            <div class="col-sm-12 col-md-2" style="margin: auto">
               <input
                 class="btn btn-primary"
                 type="submit"

@@ -8,7 +8,7 @@
         <div class="card-box mb-30">
             <h2 class="h4 pd-20 text-blue">Edit Sub-Category</h2>
             <div class="pd-20 card-box mb-30">
-                <form>
+                <form method="POST">
                     {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -18,7 +18,7 @@
                             >Select Category</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
+                            <select class="custom-select form-control" name="category_name" required>
                                 <option value="">---Select Category---</option>
                                 <option value="Electronics" selected>
                                     Electronics
@@ -26,6 +26,12 @@
                                 <option value="Book">Book</option>
                             </select>
                         </div>
+
+                        {{-- Server Side validation Error--}}
+                        @error('category_name')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
@@ -35,27 +41,22 @@
                         <div class="col-sm-12 col-md-10">
                             <input
                                 type="text"
-                                name="product-details"
                                 class="form-control"
+                                name="sub_category"
                                 value="Phone"
+                                required
                             />
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Creation Date</label
-                        >
 
-                        <div class="col-sm-12 col-md-10">
-                            <input
-                                type="text"
-                                name="product-details"
-                                class="form-control"
-                                value="17/11/2020"
-                            />
-                        </div>
+                        {{-- Server Side validation Error--}}
+                        @error('sub_category')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
-                    <div class="col-sm-12 col-md-2" style="text-align: center">
+
+                    {{-- Submit --}}
+                    <div class="col-sm-12 col-md-2" style="margin: auto">
                         <input
                             class="btn btn-primary"
                             type="submit"

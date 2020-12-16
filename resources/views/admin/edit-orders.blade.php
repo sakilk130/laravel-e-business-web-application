@@ -8,21 +8,17 @@
         <div class="card-box mb-30">
             <h2 class="h4 pd-20 text-blue">Edit Orders</h2>
             <div class="pd-20 card-box mb-30">
-                <form>
+                <form method="POST">
                     {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
                     <!-- Customer Name-->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
                             >Name</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input
-                                class="form-control"
-                                type="text"
-                                name="name"
-                                value="Sakil Khan"
-                            />
+                            <p class="form-control">Sakil Khan</p>
                         </div>
                     </div>
                     <!-- Customer Email -->
@@ -31,12 +27,8 @@
                             >Email</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input
-                                class="form-control"
-                                type="email"
-                                name="email"
-                                value="sakilk130@gmail.com"
-                            />
+                            <p class="form-control">sakilk130@gmail.com</p>
+
                         </div>
                     </div>
                     <!-- Contact No. -->
@@ -45,11 +37,7 @@
                             >Contact No.</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input
-                                class="form-control"
-                                type="text"
-                                value="01721214996"
-                            />
+                            <p class="form-control">01721214996</p>
                         </div>
                     </div>
 
@@ -59,11 +47,7 @@
                             >Shipping Address</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input
-                                class="form-control"
-                                type="text"
-                                value="Dhaka, Bangladesh"
-                            />
+                            <p class="form-control">Dhaka, Bangladesh</p>
                         </div>
                     </div>
                     <!-- Product Details -->
@@ -72,12 +56,8 @@
                             >Product Details</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input
-                                type="text"
-                                name="product-details"
-                                class="form-control"
-                                value="MacBook Pro 16GB 2021"
-                            />
+                            <p class="form-control">MacBook Pro 16GB 2021</p>
+
                         </div>
                     </div>
 
@@ -87,7 +67,8 @@
                             >Quantity</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="text" value="1" />
+                            <p class="form-control">1</p>
+
                         </div>
                     </div>
 
@@ -97,12 +78,7 @@
                             >Price</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input
-                                type="text"
-                                class="form-control"
-                                name="price"
-                                value="2,20,000 BDT"
-                            />
+                            <p class="form-control">2000000 BDT</p>
                         </div>
                     </div>
                     <!-- Order Date -->
@@ -111,11 +87,7 @@
                             >Order Date</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <input
-                                class="form-control"
-                                type="text"
-                                value="17/11/2020"
-                            />
+                            <p class="form-control">16/12/2020</p>
                         </div>
                     </div>
 
@@ -125,16 +97,18 @@
                             >Status</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control">
+                            <select class="custom-select form-control" name="status">
                                 <option value="">---Select Status---</option>
                                 <option value="Pending" selected>
                                     Pending
                                 </option>
+                                <option value="In Process">In Process</option>
                                 <option value="Delivered">Delivered</option>
                             </select>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-2" style="text-align: center">
+
+                    <div class="col-sm-12 col-md-2" style="margin: auto">
                         <input
                             class="btn btn-primary"
                             type="submit"

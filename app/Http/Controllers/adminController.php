@@ -7,6 +7,8 @@ use App\Http\Requests\Admin\ProductRequest;
 use App\Http\Requests\Admin\AdminProfileRequest;
 use App\Http\Requests\Admin\AdminPassChangeRequest;
 use App\Http\Requests\Admin\EditProductRequest;
+use App\Http\Requests\Admin\EditCategoryRequest;
+use App\Http\Requests\Admin\EditSubCategoryRequest;
 
 class adminController extends Controller
 {
@@ -73,21 +75,43 @@ class adminController extends Controller
     public function all_categories() {
         return view('admin.all-categories');
     }
+
+    // Edit Category
     public function edit_category() {
         return view('admin.edit-category');
     }
+    public function update_category(EditCategoryRequest $req) {
+        return redirect('/admin/all_categories');
+    }
+
     public function all_sub_categories() {
         return view('admin.all-sub-categories');
     }
+
+    // Edit Sub-Category
     public  function edit_sub_category() {
         return view('admin.edit-sub-category');
     }
+    public  function update_sub_category(EditSubCategoryRequest $req) {
+        return redirect('/admin/all_sub_categories');
+    }
+
+    // add category
     public function add_category() {
         return view('admin.add-category');
     }
-    public function add_sub_category() {
+    public function add_category_p(EditCategoryRequest $req) {
+        return redirect()->route('admin.add_category');
+    }
+
+      // add Sub category
+    public function add_sub_category(EditSubCategoryRequest $req) {
         return view('admin.add-sub-category');
     }
+    public function add_sub_category_p() {
+        return redirect()->route('admin.add_sub_category');
+    }
+
     public function all_customers() {
         return view('admin.all-customers');
     }
