@@ -23,6 +23,7 @@
                   placeholder="Enter Category Name..."
                   name="category_name"
                   required
+                  value="{{ old('category_name') }}"
                 />
               </div>
 
@@ -38,7 +39,7 @@
               >
 
               <div class="col-sm-12 col-md-10">
-                  <textarea class="form-control" name="category_details" id="" cols="30" rows="10" placeholder="Drescription..." required></textarea>
+                  <textarea class="form-control" name="category_details" id="" cols="30" rows="10" placeholder="Drescription..." required>{{ old('category_details') }}</textarea>
               </div>
 
                  {{-- Server Side validation Error--}}

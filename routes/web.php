@@ -69,24 +69,33 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/all_customers', 'adminController@all_customers')->name('admin.all_customers');
 
     Route::get('/admin/add_new_customer','adminController@add_new_customer' )->name('admin.add_new_customer');
+    Route::post('/admin/add_new_customer','adminController@add_new_customer_p' );
 
     Route::get('/admin/manage_customer', 'adminController@manage_customer')->name('admin.manage_customer');
 
     Route::get('/admin/edit_customer', 'adminController@edit_customer');
+    Route::post('/admin/edit_customer', 'adminController@update_customer');
+
 
     // Poster
     Route::get('/admin/all_poster', 'adminController@all_poster')->name('admin.all_poster');
 
     Route::get('/admin/add_new_poster', 'adminController@add_new_poster')->name('admin.add_new_poster');
+    Route::post('/admin/add_new_poster', 'adminController@add_new_poster_p');
 
     Route::get('/admin/edit_poster', 'adminController@edit_poster');
+    Route::post('/admin/edit_poster', 'adminController@update_poster');
+
 
     // Blog
     Route::get('/admin/all_blog','adminController@all_blog')->name('admin.all_blog');
 
     Route::get('/admin/edit_blog', 'adminController@edit_blog');
+    Route::post('/admin/edit_blog', 'adminController@update_blog');
+
 
     Route::get('/admin/add_new_blog', 'adminController@add_new_blog')->name('admin.add_new_blog');
+    Route::post('/admin/add_new_blog', 'adminController@add_new_blog_p');
 
     // Notice
     Route::get('/admin/all_notice', 'adminController@all_notice')->name('admin.all_notice');

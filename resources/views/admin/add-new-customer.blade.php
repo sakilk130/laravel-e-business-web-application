@@ -8,7 +8,7 @@
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Add New Customer</h2>
         <div class="pd-20 card-box mb-30">
-          <form>
+          <form method="POST">
               {{-- Token --}}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -20,8 +20,17 @@
                   class="form-control"
                   type="text"
                   placeholder="Enter Name"
+                  name="name"
+                  required
+                  value="{{ old('name') }}"
                 />
               </div>
+
+               {{-- Server Side validation Error--}}
+               @error('name')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
 
             <!-- Customer Email -->
@@ -30,10 +39,19 @@
               <div class="col-sm-12 col-md-10">
                 <input
                   class="form-control"
-                  type="text"
+                  type="email"
                   placeholder="test@test.com"
+                  name="email"
+                  required
+                  value="{{ old('email') }}"
                 />
               </div>
+
+               {{-- Server Side validation Error--}}
+               @error('email')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
 
             <!-- Contact No. -->
@@ -46,8 +64,17 @@
                   class="form-control"
                   type="text"
                   placeholder="+8801..."
+                  name="phone"
+                  required
+                  value="{{ old('phone') }}"
                 />
               </div>
+
+               {{-- Server Side validation Error--}}
+               @error('phone')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
             <!-- Shipping Address -->
             <div class="form-group row">
@@ -56,13 +83,20 @@
               >
               <div class="col-sm-12 col-md-10">
                 <textarea
-                  name="product-description"
                   class="form-control"
                   cols="30"
                   rows="10"
                   placeholder="Shipping Address.."
-                ></textarea>
+                  name="address"
+                  required
+                >{{ old('address') }}</textarea>
               </div>
+
+               {{-- Server Side validation Error--}}
+               @error('address')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
             <!-- Password -->
             <div class="form-group row">
@@ -74,8 +108,17 @@
                   class="form-control"
                   type="password"
                   placeholder="Enter Password"
+                  name="password"
+                  required
+                  value="{{ old('password') }}"
                 />
               </div>
+
+               {{-- Server Side validation Error--}}
+               @error('password')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
+
             </div>
 
             <!--Confirm Password -->
@@ -88,12 +131,19 @@
                   class="form-control"
                   type="password"
                   placeholder="Enter Password"
+                  name="c_password"
+                  required
+                  value="{{ old('c_password') }}"
                 />
               </div>
+               {{-- Server Side validation Error--}}
+               @error('c_password')
+               <span style="margin:auto; color:red">{{ $message }}</span>
+               @enderror
             </div>
 
             <!-- Submit -->
-            <div class="col-sm-12 col-md-2" style="text-align: center">
+            <div class="col-sm-12 col-md-2" style="margin: auto">
               <input
                 class="btn btn-primary"
                 type="submit"

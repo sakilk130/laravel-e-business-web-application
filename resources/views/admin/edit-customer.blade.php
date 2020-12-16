@@ -8,7 +8,7 @@
         <div class="card-box mb-30">
             <h2 class="h4 pd-20 text-blue">Edit Customer</h2>
             <div class="pd-20 card-box mb-30">
-                <form>
+                <form method="POST">
                     {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -22,8 +22,16 @@
                                 class="form-control"
                                 type="text"
                                 value="Sakil Khan"
+                                name="name"
+                                required
                             />
                         </div>
+
+                            {{-- Server Side validation --}}
+                        @error('name')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
 
                     <!-- Customer Email -->
@@ -34,10 +42,18 @@
                         <div class="col-sm-12 col-md-10">
                             <input
                                 class="form-control"
-                                type="text"
+                                type="email"
                                 value="sakilk130@gmail.com"
+                                name="email"
+                                required
                             />
                         </div>
+
+                           {{-- Server Side validation --}}
+                            @error('email')
+                            <span style="margin:auto; color:red">{{ $message }}</span>
+                            @enderror
+
                     </div>
 
                     <!-- Contact No. -->
@@ -50,8 +66,16 @@
                                 class="form-control"
                                 type="text"
                                 value="01721214996"
+                                name="phone"
+                                required
                             />
                         </div>
+
+                        {{-- Server Side validation --}}
+                        @error('phone')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                     </div>
                     <!-- Shipping Address -->
                     <div class="form-group row">
@@ -61,14 +85,20 @@
                         <div class="col-sm-12 col-md-10">
                             <input
                                 type="text"
-                                name="product-description"
                                 class="form-control"
                                 value="Dhaka, Bangladesh"
+                                name="address"
+                                required
                             />
                         </div>
+                            {{-- Server Side validation --}}
+                            @error('address')
+                            <span style="margin:auto; color:red">{{ $message }}</span>
+                            @enderror
                     </div>
+
                     <!-- Submit -->
-                    <div class="col-sm-12 col-md-2" style="text-align: center">
+                    <div class="col-sm-12 col-md-2" style="margin: auto">
                         <input
                             class="btn btn-primary"
                             type="submit"

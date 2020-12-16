@@ -40,6 +40,8 @@
                   class="form-control"
                   placeholder="Sub-Category Name.."
                   name="sub_category"
+                  required
+                  value="{{ old('sub_category') }}"
                 />
               </div>
                {{-- Server Side validation Error--}}
@@ -49,7 +51,7 @@
             </div>
 
             {{-- submit --}}
-            <div class="col-sm-12 col-md-2" style="text-align: center">
+            <div class="col-sm-12 col-md-2" style="margin: auto">
               <input
                 class="btn btn-primary"
                 type="submit"

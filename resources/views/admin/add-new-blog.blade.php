@@ -8,10 +8,11 @@
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Add Blog Post</h2>
         <div class="pd-20 card-box mb-30">
-            <form>
+            <form method="POST" enctype="multipart/form-data">
                  {{-- Token --}}
                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                <!-- Blog Title -->
+
+                 <!-- Blog Title -->
                 <div class="form-group row">
                   <label class="col-sm-12 col-md-2 col-form-label">Blog Title</label>
                   <div class="col-sm-12 col-md-10">
@@ -19,8 +20,16 @@
                       class="form-control"
                       type="text"
                       placeholder="Blog Title..."
+                      name="blog_title"
+                      required
                     />
                   </div>
+
+                  {{-- Server side validation --}}
+                 @error('blog_title')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+
                 </div>
 
                 <!-- Blog Drescription -->
@@ -30,13 +39,20 @@
                   >
                   <div class="col-sm-12 col-md-10">
                     <textarea
-                      name="product-description"
                       class="form-control"
                       cols="30"
                       rows="10"
                       placeholder="Blog Drescription..."
+                      name="blog_details"
+                      required
                     ></textarea>
                   </div>
+
+                        {{-- Server side validation --}}
+                        @error('blog_details')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
+
                 </div>
 
                 <!--Image -->
@@ -48,12 +64,19 @@
                     <input
                       class="form-control"
                       type="file"
+                      name="blog_image"
+                      required
+
                     />
                   </div>
+                        {{-- Server side validation --}}
+                        @error('blog_image')
+                        <span style="margin:auto; color:red">{{ $message }}</span>
+                        @enderror
                 </div>
 
                 <!-- Submit -->
-                <div class="col-sm-12 col-md-2" style="text-align: center">
+                <div class="col-sm-12 col-md-2" style="margin: auto">
                   <input
                     class="btn btn-primary"
                     type="submit"

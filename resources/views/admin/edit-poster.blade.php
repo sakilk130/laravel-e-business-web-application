@@ -8,7 +8,7 @@
         <div class="card-box mb-30">
             <h2 class="h4 pd-20 text-blue">Edit Poster Image</h2>
             <div class="pd-20 card-box mb-30">
-                <form>
+                <form method="POST" enctype="multipart/form-data">
                     {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -18,14 +18,19 @@
                             <input
                                 class="form-control"
                                 type="file"
-                                name="image"
-
+                                name="poster_image"
+                                required
                             />
                         </div>
+                            {{-- Server side validation --}}
+                            @error('poster_image')
+                            <span style="margin:auto; color:red">{{ $message }}</span>
+                            @enderror
+
                     </div>
 
                     {{-- Submit --}}
-                    <div class="col-sm-12 col-md-2" style="text-align: center">
+                    <div class="col-sm-12 col-md-2" style="margin: auto">
                         <input
                             class="btn btn-primary"
                             type="submit"

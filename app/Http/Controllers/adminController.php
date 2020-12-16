@@ -9,6 +9,10 @@ use App\Http\Requests\Admin\AdminPassChangeRequest;
 use App\Http\Requests\Admin\EditProductRequest;
 use App\Http\Requests\Admin\EditCategoryRequest;
 use App\Http\Requests\Admin\EditSubCategoryRequest;
+use App\Http\Requests\Admin\NewCustomerRequest;
+use App\Http\Requests\Admin\EditCustomerRequest;
+use App\Http\Requests\Admin\AddPosterRequest;
+use App\Http\Requests\Admin\EditBlogRequest;
 
 class adminController extends Controller
 {
@@ -101,46 +105,77 @@ class adminController extends Controller
         return view('admin.add-category');
     }
     public function add_category_p(EditCategoryRequest $req) {
-        return redirect()->route('admin.add_category');
+        return redirect()->route('admin.all_sub_categories');
     }
 
       // add Sub category
-    public function add_sub_category(EditSubCategoryRequest $req) {
+    public function add_sub_category() {
         return view('admin.add-sub-category');
     }
-    public function add_sub_category_p() {
-        return redirect()->route('admin.add_sub_category');
+    public function add_sub_category_p(EditSubCategoryRequest $req) {
+        return redirect()->route('admin.all_sub_category');
     }
 
     public function all_customers() {
         return view('admin.all-customers');
     }
+
+    // Add New Customer
     public function add_new_customer() {
         return view('admin.add-new-customer');
     }
+    public function add_new_customer_p(NewCustomerRequest $req) {
+        return redirect()->route('admin.all_customers');
+    }
+
     public function manage_customer() {
         return view('admin./manage-customer');
     }
+    // Edit Customer
     public function edit_customer() {
         return view('admin./edit-customer');
     }
+    public function update_customer(EditCustomerRequest $req) {
+        return redirect()->route('admin.manage_customer');
+    }
+
     public function all_poster() {
         return view('admin.all-poster');
     }
+
+    // Add new poster
     public function add_new_poster() {
         return view('admin.add-new-poster');
     }
+    public function add_new_poster_p(AddPosterRequest $req) {
+        return redirect()->route('admin.add_new_poster');
+    }
+
+    // Edit Poster
     public function edit_poster() {
         return view('admin.edit-poster');
     }
+    public function update_poster(AddPosterRequest $req) {
+        return redirect()->route('admin.add_new_poster');
+    }
+
     public function all_blog() {
         return view('admin.all-blog');
     }
+
+    // Edit Blog
     public function edit_blog() {
         return view('admin.edit-blog');
     }
+    public function update_blog(EditBlogRequest $req ) {
+        return redirect()->route('admin.all_blog');
+    }
+
     public function add_new_blog() {
         return view('admin.add-new-blog');
+    }
+    public function add_new_blog_p(EditBlogRequest $req) {
+        return redirect()->route('admin.all_blog');
     }
     public function all_notice() {
         return view('admin.all-notice');
