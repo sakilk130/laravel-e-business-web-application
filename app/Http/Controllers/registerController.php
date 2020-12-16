@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRegRequest;
 use Illuminate\Http\Request;
-
+use App\Admin;
 
 class registerController extends Controller
 {
@@ -13,12 +13,19 @@ class registerController extends Controller
     }
 
     public function add_new_store(StoreRegRequest $req){
-        $store_name=$req->store_name;
-        $username=$req->username;
-        $email=$req->email;
-        $phone=$req->phone;
-        $address=$req->address;
-        $password=$req->password;
-        return redirect()->route('login.login');
+        $admin = new Admin();
+
+        $admin->username= $req->username;
+        $admin->email=$req->email;
+        $admin->password= $req->password;
+        $admin->phone=$req->phone;
+        $admin->address=$req->address;
+        $admin->registration_date=date("Y/m/d");
+        $admin->shop_name=$req->store_name;
+
+        if($admin->save()){
+            return redirect()->route('login.login');
+        }
+
     }
 }

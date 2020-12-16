@@ -1,7 +1,7 @@
 @extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 
     <div class="main-container">
@@ -18,7 +18,9 @@
                   >Image</label
                 >
                 <div class="col-sm-12 col-md-10">
-                  <img src="/images/profile-photo.jpg" alt="" height="100px" width="100px">
+                    @if($admin->image_profile)
+                    <img src="/upload/{{ $admin->image_profile }}" alt="" height="150px" width="150px" style="border-radius: 100px">
+                    @endif
                 </div>
               </div>
 
@@ -31,7 +33,7 @@
                   <input
                     class="form-control"
                     type="text"
-                    value="Admin Name"
+                    value="{{ $admin->username }}"
                     name="name"
 
                   />
@@ -53,7 +55,7 @@
                   <input
                     class="form-control"
                     type="email"
-                   value="Admin Mail"
+                    value="{{ $admin->email }}"
                    name="email"
                   />
                 </div>
@@ -74,7 +76,7 @@
                   <input
                     class="form-control"
                     type="text"
-                   value="Admin Phone"
+                    value="{{ $admin->phone }}"
                    name="phone"
                   />
                 </div>
@@ -95,7 +97,7 @@
                   <input
                     class="form-control"
                     type="text"
-                   value="Admin Address"
+                    value="{{ $admin->address }}"
                    name="address"
                   />
                 </div>
@@ -116,7 +118,7 @@
                   <input
                     class="form-control"
                     type="text"
-                   value="Shop Name"
+                    value="{{ $admin->shop_name }}"
                    name="store_name"
                   />
                 </div>
@@ -131,7 +133,7 @@
                <!-- Image -->
                <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label"
-                  >image</label
+                  >Image</label
                 >
                 <div class="col-sm-12 col-md-10">
                   <input
@@ -147,8 +149,6 @@
                  @enderror
 
               </div>
-
-
               <!-- Submit -->
               <div class="col-sm-12 col-md-2" style="margin: auto">
                 <input

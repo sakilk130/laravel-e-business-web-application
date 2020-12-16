@@ -26,11 +26,36 @@ class adminController extends Controller
     }
 
     // admin_profile
-    public function profile(){
-        return view("admin.admin-profile");
+    public function profile(Request $req){
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view("admin.admin-profile")->with('admin',$admin);
     }
     public function edit_profile(AdminProfileRequest $req){
-        return redirect()->route('admin.profile');
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $id=$admin->id;
+
+        if($req->hasFile('profile_image')){
+            $file = $req->file('profile_image');
+
+            if($file->move('upload', $file->getClientOriginalName())){
+
+                $admin = Admin::find($id);
+
+                $admin->username= $req->name;
+                $admin->email=$req->email;
+                $admin->phone=$req->phone;
+                $admin->address=$req->address;
+                $admin->shop_name=$req->store_name;
+                $admin->image_profile=$file->getClientOriginalName();
+
+                if($admin->save()){
+                    return redirect()->route('admin.profile');
+                }
+
+            }
+        }
     }
 
     // Chnage_password
