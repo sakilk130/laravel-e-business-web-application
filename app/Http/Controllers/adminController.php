@@ -13,11 +13,16 @@ use App\Http\Requests\Admin\NewCustomerRequest;
 use App\Http\Requests\Admin\EditCustomerRequest;
 use App\Http\Requests\Admin\AddPosterRequest;
 use App\Http\Requests\Admin\EditBlogRequest;
+use App\Notice;
+use App\Admin;
 
 class adminController extends Controller
 {
     public function index(Request $req){
-        return view('admin.index');
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view('admin.index')->with('admin',$admin);
     }
 
     // admin_profile
@@ -178,6 +183,7 @@ class adminController extends Controller
         return redirect()->route('admin.all_blog');
     }
     public function all_notice() {
-        return view('admin.all-notice');
+        $notice=Notice::all();
+        return view('admin.all-notice')->with('notice',$notice);
     }
 }

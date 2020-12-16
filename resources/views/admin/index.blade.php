@@ -1,8 +1,8 @@
 
 @extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 
  <div class="main-container">
@@ -15,7 +15,7 @@
           <div class="col-md-8">
             <h4 class="font-20 weight-500 mb-10 text-capitalize">
               Welcome back
-              <div class="weight-600 font-30 text-blue">Profile Name!</div>
+              <div class="weight-600 font-30 text-blue">{{ $admin->username }}</div>
             </h4>
           </div>
         </div>

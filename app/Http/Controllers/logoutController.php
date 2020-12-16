@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class logoutController extends Controller
 {
     public function logout(){
-        Session::forget('username');
+        Session::forget('email');
         return redirect()->route('login.login');
     }
 }

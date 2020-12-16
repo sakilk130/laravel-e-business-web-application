@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminStoreRequest;
+use App\Admin;
 
 class loginController extends Controller
 {
@@ -11,12 +12,14 @@ class loginController extends Controller
         return view('admin.login');
     }
     public function verify(AdminStoreRequest $req){
-        if($req->username == $req->password){
-            $req->session()->put('username',$req->username);
+        $admin  = Admin::where('email', $req->email)->where('password', $req->password)->first();
+
+        if($admin != NULL){
+            $req->session()->put('email',$req->email);
             return redirect()->route('admin.index');
-        }else{
+    	}else{
             $req->session()->flash('msg','invalid username/password');
-            return redirect()->route('login.login');
-        }
+                return redirect()->route('login.login');
+    	}
     }
 }

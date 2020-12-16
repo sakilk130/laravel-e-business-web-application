@@ -8,14 +8,12 @@
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Notice</h2>
         <div class="pd-20 card-box mb-30">
+            @for($i=0; $i<count($notice); $i++)
             <div style="padding-bottom: 20px">
-                <h5 class="card-title weight-500"><span>1. </span>Notice Title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <h5 class="card-title weight-500"><span>{{ $i+1 }} .</span>{{ $notice[$i]['notice_title'] }}</h5>
+                <p class="card-text">{{ $notice[$i]['notice_details'] }}</p>
             </div>
-            <div>
-                <h5 class="card-title weight-500"><span>2. </span>Notice Title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
+            @endfor
         </div>
       </div>
     </div>

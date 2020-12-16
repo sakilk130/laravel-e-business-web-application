@@ -79,15 +79,15 @@
                   {{-- Token --}}
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                  {{-- Username --}}
+                  {{-- Email --}}
                 <div class="input-group custom">
                   <input
-                    type="text"
+                    type="email"
                     class="form-control form-control-lg"
-                    name="username"
-                    placeholder="Username"
+                    name="email"
+                    placeholder="Email"
                     required
-                    value="{{ old('username') }}"
+                    value="{{ old('email') }}"
                   />
 
                   {{-- Server side validation --}}

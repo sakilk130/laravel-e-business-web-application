@@ -24,7 +24,7 @@ class AdminStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'username'=> 'required|min:4',
+            'email'=>'required|email',
             'password'=>'required|min:5'
         ];
     }

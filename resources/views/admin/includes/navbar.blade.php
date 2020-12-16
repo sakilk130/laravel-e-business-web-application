@@ -3,7 +3,7 @@
     <head>
         <!-- Basic Page Info -->
         <meta charset="utf-8" />
-        <title>@yield('title')</title>
+        <title>@yield('title')'s Store</title>
 
         <!-- Site favicon -->
         <link
@@ -109,7 +109,7 @@
   </div>
   <div class="left-side-bar">
     <div class="brand-logo">
-      <a href="{{ route('admin.index') }}">@yield('storeName') </a>
+      <a href="{{ route('admin.index') }}">@yield('storeName')'s Store </a>
       <div class="close-sidebar" data-toggle="left-sidebar-close">
         <i class="ion-close-round"></i>
       </div>
