@@ -105,3 +105,41 @@ Route::group(['middleware'=>['sessionVerify']], function(){
 Route::get('/logout', 'logoutController@logout')->name('logout.logout');
 
 // End Shop Admin
+
+
+
+// CUSTOMER..............................................................
+
+// registration
+Route::get('/c_register', 'customer\c_registrationController@index');
+Route::post('/c_register', 'customer\c_registrationController@fromPost');
+
+// login
+Route::get('/c_login','customer\c_loginController@index' );
+Route::post('/c_login', 'customer\c_loginController@fromPost');
+
+// shop
+Route::get('/shop','customer\shopController@index');
+
+// product
+Route::get('/product','customer\productController@index');
+
+// cart
+Route::get('/cart','customer\cartController@index');
+
+// blog
+Route::get('/blog','customer\blogController@index');
+
+// blog_Single
+Route::get('/blog_single', 'customer\blogSingleController@index');
+
+// contct support
+Route::get('/contact', 'customer\contactController@index');
+
+//customer end ..................................................
+
+
+
+
+// error
+Route::get('/error', 'customer\errorController@index');
