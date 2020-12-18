@@ -23,6 +23,7 @@ class adminController extends Controller
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();
         return view('admin.index')->with('admin',$admin);
+        // echo $admin;
     }
 
     // admin_profile
@@ -53,7 +54,6 @@ class adminController extends Controller
                 if($admin->save()){
                     return redirect()->route('admin.profile');
                 }
-
             }
         }
     }

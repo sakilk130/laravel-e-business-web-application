@@ -85,7 +85,11 @@
             data-toggle="dropdown"
           >
             <span class="user-icon">
-              <img src="/vendors/images/photo1.jpg" alt="" />
+              @if (isset($img))
+              <img src="/upload/{{ $img }}" alt="" />
+             @else
+             <img src="/images/man.png" alt="" />
+             @endif
             </span>
             <!-- Profile name -->
             <span class="user-name" style="color: #ffff">@yield('profileName')</span>

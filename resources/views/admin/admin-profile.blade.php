@@ -1,4 +1,4 @@
-@extends('admin.includes.navbar')
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
 @section('title',$admin->shop_name)
 @section('profileName',$admin->username)
 @section('storeName',$admin->shop_name)

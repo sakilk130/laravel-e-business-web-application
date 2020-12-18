@@ -22,7 +22,7 @@
       sizes="16x16"
       href="images/favicon-16x16.png"
     />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <!-- Mobile Specific Metas -->
     <meta
       name="viewport"
@@ -77,11 +77,12 @@
               <form method="POST">
 
                   {{-- Token --}}
-                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                  {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
 
                   {{-- Email --}}
                 <div class="input-group custom">
                   <input
+                    id="emailInput"
                     type="email"
                     class="form-control form-control-lg"
                     name="email"
@@ -105,6 +106,7 @@
                 {{-- Password --}}
                 <div class="input-group custom">
                   <input
+                    id="passwordInput"
                     type="password"
                     class="form-control form-control-lg"
                     name="password"
@@ -126,9 +128,15 @@
                 </div>
 
                 {{-- Error Message --}}
+
                 <span style="color: red">
                     {{ session('msg') }}
                 </span>
+
+                {{-- Ajax Error --}}
+                <div id="errorBlock" style="color: red; padding-bottom: 20px">
+                    {{-- <ul id="errorBlock"></ul> --}}
+                  </div>
 
                 <div class="row pb-30">
                   <div class="col-6">
@@ -155,6 +163,7 @@
                       <!-- Submit -->
                       <input
                         class="btn btn-primary btn-lg btn-block"
+                        id="signInBtn"
                         type="submit"
                         name="submit"
                         value="Sign In"
@@ -173,5 +182,49 @@
     <script src="scripts/script.min.js"></script>
     <script src="scripts/process.js"></script>
     <script src="scripts/layout-settings.js"></script>
+
+    <!-- ajax -->
+     <script>
+
+
+        $(document).ready(function () {
+            $.ajaxSetup({
+             headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }});
+
+          $('#signInBtn').click((e) => {
+            e.preventDefault();
+
+            var email = $('#emailInput').val();
+            var password = $('#passwordInput').val();
+
+            $.ajax({
+              url: '/login',
+              data: { email, password },
+              method: 'post',
+              contentType: 'application/x-www-form-urlencoded',
+              success: function (data) {
+                console.log('success', data);
+                window.location.replace('/admin');
+              },
+              error: function (err) {
+                console.log(err.responseJSON);
+
+                let errorMessages = '';
+
+                for (var i = 0; i < err.responseJSON.message.length; i++) {
+                  errorMessages += `${err.responseJSON.message[i]}`;
+                }
+
+                console.log(errorMessages);
+
+                $('#errorBlock').html(errorMessages);
+              },
+            });
+          });
+        });
+      </script>
+
   </body>
 </html>

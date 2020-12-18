@@ -14,12 +14,15 @@ class loginController extends Controller
     public function verify(AdminStoreRequest $req){
         $admin  = Admin::where('email', $req->email)->where('password', $req->password)->first();
 
-        if($admin != NULL){
+        if($admin){
             $req->session()->put('email',$req->email);
-            return redirect()->route('admin.index');
+            // return redirect()->route('admin.index');
+            return response()->json(['error' => false,'success'=> true],200);
+
     	}else{
-            $req->session()->flash('msg','invalid username/password');
-                return redirect()->route('login.login');
+            // $req->session()->flash('msg','invalid username/password');
+            return response()->json(['error' => true,'message'=> ['user not found'],],401);
+            return redirect()->route('login.login');
     	}
     }
 }
