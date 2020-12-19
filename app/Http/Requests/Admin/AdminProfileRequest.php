@@ -30,6 +30,8 @@ class AdminProfileRequest extends FormRequest
             'address'=>'required|min:8',
             'store_name'=>'required|min:5|max:10',
             'profile_image'=> 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'shop_logo'=> 'mimes:jpeg,jpg,png,gif|required|max:10000',
+
         ];
     }
 }

@@ -81,15 +81,18 @@
                   <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                 <!-- Store Name -->
-                <div class="input-group custom">
-                    <input
+                <div class="input-group custom" style="margin-bottom: 10px">
+                    <div class="input-group custom" style="margin-bottom: 0px;">
+                        <input
                         type="text"
                         class="form-control form-control-lg"
                         name="store_name"
                         placeholder="Store Name"
-                        required
+                        {{-- required --}}
                         value="{{ old('store_name') }}"
                     />
+                    </div>
+
 
                     {{-- Server Side Validation --}}
                     @error('store_name')
@@ -99,15 +102,18 @@
                 </div>
 
                 <!-- Username -->
-                <div class="input-group custom">
-                  <input
+                <div class="input-group custom" style="margin-bottom: 10px">
+                    <div class="input-group custom" style="margin-bottom: 0px;">
+                    <input
                     type="text"
                     class="form-control form-control-lg"
                     name="username"
                     placeholder="Username"
-                    required
+                    {{-- required --}}
                     value="{{ old('username') }}"
                   />
+                    </div>
+
                 {{-- Server Side Validation --}}
                 @error('username')
                 <span style="color: red">{{ $message }}</span>
@@ -116,15 +122,18 @@
                 </div>
 
                 <!-- Email -->
-                <div class="input-group custom">
-                  <input
-                    type="email"
-                    class="form-control form-control-lg"
-                    name="email"
-                    placeholder="Email"
-                    required
-                    value="{{ old('email') }}"
-                  />
+                <div class="input-group custom" style="margin-bottom: 10px">
+                    <div class="input-group custom" style="margin-bottom: 0px;">
+                        <input
+                        type="email"
+                        class="form-control form-control-lg"
+                        name="email"
+                        placeholder="Email"
+                        {{-- required --}}
+                        value="{{ old('email') }}"
+                      />
+                    </div>
+
                 {{-- Server Side Validation --}}
                 @error('email')
                 <span style="color: red">{{ $message }}</span>
@@ -135,15 +144,19 @@
 
 
                 <!-- Phone -->
-                <div class="input-group custom">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    name="phone"
-                    placeholder="Phone Number"
-                    required
-                    value="{{ old('phone') }}"
-                  />
+                <div class="input-group custom" style="margin-bottom: 10px">
+                    <div class="input-group custom" style="margin-bottom: 0px;">
+                        <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        name="phone"
+                        placeholder="Phone Number"
+                        {{-- required --}}
+                        value="{{ old('phone') }}"
+                      />
+
+                    </div>
+
                   {{-- Server Side Validation --}}
                 @error('phone')
                 <span style="color: red">{{ $message }}</span>
@@ -153,35 +166,59 @@
 
 
                 <!-- Address -->
-                <div class="input-group custom">
-                  <input
-                    type="text"
-                    class="form-control form-control-lg"
-                    name="address"
-                    placeholder="Address"
-                    required
-                    value="{{ old('address') }}"
-                  />
+                <div class="input-group custom" style="margin-bottom: 10px">
+                    <div class="input-group custom" style="margin-bottom: 0px;">
+                        <input
+                        type="text"
+                        class="form-control form-control-lg"
+                        name="address"
+                        placeholder="Address"
+                        {{-- required --}}
+                        value="{{ old('address') }}"
+                      />
+                    </div>
                    {{-- Server Side Validation --}}
-                 @error('address')
-                 <span style="color: red">{{ $message }}</span>
-                 @enderror
+                    @error('address')
+                    <span style="color: red">{{ $message }}</span>
+                    @enderror
                 </div>
 
 
 
                  <!-- Password -->
-                <div class="input-group custom">
-                  <input
+                <div class="input-group custom" style="margin-bottom: 10px">
+                    <div class="input-group custom" style="margin-bottom: 0px;">
+                        <input
                     type="password"
                     class="form-control form-control-lg"
                     name="password"
                     placeholder="Password"
-                    required
+                    {{-- required --}}
                     value="{{ old('password') }}"
                   />
+                    </div>
+
                 {{-- Server Side Validation --}}
                 @error('password')
+                <span style="color: red">{{ $message }}</span>
+                @enderror
+                </div>
+
+                  <!-- confirm Password -->
+                  <div class="input-group custom" style="margin-bottom: 10px">
+                    <div class="input-group custom" style="margin-bottom: 0px;">
+                        <input
+                    type="password"
+                    class="form-control form-control-lg"
+                    name="c_password"
+                    placeholder="Password"
+                    {{-- required --}}
+                    value="{{ old('c_password') }}"
+                  />
+                    </div>
+
+                {{-- Server Side Validation --}}
+                @error('c_password')
                 <span style="color: red">{{ $message }}</span>
                 @enderror
                 </div>

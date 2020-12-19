@@ -12,15 +12,90 @@
             <form method="POST" enctype="multipart/form-data">
                 {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                 <!-- image -->
+
+
+                <!-- image -->
               <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label"
                   >Image</label
                 >
                 <div class="col-sm-12 col-md-10">
-                    @if($admin->image_profile)
-                    <img src="/upload/{{ $admin->image_profile }}" alt="" height="150px" width="150px" style="border-radius: 100px">
-                    @endif
+                    <table>
+                        <tr>
+                            <td>
+
+                                @if($admin->image_profile)
+                                <img src="/upload/{{ $admin->image_profile }}" alt="" height="150px" width="150px" style="border-radius: 100px">
+                                @else
+                                <P>Image not found</P>
+                                @endif
+                            </td>
+                            <td>
+                                <input
+                                    class="form-control"
+                                    type="file"
+                                    name="profile_image"
+                                    value="{{ $admin->image_profile }}"
+                                    />
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                {{-- Server side validation --}}
+                                @error('profile_image')
+                                <span style="margin:auto; color:red">{{ $message }}</span>
+                                @enderror
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+              </div>
+
+
+              {{-- Shop_logo --}}
+              <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label"
+                  >Shop Logo</label
+                >
+                <div class="col-sm-12 col-md-10">
+                    <table>
+                        <tr>
+                            <td>
+                                @if($admin->shop_logo)
+                                <img src="/upload/{{ $admin->shop_logo }}" alt="" height="150px" width="150px" style="border-radius: 100px">
+                                @else
+                                <P>logo not found</P>
+                                @endif
+                            </td>
+                            <td>
+                                <input
+                                class="form-control"
+                                type="file"
+                                name="shop_logo"
+                                value="{{ $admin->shop_logo }}"
+                              />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+
+                            </td>
+                            <td>
+                                 {{-- Server side validation --}}
+                     @error('shop_logo')
+                     <span style="margin:auto; color:red">{{ $message }}</span>
+                     @enderror
+                            </td>
+                        </tr>
+                    </table>
+
+
                 </div>
               </div>
 
@@ -130,25 +205,6 @@
 
                 </div>
 
-               <!-- Image -->
-               <div class="form-group row">
-                <label class="col-sm-12 col-md-2 col-form-label"
-                  >Image</label
-                >
-                <div class="col-sm-12 col-md-10">
-                  <input
-                    class="form-control"
-                    type="file"
-                    name="profile_image"
-                  />
-                </div>
-
-                 {{-- Server side validation --}}
-                 @error('profile_image')
-                 <span style="margin:auto; color:red">{{ $message }}</span>
-                 @enderror
-
-              </div>
               <!-- Submit -->
               <div class="col-sm-12 col-md-2" style="margin: auto">
                 <input

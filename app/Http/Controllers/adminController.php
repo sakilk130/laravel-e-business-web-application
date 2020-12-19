@@ -39,8 +39,9 @@ class adminController extends Controller
 
         if($req->hasFile('profile_image')){
             $file = $req->file('profile_image');
+            $file_2 = $req->file('shop_logo');
 
-            if($file->move('upload', $file->getClientOriginalName())){
+            if($file->move('upload', $file->getClientOriginalName()) && $file_2->move('upload', $file_2->getClientOriginalName())){
 
                 $admin = Admin::find($id);
 
@@ -50,6 +51,8 @@ class adminController extends Controller
                 $admin->address=$req->address;
                 $admin->shop_name=$req->store_name;
                 $admin->image_profile=$file->getClientOriginalName();
+                $admin->shop_logo=$file_2->getClientOriginalName();
+
 
                 if($admin->save()){
                     return redirect()->route('admin.profile');

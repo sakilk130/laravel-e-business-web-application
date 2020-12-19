@@ -74,10 +74,10 @@
               <div class="login-title">
                 <h2 class="text-center text-primary">Login To Your Shop</h2>
               </div>
-              <form method="POST">
+              <form>
 
                   {{-- Token --}}
-                  {{-- <input type="hidden" name="_token" value="{{ csrf_token() }}"> --}}
+                  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                   {{-- Email --}}
                 <div class="input-group custom">
@@ -87,7 +87,7 @@
                     class="form-control form-control-lg"
                     name="email"
                     placeholder="Email"
-                    required
+                    {{-- required --}}
                     value="{{ old('email') }}"
                   />
 
@@ -111,7 +111,7 @@
                     class="form-control form-control-lg"
                     name="password"
                     placeholder="**********"
-                    required
+                    {{-- required --}}
                     value="{{ old('password') }}"
                   />
 
