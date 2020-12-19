@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\customer;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\customerRegistration;
+
 
 class c_registrationController extends Controller
 {
@@ -12,7 +14,7 @@ class c_registrationController extends Controller
         return view("customer.register");
 
     }
-    public function fromPost(Request $req)
+    public function fromPost(customerRegistration $req)
     {
         $customerEmail = $req->customerEmail;
         $req->session()->put('customer', $customerEmail);

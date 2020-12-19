@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class productController extends Controller
 {
-    public function index($shopName)
+    public function index()
     {
         return view("customer.product");
 

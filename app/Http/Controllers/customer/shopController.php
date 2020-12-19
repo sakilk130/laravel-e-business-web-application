@@ -11,10 +11,6 @@ class shopController extends Controller
     {
         $customer = $req->session()->get('customer');
         return view("customer.shop", compact('customer'));
-
-  
-
-
     }
 
 }

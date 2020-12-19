@@ -33,16 +33,27 @@
 
                             <div class="form-group">
                                 <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
-                                <input type="email" name="customerEmail" placeholder="Your email"/>
+                                <input type="text" name="customerEmail" placeholder="Your email" value="{{old('customerEmail')}}"/>
+
                             </div>
+
+                                @error('customerEmail')
+                                    <div style="color: red; position:relative; bottom: 25px;">{{ $message }}</div>
+                                @enderror
+
                             <div class="form-group">
                                 <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
-                                <input type="password" name="customerPass"  placeholder="Password"/>
+                                <input type="password" name="customerPass"  placeholder="Password" value="{{old('customerPass')}}"/>
                             </div>
-                            <div class="form-group">
+
+                            @error('customerPass')
+                                    <div style="color: red; position:relative; bottom: 25px;">{{ $message }}</div>
+                            @enderror
+
+                            {{-- <div class="form-group">
                                 <input type="checkbox" name="remember-me" id="remember-me" class="agree-term" />
                                 <label for="remember-me" class="label-agree-term"><span><span></span></span>Remember me</label>
-                            </div>
+                            </div> --}}
                             <div class="form-group form-button">
                                 <input type="submit" name="signin" class="form-submit" value="Log in"/>
                             </div>
