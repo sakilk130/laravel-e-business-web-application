@@ -1,7 +1,7 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 
     <div class="main-container">
@@ -13,6 +13,12 @@
                 {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
               <!-- Old Password -->
+               {{-- Error Message --}}
+             <div class="form-group row">
+                <span style="margin: auto; color: green">
+                    {{ session('success') }}
+                </span>
+             </div>
 
               <div class="form-group row">
                 <label class="col-sm-12 col-md-2 col-form-label"
@@ -24,7 +30,7 @@
                     type="password"
                     placeholder="Enter Old Password"
                     name="old_password"
-                    required
+                    value="{{ old('password') }}"
                   />
                 </div>
 
@@ -46,7 +52,7 @@
                     type="password"
                     placeholder="Enter New Password"
                     name="new_password"
-                    required
+                    value="{{ old('new_password') }}"
                   />
                 </div>
 
@@ -68,15 +74,21 @@
                     type="password"
                     placeholder="Enter Confirm Password"
                     name="c_new_password"
+                    value="{{ old('c_new_password') }}"
                   />
                 </div>
-
                 {{-- Server Side validation Error --}}
                 @error('c_new_password')
                  <span style="margin: auto; color:red">{{ $message }}</span>
                 @enderror
-
             </div>
+
+             {{-- Error Message --}}
+             <div class="form-group row">
+                <span style="margin: auto; color: red">
+                    {{ session('msg') }}
+                </span>
+             </div>
 
               <!-- Submit -->
               <div class="col-sm-12 col-md-2" style="margin: auto">

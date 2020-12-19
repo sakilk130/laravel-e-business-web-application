@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
@@ -19,7 +20,6 @@
                   class="form-control"
                   type="file"
                   name="poster_image"
-                  required
                 />
               </div>
 
@@ -53,28 +53,31 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td class="table-plus">1</td>
-                    <td>Image</td>
-                    <td>17/11/2020</td>
-                    <td></td>
-                    <td>
-                        <a
-                        style="color: green; font-weight:800"
-                          href="/admin/edit_poster"
-                          class="micon dw dw-edit-1"
-                        >
-                          Edit</a
-                        > |
-                        <a
-                        style="color: red; font-weight:800"
-                          href="#"
-                          class="micon dw dw-delete-3"
-                        >
-                          Delete</a
-                        >
-                    </td>
-                  </tr>
+            @for($i=0; $i<count($poster); $i++)
+            <tr>
+                <td class="table-plus">{{ $i+1 }}</td>
+                <td><img style="height: 50px; weight:50px" src="/upload/{{ $poster[$i]['image'] }}" alt=""></td>
+                <td>{{ $poster[$i]['created_at'] }}</td>
+                <td>{{ $poster[$i]['updated_at'] }}</td>
+                <td>
+                    <a
+                    style="color: green; font-weight:800"
+                      href="{{route('admin.edit_poster', $poster[$i]['id'])}}"
+                      class="micon dw dw-edit-1"
+                    >
+                      Edit</a
+                    > |
+                    <a
+                    style="color: red; font-weight:800"
+                      href="#"
+                      class="micon dw dw-delete-3"
+                    >
+                      Delete</a
+                    >
+                </td>
+              </tr>
+            @endfor
+
                 </tbody>
               </table>
           </div>

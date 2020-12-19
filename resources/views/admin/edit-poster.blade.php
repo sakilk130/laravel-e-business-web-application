@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
         <div class="card-box mb-30">
@@ -19,7 +20,7 @@
                                 class="form-control"
                                 type="file"
                                 name="poster_image"
-                                required
+
                             />
                         </div>
                             {{-- Server side validation --}}

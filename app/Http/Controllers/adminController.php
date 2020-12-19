@@ -15,15 +15,16 @@ use App\Http\Requests\Admin\AddPosterRequest;
 use App\Http\Requests\Admin\EditBlogRequest;
 use App\Notice;
 use App\Admin;
+use App\Poster;
 
 class adminController extends Controller
 {
+
     public function index(Request $req){
 
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();
         return view('admin.index')->with('admin',$admin);
-        // echo $admin;
     }
 
     // admin_profile
@@ -62,11 +63,46 @@ class adminController extends Controller
     }
 
     // Chnage_password
-    public function change_password(){
-        return view('admin.admin-chnage-password');
+    public function change_password(Request $req){
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view('admin.admin-chnage-password')->with('admin',$admin);
     }
     public function edit_password(AdminPassChangeRequest $req){
-        return redirect()->route('admin.change_password');
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+
+        $id=$admin->id;
+
+        if($id){
+            $verify  = Admin::where('id', $id)->where('password', $req->old_password)->first();
+
+            if($verify){
+                $admin = Admin::find($id);
+                $admin->password= $req->c_new_password;
+
+                if($admin->save()){
+                    $req->session()->flash('success','Password Change Successfull');
+                    return redirect()->route('admin.change_password');
+                }else{
+                    $req->session()->flash('msg','Update Failed !!!');
+                    return redirect()->route('admin.change_password');
+                }
+
+            }else{
+                $req->session()->flash('msg','Old Password Not Match !!!');
+                return redirect()->route('admin.change_password');
+            }
+        }
+        else{
+           $req->session()->flash('msg','User Not Found !!!');
+           return redirect()->route('admin.change_password');
+        }
+
+
+
+
+
     }
 
     public function all_products() {
@@ -172,23 +208,67 @@ class adminController extends Controller
         return redirect()->route('admin.manage_customer');
     }
 
-    public function all_poster() {
-        return view('admin.all-poster');
+    public function all_poster(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $poster  = Poster::where('shop_name', $email)->get();
+        // return $poster;
+        return view('admin.all-poster')->with('admin',$admin)->with('poster',$poster);
     }
 
     // Add new poster
-    public function add_new_poster() {
-        return view('admin.add-new-poster');
+    public function add_new_poster(Request $req) {
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $poster  = Poster::where('shop_name', $email)->get();
+
+        return view('admin.add-new-poster')->with('admin',$admin)->with('poster',$poster);
     }
     public function add_new_poster_p(AddPosterRequest $req) {
-        return redirect()->route('admin.add_new_poster');
+        $email=$req->session()->get('email');
+
+        if($req->hasFile('poster_image')){
+            $file = $req->file('poster_image');
+
+            if($file->move('upload', $file->getClientOriginalName())){
+
+                $poster = new Poster();
+                $poster->image=$file->getClientOriginalName();
+                $poster->created_at=date("Y/m/d");
+                $poster->shop_name=$email;
+
+                if($poster->save()){
+                    return redirect()->route('admin.add_new_poster');
+                }
+            }
+        }
+
     }
 
     // Edit Poster
-    public function edit_poster() {
-        return view('admin.edit-poster');
+    public function edit_poster(Request $req, $id) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        return view('admin.edit-poster')->with('admin',$admin);
     }
-    public function update_poster(AddPosterRequest $req) {
+    public function update_poster(AddPosterRequest $req,$id) {
+        $email=$req->session()->get('email');
+
+        if($req->hasFile('poster_image')){
+            $file = $req->file('poster_image');
+
+            if($file->move('upload', $file->getClientOriginalName())){
+
+                $poster = Poster::find($id);
+                $poster->image=$file->getClientOriginalName();
+                $poster->updated_at=date("Y/m/d");
+
+                if($poster->save()){
+                    return redirect()->route('admin.add_new_poster');
+                }
+            }
+        }
         return redirect()->route('admin.add_new_poster');
     }
 
@@ -210,8 +290,11 @@ class adminController extends Controller
     public function add_new_blog_p(EditBlogRequest $req) {
         return redirect()->route('admin.all_blog');
     }
-    public function all_notice() {
+    public function all_notice(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+
         $notice=Notice::all();
-        return view('admin.all-notice')->with('notice',$notice);
+        return view('admin.all-notice')->with('notice',$notice)->with('admin',$admin);
     }
 }

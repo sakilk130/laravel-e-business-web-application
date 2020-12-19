@@ -83,8 +83,8 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/add_new_poster', 'adminController@add_new_poster')->name('admin.add_new_poster');
     Route::post('/admin/add_new_poster', 'adminController@add_new_poster_p');
 
-    Route::get('/admin/edit_poster', 'adminController@edit_poster');
-    Route::post('/admin/edit_poster', 'adminController@update_poster');
+    Route::get('/admin/edit_poster/{id}', 'adminController@edit_poster')->name('admin.edit_poster');
+    Route::post('/admin/edit_poster/{id}', 'adminController@update_poster');
 
 
     // Blog
