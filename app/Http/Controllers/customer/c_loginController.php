@@ -12,8 +12,11 @@ class c_loginController extends Controller
         return view("customer.login");
 
     }
-    public function fromPost()
+    public function fromPost(Request $req)
     {
-        return redirect("/shop");
+        $customerEmail = $req->customerEmail;
+        $req->session()->put('customer', $customerEmail);
+        return redirect()->route('shop');
+
     }
 }

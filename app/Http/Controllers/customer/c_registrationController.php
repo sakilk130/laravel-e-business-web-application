@@ -12,8 +12,10 @@ class c_registrationController extends Controller
         return view("customer.register");
 
     }
-    public function fromPost()
+    public function fromPost(Request $req)
     {
-        return redirect("/shop");
+        $customerEmail = $req->customerEmail;
+        $req->session()->put('customer', $customerEmail);
+        return redirect()->route('shop');
     }
 }

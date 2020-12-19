@@ -7,9 +7,14 @@ use Illuminate\Http\Request;
 
 class shopController extends Controller
 {
-    public function index()
+    public function index(Request $req)
     {
-        return view("customer.shop");
+        $customer = $req->session()->get('customer');
+        return view("customer.shop", compact('customer'));
+
+  
+
+
     }
 
 }
