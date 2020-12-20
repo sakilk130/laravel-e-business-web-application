@@ -20,6 +20,12 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/profile','adminController@profile')->name('admin.profile');
     Route::post('/admin/profile','adminController@edit_profile');
 
+    Route::get('admin/profile/update_logo','adminController@update_logo')->name('admin.update_logo');
+    Route::post('admin/profile/update_logo','adminController@update_logo_p');
+
+    Route::get('admin/profile/update_picture','adminController@update_picture')->name('admin.update_picture');
+    Route::post('admin/profile/update_picture','adminController@update_picture_p');
+
     Route::get('/admin/change_password','adminController@change_password')->name('admin.change_password');
     Route::post('/admin/change_password','adminController@edit_password');
 

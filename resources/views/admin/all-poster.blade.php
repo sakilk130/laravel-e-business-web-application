@@ -18,7 +18,7 @@
                     <img class="d-block w-100" src="/upload/{{ $poster[0]['image'] }}" alt="First slide">
                   </div>
 
-                 @for($i=0; $i<count($poster); $i++)
+                 @for($i=1; $i<count($poster); $i++)
                   <div class="carousel-item">
                     <img class="d-block w-100" src="/upload/{{ $poster[$i]['image'] }}" alt="Second slide">
                   </div>

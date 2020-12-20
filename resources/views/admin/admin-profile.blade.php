@@ -31,12 +31,13 @@
                                 @endif
                             </td>
                             <td>
-                                <input
+                                <a href="{{ route('admin.update_picture') }}">Upload Ptofile Picture</a>
+                                {{-- <input
                                     class="form-control"
                                     type="file"
                                     name="profile_image"
                                     value="{{ $admin->image_profile }}"
-                                    />
+                                    /> --}}
                             </td>
 
                         </tr>
@@ -74,12 +75,14 @@
                                 @endif
                             </td>
                             <td>
-                                <input
+                                <a href="{{ route('admin.update_logo') }}">Upload Shop Logo</a>
+
+                                {{-- <input
                                 class="form-control"
                                 type="file"
                                 name="shop_logo"
                                 value="{{ $admin->shop_logo }}"
-                              />
+                              /> --}}
                             </td>
                         </tr>
                         <tr>

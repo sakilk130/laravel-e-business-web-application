@@ -38,29 +38,80 @@ class adminController extends Controller
         $admin  = Admin::where('email',$email)->first();
         $id=$admin->id;
 
-        if($req->hasFile('profile_image')){
-            $file = $req->file('profile_image');
-            $file_2 = $req->file('shop_logo');
 
-            if($file->move('upload', $file->getClientOriginalName()) && $file_2->move('upload', $file_2->getClientOriginalName())){
+             $admin = Admin::find($id);
+            $admin->username= $req->name;
+            $admin->email=$req->email;
+            $admin->phone=$req->phone;
+            $admin->address=$req->address;
+            $admin->shop_name=$req->store_name;
+
+            if($admin->save()){
+                return redirect()->route('admin.profile');
+            }
+    }
+
+    //Update Picture
+      public function update_picture(Request $req){
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view("admin.update-logo")->with('admin',$admin);
+    }
+    public function update_picture_p(AddPosterRequest $req){
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $id=$admin->id;
+        // return $id;
+
+        if($req->hasFile('poster_image')){
+            $file_2 = $req->file('poster_image');
+
+            if($file_2->move('upload', $file_2->getClientOriginalName())){
 
                 $admin = Admin::find($id);
 
-                $admin->username= $req->name;
-                $admin->email=$req->email;
-                $admin->phone=$req->phone;
-                $admin->address=$req->address;
-                $admin->shop_name=$req->store_name;
-                $admin->image_profile=$file->getClientOriginalName();
-                $admin->shop_logo=$file_2->getClientOriginalName();
-
+                $admin->image_profile=$file_2->getClientOriginalName();
 
                 if($admin->save()){
                     return redirect()->route('admin.profile');
                 }
             }
         }
+
     }
+
+    // Update Logo
+    public function update_logo(Request $req){
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view("admin.update-logo")->with('admin',$admin);
+    }
+    public function update_logo_p(AddPosterRequest $req){
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $id=$admin->id;
+        // return $id;
+
+        if($req->hasFile('poster_image')){
+            $file_2 = $req->file('poster_image');
+
+            if($file_2->move('upload', $file_2->getClientOriginalName())){
+
+                $admin = Admin::find($id);
+
+                $admin->shop_logo=$file_2->getClientOriginalName();
+
+                if($admin->save()){
+                    return redirect()->route('admin.profile');
+                }
+            }
+        }
+
+    }
+
+
 
     // Chnage_password
     public function change_password(Request $req){
