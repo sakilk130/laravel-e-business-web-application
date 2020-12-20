@@ -19,7 +19,7 @@ class varifyCustomer
              return $next($request);
         }else{
             $request->session()->flash('msg', 'invalid request...');
-            return redirect()->route('customer.login');
+            return redirect()->route('customer.login', 'shop1');
         }
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class blogSingleController extends Controller
 {
-    public function index()
+    public function index($shopName)
     {
         return view("customer.blogSingle");
 

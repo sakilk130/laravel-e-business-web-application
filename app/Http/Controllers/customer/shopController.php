@@ -7,10 +7,10 @@ use Illuminate\Http\Request;
 
 class shopController extends Controller
 {
-    public function index(Request $req)
+    public function index(Request $req, $shopName)
     {
         $customer = $req->session()->get('customer');
-        return view("customer.shop", compact('customer'));
+        return view("customer.shop", compact('customer', 'shopName'));
     }
 
 }

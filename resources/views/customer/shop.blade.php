@@ -66,7 +66,7 @@
 								<li><a href=""><i class="fa fa-user"></i> {{$customer}}</a></li>
 								<li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
-								<li><a href="{{route('shop.logout')}}"><i class="fa fa-lock"></i> Logout</a></li>
+								<li><a href="{{route('shop.logout', $shopName)}}"><i class="fa fa-lock"></i> Logout</a></li>
 							</ul>
 						</div>
 					</div>

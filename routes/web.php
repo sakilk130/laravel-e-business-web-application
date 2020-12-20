@@ -111,42 +111,44 @@ Route::get('/logout', 'logoutController@logout')->name('logout.logout');
 // CUSTOMER START ..............................................................
 
 // registration
-Route::get('/customer/register', 'customer\c_registrationController@index')->name('customer.register');
-Route::post('/customer/register', 'customer\c_registrationController@fromPost')->name('customer.register');
+Route::get('/{shopName}/customer/register', 'customer\c_registrationController@index')->name('customer.register');
+Route::post('/{shopName}/customer/register', 'customer\c_registrationController@fromPost')->name('customer.register');
 
 // login
-Route::get('/customer/login','customer\c_loginController@index' )->name('customer.login');
-Route::post('/customer/login', 'customer\c_loginController@fromPost')->name('customer.login');
+Route::get('/{shopName}/customer/login','customer\c_loginController@index' )->name('customer.login');
+Route::post('/{shopName}/customer/login', 'customer\c_loginController@fromPost')->name('customer.login');
 
 
 
 // product
-Route::get('/product','customer\productController@index')->name('product');
+Route::get('/{shopName}/product','customer\productController@index')->name('product');
 
 // cart
-Route::get('/cart','customer\cartController@index')->name('cart');
+Route::get('/{shopName}/cart','customer\cartController@index')->name('cart');
 
 // blog
-Route::get('/blog','customer\blogController@index')->name('blog');
+Route::get('/{shopName}/blog','customer\blogController@index')->name('blog');
 
 // blog_Single
-Route::get('/blog/single', 'customer\blogSingleController@index')->name('blog.single');
+Route::get('/{shopName}/blog/single', 'customer\blogSingleController@index')->name('blog.single');
 
 // contct support
-Route::get('/customer/contact', 'customer\contactController@index')->name('customer.contact');
+Route::get('/{shopName}/customer/contact', 'customer\contactController@index')->name('customer.contact');
 
 // logout
-Route::get('/shop/logout', 'customer\logoutController@index')->name('shop.logout');
+Route::get('/{shopName}/shop/logout', 'customer\logoutController@index')->name('shop.logout');
 
 // error
 Route::get('/error', 'customer\errorController@index')->name('error');
+
+
 
 
 // middleware................................
 Route::group(['middleware'=>['varifyCustomer']], function(){
     
     // shop
-   Route::get('/shop','customer\shopController@index')->name('shop');
+    Route::get('/{shopName}/shop','customer\shopController@index')->name('shop');
 
 });
 

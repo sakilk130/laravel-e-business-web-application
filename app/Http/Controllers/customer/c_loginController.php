@@ -8,17 +8,18 @@ use App\Http\Controllers\Controller;
 
 class c_loginController extends Controller
 {
-    public function index()
+    public function index($shopName)
     {
-        return view("customer.login");
+        return view("customer.login", compact('shopName'));
 
     }
-    public function fromPost(validCustomer $req)
+    public function fromPost(validCustomer $req, $shopName)
     {
         $customerEmail = $req->customerEmail;
         $req->session()->put('customer', $customerEmail);
 
-        return redirect()->route('shop');
+        return redirect()->route('shop', $shopName);
+
 
     }
 }

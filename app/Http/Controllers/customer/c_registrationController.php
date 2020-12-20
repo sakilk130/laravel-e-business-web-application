@@ -9,15 +9,15 @@ use App\Http\Requests\customerRegistration;
 
 class c_registrationController extends Controller
 {
-    public function index()
+    public function index($shopName)
     {
-        return view("customer.register");
+        return view("customer.register", compact('shopName'));
 
     }
-    public function fromPost(customerRegistration $req)
+    public function fromPost(customerRegistration $req, $shopName)
     {
         $customerEmail = $req->customerEmail;
         $req->session()->put('customer', $customerEmail);
-        return redirect()->route('shop');
+        return redirect()->route('shop', $shopName);
     }
 }

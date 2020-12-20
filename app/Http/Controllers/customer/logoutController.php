@@ -7,10 +7,10 @@ use App\Http\Controllers\Controller;
 
 class logoutController extends Controller
 {
-    public function index(Request $req)
+    public function index(Request $req, $shopName)
     {
         $req->session()->flush();
-        return redirect()->route('customer.login');
+        return redirect()->route('customer.login', $shopName);
 
     }
 
