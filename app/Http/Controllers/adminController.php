@@ -16,6 +16,7 @@ use App\Http\Requests\Admin\EditBlogRequest;
 use App\Notice;
 use App\Admin;
 use App\Poster;
+use App\Admin\Customer;
 
 class adminController extends Controller
 {
@@ -39,7 +40,7 @@ class adminController extends Controller
         $id=$admin->id;
 
 
-             $admin = Admin::find($id);
+            $admin = Admin::find($id);
             $admin->username= $req->name;
             $admin->email=$req->email;
             $admin->phone=$req->phone;
@@ -236,28 +237,120 @@ class adminController extends Controller
         return redirect()->route('admin.all_sub_category');
     }
 
-    public function all_customers() {
-        return view('admin.all-customers');
+
+    public function all_customers(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $customer  = Customer::where('shop_name', $email)->get();
+
+        return view('admin.all-customers')->with('admin',$admin)->with('customer',$customer);
     }
 
     // Add New Customer
-    public function add_new_customer() {
-        return view('admin.add-new-customer');
+    public function add_new_customer(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view('admin.add-new-customer')->with('admin',$admin);
     }
     public function add_new_customer_p(NewCustomerRequest $req) {
-        return redirect()->route('admin.all_customers');
+        $email=$req->session()->get('email');
+
+        if($req->hasFile('image')){
+            $file = $req->file('image');
+
+            if($file->move('upload', $file->getClientOriginalName())){
+
+                $customer = new Customer();
+
+                $customer->name=$req->name;
+                $customer->email=$req->email;
+                $customer->phone=$req->phone;
+                $customer->address=$req->address;
+                $customer->password=$req->c_password;
+                $customer->image=$file->getClientOriginalName();
+                $customer->created_at=date("Y/m/d");
+                $customer->shop_name=$email;
+
+                if($customer->save()){
+                    return redirect()->route('admin.all_customers');
+                }
+            }
+        }
+
     }
 
-    public function manage_customer() {
-        return view('admin./manage-customer');
+    public function manage_customer(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $customer  = Customer::where('shop_name', $email)->get();
+
+        return view('admin./manage-customer')->with('admin',$admin)->with('customer',$customer);
     }
     // Edit Customer
-    public function edit_customer() {
-        return view('admin./edit-customer');
+    public function edit_customer(Request $req,$id) {
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $customer  = Customer::where('id',$id)->first();
+        // return $customer;
+        return view('admin./edit-customer')->with('admin',$admin)->with('customer',$customer);
     }
-    public function update_customer(EditCustomerRequest $req) {
-        return redirect()->route('admin.manage_customer');
+    public function update_customer(EditCustomerRequest $req, $id) {
+
+        $customer = Customer::find($id);
+
+        $customer->name= $req->name;
+        $customer->email=$req->email;
+        $customer->phone=$req->phone;
+        $customer->address=$req->address;
+        $customer->updated_at=date("Y/m/d");
+
+        if($customer->save()){
+            return redirect()->route('admin.manage_customer');
+        }
     }
+
+     //Delete Customer
+     public function delete_customer($id){
+        //  Customer::destroy($id);
+
+        $task = Customer::find($id);
+        $task->delete();
+
+        return response()->json('Task deleted', 200);
+    }
+
+
+
+
+    //update Picture
+    public function change_picture(Request $req){
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        return view('admin.update-logo')->with('admin',$admin);
+    }
+     public function upload_picture(AddPosterRequest $req, $id){
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        // return $id;
+
+        if($req->hasFile('poster_image')){
+            $file_2 = $req->file('poster_image');
+
+            if($file_2->move('upload', $file_2->getClientOriginalName())){
+
+                $customer = Customer::find($id);
+                $customer->image=$file_2->getClientOriginalName();
+                if($customer->save()){
+                    return redirect()->route('admin.manage_customer');
+                }
+            }
+        }
+    }
+
+
+
 
     public function all_poster(Request $req) {
         $email=$req->session()->get('email');

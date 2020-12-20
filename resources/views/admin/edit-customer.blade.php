@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
         <div class="card-box mb-30">
@@ -11,6 +12,26 @@
                 <form method="POST">
                     {{-- Token --}}
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+                <!-- Image -->
+                <div class="form-group row">
+                    <label class="col-sm-12 col-md-2 col-form-label"
+                        >Image</label
+                    >
+                    <div class="col-sm-12 col-md-10">
+                        <table>
+                            <tr>
+                                <td>
+                                    <img style="height: 100px; weight:100px" src="/upload/{{ $customer->image }}" alt="">
+
+                                </td>
+                                <td>
+                                    <a href="{{route('admin.change_picture', $customer->id)}}">Change Picture</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
 
                     <!-- Customer Name -->
                     <div class="form-group row">
@@ -21,9 +42,8 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                value="Sakil Khan"
                                 name="name"
-                                required
+                                value="{{ $customer->name }}"
                             />
                         </div>
 
@@ -43,9 +63,8 @@
                             <input
                                 class="form-control"
                                 type="email"
-                                value="sakilk130@gmail.com"
                                 name="email"
-                                required
+                                value="{{ $customer->email }}"
                             />
                         </div>
 
@@ -65,9 +84,8 @@
                             <input
                                 class="form-control"
                                 type="text"
-                                value="01721214996"
                                 name="phone"
-                                required
+                                value="{{ $customer->phone }}"
                             />
                         </div>
 
@@ -86,9 +104,8 @@
                             <input
                                 type="text"
                                 class="form-control"
-                                value="Dhaka, Bangladesh"
                                 name="address"
-                                required
+                                value="{{ $customer->address }}"
                             />
                         </div>
                             {{-- Server Side validation --}}

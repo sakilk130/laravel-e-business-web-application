@@ -23,12 +23,12 @@
           sizes="16x16"
           href="/vendors/images/favicon-16x16.png"
         />
-
         <!-- Mobile Specific Metas -->
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"
         />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Google Font -->
         <link
@@ -231,6 +231,7 @@
 <script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script src="/vendors/scripts/dashboard.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>
 

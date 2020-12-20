@@ -28,6 +28,7 @@ class NewCustomerRequest extends FormRequest
             'email'=>'required|email',
             'phone' => 'required|min:11|numeric',
             'address'=>'required|min:8|max:255',
+            'image'=>'mimes:jpeg,jpg,png,gif|required|max:10000',
             'password'=>[
                 'required',
                 'string',
@@ -38,6 +39,8 @@ class NewCustomerRequest extends FormRequest
                 'regex:/[@$!%*#?&]/', // must contain a special character
             ],
             'c_password'=>'required_with:password|same:password|min:6',
+
+
         ];
     }
 }

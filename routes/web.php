@@ -79,9 +79,13 @@ Route::group(['middleware'=>['sessionVerify']], function(){
 
     Route::get('/admin/manage_customer', 'adminController@manage_customer')->name('admin.manage_customer');
 
-    Route::get('/admin/edit_customer', 'adminController@edit_customer');
-    Route::post('/admin/edit_customer', 'adminController@update_customer');
+    Route::get('/admin/edit_customer/{id}', 'adminController@edit_customer')->name('admin.edit_customer');
+    Route::post('/admin/edit_customer/{id}', 'adminController@update_customer');
+// Delete
+    Route::post('/admin/delete_customer/{id}', 'adminController@delete_customer');
 
+    Route::get('/admin/change_picture/{id}', 'adminController@change_picture')->name('admin.change_picture');
+    Route::post('/admin/change_picture/{id}', 'adminController@upload_picture');
 
     // Poster
     Route::get('/admin/all_poster', 'adminController@all_poster')->name('admin.all_poster');

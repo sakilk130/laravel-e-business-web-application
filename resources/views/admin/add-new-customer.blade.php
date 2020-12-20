@@ -1,14 +1,15 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Add New Customer</h2>
         <div class="pd-20 card-box mb-30">
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
               {{-- Token --}}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -21,7 +22,6 @@
                   type="text"
                   placeholder="Enter Name"
                   name="name"
-                  required
                   value="{{ old('name') }}"
                 />
               </div>
@@ -42,7 +42,6 @@
                   type="email"
                   placeholder="test@test.com"
                   name="email"
-                  required
                   value="{{ old('email') }}"
                 />
               </div>
@@ -65,7 +64,6 @@
                   type="text"
                   placeholder="+8801..."
                   name="phone"
-                  required
                   value="{{ old('phone') }}"
                 />
               </div>
@@ -88,7 +86,6 @@
                   rows="10"
                   placeholder="Shipping Address.."
                   name="address"
-                  required
                 >{{ old('address') }}</textarea>
               </div>
 
@@ -141,6 +138,25 @@
                <span style="margin:auto; color:red">{{ $message }}</span>
                @enderror
             </div>
+
+             <!--Image -->
+             <div class="form-group row">
+                <label class="col-sm-12 col-md-2 col-form-label"
+                  >Image</label
+                >
+                <div class="col-sm-12 col-md-10">
+                  <input
+                    class="form-control"
+                    type="file"
+                    name="image"
+                  />
+                </div>
+                 {{-- Server Side validation Error--}}
+                 @error('image')
+                 <span style="margin:auto; color:red">{{ $message }}</span>
+                 @enderror
+              </div>
+
 
             <!-- Submit -->
             <div class="col-sm-12 col-md-2" style="margin: auto">
