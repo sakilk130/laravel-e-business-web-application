@@ -47,11 +47,17 @@ Route::group(['middleware'=>['sessionVerify']], function(){
 
     Route::get('/admin/pending_orders','adminController@pending_orders')->name('admin.pending_orders');
 
-    Route::get('/admin/edit_orders','adminController@edit_orders');
+    Route::get('/admin/edit_orders/{id}','adminController@edit_orders')->name('admin.edit_orders');
+    Route::post('/admin/edit_orders/{id}','adminController@update_pending_orders');
 
     Route::get('/admin/in_process_orders','adminController@in_process_orders')->name('admin.in_process_orders');
 
+    Route::get('/admin/edit_in_process_orders/{id}','adminController@edit_in_process_orders')->name('admin.edit_in_process_orders');
+    Route::post('/admin/edit_in_process_orders/{id}','adminController@update_in_process_orders');
+
     Route::get('/admin/delivered_orders', 'adminController@delivered_orders')->name('admin.delivered_orders');
+
+    Route::post('/admin/delete_delivered_orders/{id}', 'adminController@delete_delivered_orders');
 
     // Category
     Route::get('/admin/all_categories','adminController@all_categories')->name('admin.all_categories');

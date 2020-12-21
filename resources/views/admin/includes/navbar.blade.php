@@ -3,7 +3,7 @@
     <head>
         <!-- Basic Page Info -->
         <meta charset="utf-8" />
-        <title>@yield('title')'s Store</title>
+        <title>@yield('title')'s Store Admin Panel</title>
 
         <!-- Site favicon -->
         <link
@@ -235,6 +235,7 @@
 <script src="/js/deleteposter.js"></script>
 <script src="/js/deletecategory.js"></script>
 <script src="/js/deletesubcategory.js"></script>
+<script src="/js/deleteorder.js"></script>
 
 </body>
 </html>

@@ -109,10 +109,10 @@
                         <div class="col-sm-12 col-md-10">
                             <select class="custom-select form-control" name="status" required>
                                 <option value="">---Select Status---</option>
-                                <option value="Pending" selected>
+                                <option value="Pending">
                                     Pending
                                 </option>
-                                <option value="In Process">In Process</option>
+                                <option value="In Process" selected>In Process</option>
                                 <option value="Delivered">Delivered</option>
                             </select>
                         </div>

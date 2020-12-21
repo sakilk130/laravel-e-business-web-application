@@ -20,6 +20,7 @@ use App\Admin\Customer;
 use App\Admin\Category;
 use Illuminate\Support\Facades\DB;
 use App\Admin\Subcategory;
+use App\Admin\Order;
 
 class adminController extends Controller
 {
@@ -185,20 +186,114 @@ class adminController extends Controller
         return redirect('/admin/edit_product');
     }
 
-    public function all_orders() {
-        return view('admin.all-orders');
+    // All Order
+    public function all_orders(Request $req) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+       $order= DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+            ->where('orders.shop_name',$email)
+            ->get();
+        return view('admin.all-orders',array('order'=>$order))->with('admin',$admin);
     }
-    public function pending_orders() {
-        return view('admin.pending-orders');
+
+    // Pending Order
+    public function pending_orders(Request $req) {
+            $email=$req->session()->get('email');
+            $admin=Admin::where('email',$email)->first();
+           $order= DB::table('orders')
+                ->join('customers', 'orders.customer_id', '=', 'customers.id')
+                ->join('products', 'orders.product_id', '=', 'products.id')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->where('orders.shop_name',$email)
+                ->where('orders.status','Pending')
+                ->get();
+
+        return view('admin.pending-orders', array('order'=>$order))->with('admin',$admin);
     }
-    public function edit_orders() {
-        return view('admin.edit-orders');
+
+    // Edit Order
+    public function edit_orders(Request $req, $id) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        $order= DB::table('orders')
+                ->join('customers', 'orders.customer_id', '=', 'customers.id')
+                ->join('products', 'orders.product_id', '=', 'products.id')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->where('orders.id',$id)
+                ->get();
+        return view('admin.edit-orders', array('order'=>$order))->with('admin',$admin);
     }
-    public function in_process_orders() {
-        return view('admin.in-process-orders');
+    public function update_pending_orders(Request $req, $id) {
+        $order = Order::find($id);
+        $order->status= $req->status;
+        $order->updated_at=date("Y/m/d");
+
+        if($order->save()){
+            return redirect()->route('admin.pending_orders');
+        }
     }
-    public function delivered_orders() {
-        return view('admin.delivered-orders');
+
+    // In process
+    public function in_process_orders(Request $req) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        $order= DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+            ->where('orders.shop_name',$email)
+            ->where('orders.status','In Process')
+            ->get();
+
+    // return $order;
+    return view('admin.in-process-orders', array('order'=>$order))->with('admin',$admin);
+    }
+     // Edit Order
+     public function edit_in_process_orders(Request $req, $id) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        $order= DB::table('orders')
+                ->join('customers', 'orders.customer_id', '=', 'customers.id')
+                ->join('products', 'orders.product_id', '=', 'products.id')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->where('orders.id',$id)
+                ->get();
+        return view('admin.edit-in-process-orders', array('order'=>$order))->with('admin',$admin);
+    }
+    public function update_in_process_orders(Request $req, $id) {
+        $order = Order::find($id);
+        $order->status= $req->status;
+        $order->updated_at=date("Y/m/d");
+
+        if($order->save()){
+            return redirect()->route('admin.in_process_orders');
+        }
+    }
+
+    // Delibered
+    public function delivered_orders(Request $req) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        $order= DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+            ->where('orders.shop_name',$email)
+            ->where('orders.status','Delivered')
+            ->get();
+
+        //  return $order;
+         return view('admin.delivered-orders', array('order'=>$order))->with('admin',$admin);
+    }
+    // Delete
+    public function delete_delivered_orders($id){
+        //  Customer::destroy($id);
+        $task = Order::find($id);
+        $task->delete();
+        return response()->json('Order deleted', 200);
     }
 
     // All Categories

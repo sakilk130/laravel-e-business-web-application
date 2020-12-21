@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
@@ -14,7 +15,8 @@
               <th>Name</th>
               <th>Email</th>
               <th>Contact No.</th>
-              <th>Shipping Address</th>
+              <th>Address</th>
+              <th>Product Image</th>
               <th>Product Details</th>
               <th>Quantity</th>
               <th>Price</th>
@@ -23,18 +25,21 @@
             </tr>
           </thead>
           <tbody>
+            @for($i=0; $i<count($order); $i++)
             <tr>
-              <td class="table-plus">1</td>
-              <td>Sakil Khan</td>
-              <td>Sakilk130@gmail.com</td>
-              <td>01721214996</td>
-              <td>Dhaka, Bangladesh</td>
-              <td>MacBook Pro 16GB 2021</td>
-              <td>1</td>
-              <td>2,20,000 BDT</td>
-              <td>17/11/2020</td>
-              <td>Pending</td>
+              <td class="table-plus">{{ $i+1 }}</td>
+              <td>{{ $order[$i]->name }}</td>
+              <td>{{ $order[$i]->email }}</td>
+              <td>{{ $order[$i]->phone }}</td>
+              <td>{{ $order[$i]->address }}</td>
+              <td><img style="height: 50px; weight:50px" src="/upload/{{ $order[$i]->product_image }}" alt=""></td>
+              <td>{{ $order[$i]->product_name }} {{ $order[$i]->product_description }}</td>
+              <td>{{ $order[$i]->quantity }}</td>
+              <td>{{ $order[$i]->product_price }}</td>
+              <td>{{ $order[$i]->created_at }}</td>
+              <td>{{ $order[$i]->status }}</td>
             </tr>
+            @endfor
           </tbody>
         </table>
       </div>
