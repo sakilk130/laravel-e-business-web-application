@@ -18,6 +18,8 @@ use App\Admin;
 use App\Poster;
 use App\Admin\Customer;
 use App\Admin\Category;
+use Illuminate\Support\Facades\DB;
+use App\Admin\Subcategory;
 
 class adminController extends Controller
 {
@@ -235,16 +237,48 @@ class adminController extends Controller
         $task->delete();
         return response()->json('Category deleted', 200);
     }
-    public function all_sub_categories() {
-        return view('admin.all-sub-categories');
+    public function all_sub_categories(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $subcategory = DB::table('categories')
+            ->join('subcategories', 'categories.id', '=', 'subcategories.category_id')
+            ->select('categories.category_name', 'subcategories.sub_category_name', 'subcategories.created_at', 'subcategories.updated_at', 'subcategories.id')
+            ->where('categories.shop_name',$email)
+            ->where('subcategories.shop_name',$email)
+            ->get();
+        //  return array( 'subcategory' => $subcategory );
+
+        return view('admin.all-sub-categories', array ( 'subcategory' => $subcategory ))->with('admin',$admin);
+
     }
 
     // Edit Sub-Category
-    public  function edit_sub_category() {
-        return view('admin.edit-sub-category');
+    public  function edit_sub_category(Request $req, $id) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $subcategory= Subcategory::where('id',$id)->first();
+        $category  = Category::where('shop_name', $email)->get();
+        return view('admin.edit-sub-category')->with('admin',$admin)->with('subcategory',$subcategory)->with('category',$category);
     }
-    public  function update_sub_category(EditSubCategoryRequest $req) {
-        return redirect('/admin/all_sub_categories');
+    public  function update_sub_category(EditSubCategoryRequest $req ,$id) {
+        $subcategory = Subcategory::find($id);
+
+        $subcategory->sub_category_name= $req->sub_category;
+        $subcategory->category_id=$req->category_name;
+        $subcategory->updated_at=date("Y/m/d");
+
+        if($subcategory->save()){
+            return redirect('/admin/all_sub_categories');
+        }
+
+    }
+    //Delete Sub Category
+    public function delete_sub_category($id){
+        //  Customer::destroy($id);
+
+        $task = Subcategory::find($id);
+        $task->delete();
+        return response()->json('Customer deleted', 200);
     }
 
     // add category
@@ -270,13 +304,27 @@ class adminController extends Controller
     }
 
       // add Sub category
-    public function add_sub_category() {
-
-        return view('admin.add-sub-category');
+    public function add_sub_category(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $category=Category::where('shop_name',$email)->get();
+        // return $category;
+        return view('admin.add-sub-category')->with('admin',$admin)->with('category',$category);
     }
 
     public function add_sub_category_p(EditSubCategoryRequest $req) {
-        return redirect()->route('admin.all_sub_category');
+        $email=$req->session()->get('email');
+
+        $subcategory = new Subcategory();
+
+        $subcategory->category_id=$req->category_name;
+        $subcategory->sub_category_name=$req->sub_category;
+        $subcategory->created_at=date("Y/m/d");
+        $subcategory->shop_name=$email;
+
+        if($subcategory->save()){
+            return redirect()->route('admin.all_sub_categories');
+        }
     }
 
 
@@ -284,7 +332,7 @@ class adminController extends Controller
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();
         $customer  = Customer::where('shop_name', $email)->get();
-
+        // return $customer;
         return view('admin.all-customers')->with('admin',$admin)->with('customer',$customer);
     }
 

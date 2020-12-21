@@ -1,7 +1,7 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 <div class="main-container">
     <div class="pd-ltr-20">
@@ -18,12 +18,13 @@
                             >Select Category</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control" name="category_name" required>
+                            <select class="custom-select form-control" name="category_name">
                                 <option value="">---Select Category---</option>
-                                <option value="Electronics" selected>
-                                    Electronics
+                                @for($i=0; $i<count($category); $i++)
+                                <option value="{{ $category[$i]['id'] }}">
+                                    {{ $category[$i]['category_name'] }}
                                 </option>
-                                <option value="Book">Book</option>
+                               @endfor
                             </select>
                         </div>
 
@@ -43,8 +44,7 @@
                                 type="text"
                                 class="form-control"
                                 name="sub_category"
-                                value="Phone"
-                                required
+                               value="{{ $subcategory->sub_category_name }}"
                             />
                         </div>
 
@@ -70,4 +70,6 @@
         </div>
     </div>
 </div>
+
+
 @endsection

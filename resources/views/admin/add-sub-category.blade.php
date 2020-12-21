@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
@@ -18,10 +19,11 @@
                 >Select Category</label
               >
               <div class="col-sm-12 col-md-10">
-                <select class="custom-select form-control" name="category_name" required>
+                <select class="custom-select form-control" name="category_name">
                   <option value="">---Select Category---</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Book">Book</option>
+                  @for($i=0; $i<count($category); $i++)
+                  <option value="{{ $category[$i]['id'] }}">{{ $category[$i]['category_name'] }}</option>
+                  @endfor
                 </select>
               </div>
                 {{-- Server Side validation Error--}}
@@ -40,7 +42,6 @@
                   class="form-control"
                   placeholder="Sub-Category Name.."
                   name="sub_category"
-                  required
                   value="{{ old('sub_category') }}"
                 />
               </div>

@@ -234,6 +234,7 @@
 <script src="/js/main.js"></script>
 <script src="/js/deleteposter.js"></script>
 <script src="/js/deletecategory.js"></script>
+<script src="/js/deletesubcategory.js"></script>
 
 </body>
 </html>
