@@ -1,7 +1,7 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 
 <div class="main-container">
@@ -24,18 +24,20 @@
             </tr>
           </thead>
           <tbody>
+            @for($i=0; $i<count($product); $i++)
             <tr>
-              <td class="table-plus">1</td>
-              <td>Image</td>
-              <td>MacBook Pro</td>
-              <td>Electronics</td>
-              <td>Laptop</td>
-              <td>Apple</td>
-              <td>100</td>
-              <td>20,000 BDT</td>
-              <td>17/11/2020</td>
-              <td></td>
+              <td class="table-plus">{{ $i+1 }}</td>
+              <td><img style="height: 50px; weight:50px" src="/upload/{{ $product[$i]->product_image }}" alt=""></td>
+              <td>{{ $product[$i]->product_name}}</td>
+              <td>{{ $product[$i]->category_name}}</td>
+              <td>{{ $product[$i]->sub_category_name}}</td>
+              <td>{{ $product[$i]->product_brand}}</td>
+              <td>{{ $product[$i]->in_stock}}</td>
+              <td>{{ $product[$i]->product_price}} BDT</td>
+              <td>{{ $product[$i]->created_at}}</td>
+              <td>{{ $product[$i]->updated_at}}</td>
             </tr>
+            @endfor
           </tbody>
         </table>
       </div>

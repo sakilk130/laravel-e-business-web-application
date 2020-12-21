@@ -236,6 +236,6 @@
 <script src="/js/deletecategory.js"></script>
 <script src="/js/deletesubcategory.js"></script>
 <script src="/js/deleteorder.js"></script>
-
+<script src="/js/deleteproduct.js"></script>
 </body>
 </html>

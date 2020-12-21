@@ -21,6 +21,7 @@ use App\Admin\Category;
 use Illuminate\Support\Facades\DB;
 use App\Admin\Subcategory;
 use App\Admin\Order;
+use App\Admin\Product;
 
 class adminController extends Controller
 {
@@ -161,29 +162,144 @@ class adminController extends Controller
 
     }
 
-    public function all_products() {
-        return view('admin.all-products');
+    public function all_products(Request $req) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+
+        $product= DB::table('products')
+            ->join('categories', 'products.category_ID', '=', 'categories.id')
+            ->join('subcategories', 'products.sub_category_ID', '=', 'subcategories.id')
+            ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
+            ->where('products.shop_name',$email)
+            ->get();
+
+        // return $product;
+        return view('admin.all-products',array('product'=>$product))->with('admin',$admin);
     }
     //Add new product
-    public function add_new_product() {
+    public function add_new_product(Request $req) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        $category  = Category::where('shop_name', $email)->get();
+        $subcategory= Subcategory::where('shop_name',$email)->get();
 
-        return view('admin.add-new-product');
+        return view('admin.add-new-product')->with('admin',$admin)->with('category',$category)->with('subcategory',$subcategory);
+
     }
     // post
     public function add_product(ProductRequest $req) {
-        return redirect()->route('admin.all_products');
+        $email=$req->session()->get('email');
+
+        if($req->hasFile('product_image')){
+            $file = $req->file('product_image');
+
+            if($file->move('upload', $file->getClientOriginalName())){
+
+                $product = new Product();
+
+                $product->category_ID=$req->category;
+                $product->sub_category_ID=$req->sub_category;
+                $product->product_name=$req->product_name;
+                $product->product_brand=$req->product_brand;
+                $product->product_description=$req->product_description;
+                $product->shipping_cost=$req->shipping_charge;
+                $product->product_availability=$req->product_availability;
+                $product->in_stock=$req->product_stock;
+                $product->product_price=$req->price;
+                $product->product_discount=$req->discount;
+                $product->product_image=$file->getClientOriginalName();
+                $product->created_at=date("Y/m/d");
+                $product->shop_name=$email;
+
+                if($product->save()){
+                    return redirect()->route('admin.all_products');
+                }
+            }
+        }
     }
 
-    public function manage_product() {
-        return view('admin.manage-product');
+    public function manage_product(Request $req) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+
+        $product= DB::table('products')
+            ->join('categories', 'products.category_ID', '=', 'categories.id')
+            ->join('subcategories', 'products.sub_category_ID', '=', 'subcategories.id')
+            ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
+            ->where('products.shop_name',$email)
+            ->get();
+            // return $product;
+        return view('admin.manage-product',array('product'=>$product))->with('admin',$admin);
+
     }
 
     // Edit Product
-    public function edit_product() {
-        return view('admin.edit-product');
+    public function edit_product(Request $req, $id) {
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        $product= DB::table('products')
+        ->join('categories', 'products.category_ID', '=', 'categories.id')
+        ->join('subcategories', 'products.sub_category_ID', '=', 'subcategories.id')
+        ->select('products.id', 'products.product_description', 'products.shipping_cost', 'products.product_discount', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
+        ->where('products.id',$id)
+        ->get();
+
+        $category  = Category::where('shop_name', $email)->get();
+        $subcategory= Subcategory::where('shop_name',$email)->get();
+
+        return view('admin.edit-product',array('product'=>$product))->with('admin',$admin)->with('category',$category)->with('subcategory',$subcategory);
     }
-    public function update_product(EditProductRequest $req) {
-        return redirect('/admin/edit_product');
+    public function update_product(EditProductRequest $req, $id) {
+        $product = Product::find($id);
+
+        $product->category_ID=$req->category;
+        $product->sub_category_ID=$req->sub_category;
+        $product->product_name=$req->product_name;
+        $product->product_brand=$req->product_brand;
+        $product->product_description=$req->product_description;
+        $product->shipping_cost=$req->shipping_charge;
+        $product->product_availability=$req->product_availability;
+        $product->in_stock=$req->product_stock;
+        $product->product_price=$req->price;
+        $product->product_discount=$req->discount;
+        $product->updated_at=date("Y/m/d");
+
+        if($product->save()){
+            return redirect('/admin/manage_product');
+        }
+
+    }
+    // Update Product Picture
+    public function change_product_picture(Request $req){
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+        return view('admin.update-logo')->with('admin',$admin);
+    }
+    public function upload_product_picture(AddPosterRequest $req, $id){
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        // return $id;
+
+        if($req->hasFile('poster_image')){
+            $file_2 = $req->file('poster_image');
+
+            if($file_2->move('upload', $file_2->getClientOriginalName())){
+
+                $product = Product::find($id);
+                $product->product_image=$file_2->getClientOriginalName();
+                $product->updated_at=date("Y/m/d");
+                if($product->save()){
+                    return redirect()->route('admin.manage_product');
+                }
+            }
+        }
+    }
+    // Delete Product
+    public function delete_product($id){
+        $task = Product::find($id);
+        $task->delete();
+        return response()->json('Product deleted', 200);
     }
 
     // All Order

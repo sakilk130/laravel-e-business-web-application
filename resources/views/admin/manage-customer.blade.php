@@ -24,6 +24,7 @@
           <tbody id="taskTableBody">
 
             @for($i=0; $i<count($customer); $i++)
+
             <tr data-id="{{ $customer[$i]['id'] }}">
               <td class="table-plus">{{ $i+1 }}</td>
               <td><img style="height: 50px; weight:50px" src="/upload/{{$customer[$i]['image']  }}" alt=""></td>

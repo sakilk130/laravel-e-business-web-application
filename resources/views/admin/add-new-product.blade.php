@@ -1,7 +1,7 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 
 <div class="main-container">
@@ -9,7 +9,7 @@
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Add Product</h2>
         <div class="pd-20 card-box mb-30">
-          <form method="POST">
+          <form method="POST" enctype="multipart/form-data">
               {{-- Token --}}
               <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
@@ -19,11 +19,11 @@
                 >Select Category</label
               >
               <div class="col-sm-12 col-md-10">
-                <select class="custom-select form-control" name="category" required >
+                <select class="custom-select form-control" name="category">
                   <option value=''>---Select Category---</option>
-                  <option value="Books">Books</option>
-                  <option value="Electronics">Electronics</option>
-                  <option value="Fashion">Fashion</option>
+                  @for($i=0; $i<count($category); $i++)
+                  <option value="{{ $category[$i]['id'] }}">{{ $category[$i]['category_name'] }}</option>
+                  @endfor
                 </select>
               </div>
 
@@ -40,12 +40,11 @@
                 >Select Sub-Category</label
               >
               <div class="col-sm-12 col-md-10">
-                <select class="custom-select form-control" name="sub_category" required>
+                <select class="custom-select form-control" name="sub_category">
                   <option value="">---Select Sub-Category---</option>
-                  <option value="Mobile">Mobile</option>
-                  <option value="Laptop">Laptop</option>
-                  <option value="TV">TV</option>
-                  <option value="AC">AC</option>
+                  @for($i=0; $i<count($subcategory); $i++)
+                  <option value="{{ $subcategory[$i]['id'] }}">{{ $subcategory[$i]['sub_category_name'] }}</option>
+                  @endfor
                 </select>
               </div>
 
@@ -67,7 +66,6 @@
                   type="text"
                   name="product_name"
                   placeholder="Product Name..."
-                  required
                   value="{{ old('product_name') }}"
                 />
               </div>
@@ -85,7 +83,7 @@
                 >Product Brand</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" placeholder="Product Brand..." name="product_brand" required value="{{ old('product_brand') }}"/>
+                <input class="form-control" type="text" placeholder="Product Brand..." name="product_brand" value="{{ old('product_brand') }}"/>
               </div>
 
               {{-- Server Side validation --}}
@@ -102,13 +100,11 @@
               >
               <div class="col-sm-12 col-md-10">
                 <textarea
-                  name="product-description"
                   class="form-control"
                   cols="30"
                   rows="10"
                   placeholder="Product Description....."
                   name="product_description"
-                  required
                 >{{ old('product_description') }}</textarea>
               </div>
 
@@ -130,7 +126,6 @@
                   type="text"
                   placeholder="Shipping Charge (BDT)"
                   name="shipping_charge"
-                  required
                   value="{{ old('shipping_charge') }}"
                 />
               </div>
@@ -148,7 +143,7 @@
                 >Product Availability</label
               >
               <div class="col-sm-12 col-md-10">
-                <select class="custom-select form-control" name="product_availability" required>
+                <select class="custom-select form-control" name="product_availability">
                   <option value="In Stock">In Stock</option>
                   <option value="Out Of Stock">Out Of Stock</option>
                 </select>
@@ -167,7 +162,7 @@
                 >Product Stock</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="text" placeholder="Product Stock..." name="product_stock" required value="{{ old('product_stock') }}"/>
+                <input class="form-control" type="text" placeholder="Product Stock..." name="product_stock" value="{{ old('product_stock') }}"/>
               </div>
 
                  {{-- Server Side validation --}}
@@ -186,7 +181,6 @@
                   type="text"
                   placeholder="Price (BDT)"
                   name="price"
-                  required
                   value="{{ old('price') }}"
                 />
               </div>
@@ -207,7 +201,6 @@
                     type="text"
                     placeholder="Discount (BDT)"
                     name="discount"
-                    required
                     value="{{ old('discount') }}"
                   />
                 </div>
@@ -225,7 +218,7 @@
                 >Add Image</label
               >
               <div class="col-sm-12 col-md-10">
-                <input class="form-control" type="file" name="product_image" required value="{{ old('product_image') }}"/>
+                <input class="form-control" type="file" name="product_image" value="{{ old('product_image') }}"/>
               </div>
 
                 {{-- Server Side validation --}}
@@ -241,7 +234,6 @@
                 class="btn btn-primary"
                 type="submit"
                 name="submit"
-                id=""
                 value="Add Product"
               />
             </div>

@@ -24,8 +24,8 @@ class ProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'category'=>'required|min:5',
-            'sub_category'=>'required|min:5',
+            'category'=>'required',
+            'sub_category'=>'required',
             'product_name'=>'required|min:5',
             'product_brand'=>'required|min:5',
             'product_description'=>'required|min:10',

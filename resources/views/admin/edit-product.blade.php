@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
         <div class="card-box mb-30">
@@ -12,17 +13,37 @@
                     {{-- Token --}}
                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
+                    <!-- Image-->
+                    <div class="form-group row">
+                        <label class="col-sm-12 col-md-2 col-form-label"
+                            >Image</label
+                        >
+                        <div class="col-sm-12 col-md-10">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <img style="height: 100px; weight:100px" src="/upload/{{ $product[0]->product_image}}" alt="">
+                                    </td>
+                                    <td>
+                                        <a href="{{route('admin.change_product_picture', $product[0]->id)}}">Change Picture</a>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </div>
+                    </div>
+
                     <!-- Select Category -->
                     <div class="form-group row">
                         <label class="col-sm-12 col-md-2 col-form-label"
                             >Select Category</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control" name="category" required>
+                            <select class="custom-select form-control" name="category">
                                 <option value="">---Select Category---</option>
-                                <option value="Books">Books</option>
-                                <option value="Electronics">Electronics</option>
-                                <option value="Fashion">Fashion</option>
+                                @for($i=0; $i<count($category); $i++)
+                                <option value="{{ $category[$i]['id'] }}">{{ $category[$i]['category_name'] }}</option>
+                                @endfor
                             </select>
                         </div>
 
@@ -38,14 +59,13 @@
                             >Select Sub-Category</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control" name="sub_category" required>
+                            <select class="custom-select form-control" name="sub_category">
                                 <option value="">
                                     ---Select Sub-Category---
                                 </option>
-                                <option value="Mobile">Mobile</option>
-                                <option value="Laptop">Laptop</option>
-                                <option value="TV">TV</option>
-                                <option value="AC">AC</option>
+                                @for($i=0; $i<count($subcategory); $i++)
+                                <option value="{{ $subcategory[$i]['id'] }}">{{ $subcategory[$i]['sub_category_name'] }}</option>
+                                @endfor
                             </select>
                         </div>
 
@@ -66,8 +86,7 @@
                                 type="text"
                                 placeholder="Product Name.."
                                 name="product_name"
-                                required
-                                value="{{ old('product_name') }}"
+                                value="{{ $product[0]->product_name }}"
                             />
                         </div>
 
@@ -88,8 +107,7 @@
                                 type="text"
                                 placeholder="Product Brand..."
                                 name="product_brand"
-                                required
-                                value="{{ old('product_brand') }}"
+                                value="{{ $product[0]->product_brand }}"
                             />
                         </div>
 
@@ -111,8 +129,7 @@
                                 rows="10"
                                 placeholder="Product Description....."
                                 name="product_description"
-                                required
-                            >{{ old('product_description') }}</textarea>
+                            >{{ $product[0]->product_description }}</textarea>
                         </div>
 
                         {{-- Server Side validation Error--}}
@@ -133,8 +150,7 @@
                                 type="text"
                                 placeholder="Shipping Charge (BDT)"
                                 name="shipping_charge"
-                                required
-                                value="{{ old('shipping_charge') }}"
+                                value="{{ $product[0]->shipping_cost }}"
                             />
                         </div>
 
@@ -151,7 +167,7 @@
                             >Product Availability</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <select class="custom-select form-control" name="product_availability" required>
+                            <select class="custom-select form-control" name="product_availability">
                                 <option value="In Stock">In Stock</option>
                                 <option value="Out Of Stock">
                                     Out Of Stock
@@ -176,8 +192,7 @@
                                 type="text"
                                 placeholder="Product Stock"
                                 name="product_stock"
-                                required
-                                value="{{ old('product_stock') }}"
+                                value="{{ $product[0]->in_stock }}"
                             />
                         </div>
 
@@ -199,8 +214,7 @@
                                 type="text"
                                 placeholder="Price (BDT)"
                                 name="price"
-                                required
-                                value="{{ old('price') }}"
+                                value="{{ $product[0]->product_price }}"
                             />
                         </div>
 
@@ -220,29 +234,12 @@
                             type="text"
                             placeholder="Optional"
                             name="discount"
-                            required
-                            value="{{ old('discount') }}"
+                            value="{{ $product[0]->product_discount }}"
                         />
                         </div>
 
                         {{-- Server Side validation Error--}}
                         @error('discount')
-                        <span style="margin:auto; color:red">{{ $message }}</span>
-                        @enderror
-
-                    </div>
-
-                    <!-- Image -->
-                    <div class="form-group row">
-                        <label class="col-sm-12 col-md-2 col-form-label"
-                            >Add Image</label
-                        >
-                        <div class="col-sm-12 col-md-10">
-                            <input class="form-control" type="file" name="product_image" value="{{ old('product_image') }}" required/>
-                        </div>
-
-                         {{-- Server Side validation Error--}}
-                        @error('product_image')
                         <span style="margin:auto; color:red">{{ $message }}</span>
                         @enderror
 

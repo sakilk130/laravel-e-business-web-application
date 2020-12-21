@@ -24,8 +24,8 @@ class EditProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'category'=>'required|min:5',
-            'sub_category'=>'required|min:5',
+            'category'=>'required',
+            'sub_category'=>'required',
             'product_name'=>'required|min:5',
             'product_brand'=>'required|min:5',
             'product_description'=>'required|min:10',
@@ -34,7 +34,6 @@ class EditProductRequest extends FormRequest
             'product_stock'=>'required|numeric',
             'price'=>'required|numeric',
             'discount'=>'required|numeric',
-            'product_image'=>'mimes:jpeg,jpg,png,gif|required|max:10000',
         ];
     }
 }
