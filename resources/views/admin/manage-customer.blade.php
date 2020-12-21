@@ -34,7 +34,7 @@
               <td>{{$customer[$i]['created_at']  }}</td>
               <td>{{$customer[$i]['updated_at']  }}</td>
               <td>
-                <a class="btn btn-info" href="{{route('admin.edit_customer', $customer[$i]['id'])}}">Edit</a>
+                <a class="btn btn-sm btn-info" href="{{route('admin.edit_customer', $customer[$i]['id'])}}">Edit</a>
                 <input type="hidden">
                 {{-- <a class="btn btn-danger" href=""">Delete</a> --}}
                 <a href="#" data-toggle="modal" data-target="#deleteTask"  class="btn btn-sm btn-danger delete">Delete</a>
@@ -55,14 +55,14 @@
           <div class="modal-content">
               <form id="deleteTaskForm">
                 <div class="modal-header">
-                <h5 class="modal-title" id="deleteTaskTitle">Delete Task</h5>
+                <h5 class="modal-title" id="deleteTaskTitle">Delete Customer</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
                 </div>
                 <div class="modal-body text-center">
                     <div id="deleteTaskMessage"></div>
-                    <h4>Are you you want to delete this?</h4>
+                    <h4>Are you want to delete this?</h4>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

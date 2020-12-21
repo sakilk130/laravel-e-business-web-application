@@ -170,7 +170,7 @@ $(document).on("click", ".delete", function () {
         let id = event.data.id;
         $.ajax({
             type: "POST",
-            url: "/admin/delete_customer/" + id,
+            url: "/admin/delete_poster/" + id,
             success: function (data) {
                 // reqest message clear
                 $(msg).html("");

@@ -52,28 +52,18 @@
                     <th>Action</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="taskTableBody">
             @for($i=0; $i<count($poster); $i++)
-            <tr>
+            <tr data-id="{{ $poster[$i]['id'] }}">
                 <td class="table-plus">{{ $i+1 }}</td>
                 <td><img style="height: 50px; weight:50px" src="/upload/{{ $poster[$i]['image'] }}" alt=""></td>
                 <td>{{ $poster[$i]['created_at'] }}</td>
                 <td>{{ $poster[$i]['updated_at'] }}</td>
                 <td>
-                    <a
-                    style="color: green; font-weight:800"
-                      href="{{route('admin.edit_poster', $poster[$i]['id'])}}"
-                      class="micon dw dw-edit-1"
-                    >
-                      Edit</a
-                    > |
-                    <a
-                    style="color: red; font-weight:800"
-                      href="#"
-                      class="micon dw dw-delete-3"
-                    >
-                      Delete</a
-                    >
+                    <a href="{{route('admin.edit_poster', $poster[$i]['id'])}}" class="btn btn-sm btn-info">Edit</a>
+                    {{-- <a href="#" class="btn btn-danger">Delete</a> --}}
+                    <a href="#" data-toggle="modal" data-target="#deleteTask"  class="btn btn-sm btn-danger delete">Delete</a>
+
                 </td>
               </tr>
             @endfor
@@ -85,4 +75,29 @@
       </div>
     </div>
   </div>
+
+ <!-- Delete Modal -->
+ <div class="modal fade" id="deleteTask" tabindex="-1" role="dialog" aria-labelledby="deleteTaskTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+          <form id="deleteTaskForm">
+            <div class="modal-header">
+            <h5 class="modal-title" id="deleteTaskTitle">Delete Poster</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body text-center">
+                <div id="deleteTaskMessage"></div>
+                <h4>Are you want to delete this?</h4>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-danger">Yes, Delete</button>
+            </div>
+        </form>
+      </div>
+    </div>
+</div>
+
 @endsection

@@ -317,7 +317,7 @@ class adminController extends Controller
         $task = Customer::find($id);
         $task->delete();
 
-        return response()->json('Task deleted', 200);
+        return response()->json('Customer deleted', 200);
     }
 
 
@@ -342,6 +342,7 @@ class adminController extends Controller
 
                 $customer = Customer::find($id);
                 $customer->image=$file_2->getClientOriginalName();
+                $customer->updated_at=date("Y/m/d");
                 if($customer->save()){
                     return redirect()->route('admin.manage_customer');
                 }
@@ -415,6 +416,18 @@ class adminController extends Controller
         }
         return redirect()->route('admin.add_new_poster');
     }
+
+
+    //Delete Poster
+    public function delete_poster($id){
+        // Customer::destroy($id);
+        $task = POster::find($id);
+        $task->delete();
+
+        return response()->json('Poster deleted', 200);
+        }
+
+
 
     public function all_blog() {
         return view('admin.all-blog');

@@ -232,13 +232,7 @@
 <script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script src="/vendors/scripts/dashboard.js"></script>
 <script src="/js/main.js"></script>
+<script src="/js/deleteposter.js"></script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
