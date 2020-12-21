@@ -17,6 +17,7 @@ use App\Notice;
 use App\Admin;
 use App\Poster;
 use App\Admin\Customer;
+use App\Admin\Category;
 
 class adminController extends Controller
 {
@@ -197,18 +198,43 @@ class adminController extends Controller
     public function delivered_orders() {
         return view('admin.delivered-orders');
     }
-    public function all_categories() {
-        return view('admin.all-categories');
+
+    // All Categories
+    public function all_categories(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $category  = Category::where('shop_name', $email)->get();
+        return view('admin.all-categories')->with('admin',$admin)->with('category',$category);
+
     }
 
     // Edit Category
-    public function edit_category() {
-        return view('admin.edit-category');
+    public function edit_category(Request $req, $id) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $category  = Category::where('id', $id)->first();
+        return view('admin.edit-category')->with('admin',$admin)->with('category',$category);
+
     }
-    public function update_category(EditCategoryRequest $req) {
-        return redirect('/admin/all_categories');
+    public function update_category(EditCategoryRequest $req, $id) {
+        $category = Category::find($id);
+
+        $category->category_name= $req->category_name;
+        $category->category_description=$req->category_details;
+        $category->updated_at=date("Y/m/d");
+
+        if($category->save()){
+            return redirect('/admin/all_categories');
+        }
     }
 
+     //Delete Category
+     public function delete_category($id){
+        //  Category::destroy($id);
+        $task = Category::find($id);
+        $task->delete();
+        return response()->json('Category deleted', 200);
+    }
     public function all_sub_categories() {
         return view('admin.all-sub-categories');
     }
@@ -222,17 +248,33 @@ class adminController extends Controller
     }
 
     // add category
-    public function add_category() {
-        return view('admin.add-category');
+    public function add_category(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view('admin.add-category')->with('admin',$admin);
     }
     public function add_category_p(EditCategoryRequest $req) {
-        return redirect()->route('admin.all_sub_categories');
+        $email=$req->session()->get('email');
+
+        $category = new Category();
+
+        $category->category_name=$req->category_name;
+        $category->category_description=$req->category_details;
+        $category->created_at=date("Y/m/d");
+        $category->shop_name=$email;
+
+        if($category->save()){
+            return redirect()->route('admin.all_categories');
+        }
+
     }
 
       // add Sub category
     public function add_sub_category() {
+
         return view('admin.add-sub-category');
     }
+
     public function add_sub_category_p(EditSubCategoryRequest $req) {
         return redirect()->route('admin.all_sub_category');
     }

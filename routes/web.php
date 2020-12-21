@@ -56,8 +56,10 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     // Category
     Route::get('/admin/all_categories','adminController@all_categories')->name('admin.all_categories');
 
-    Route::get('/admin/edit_category', 'adminController@edit_category');
-    Route::post('/admin/edit_category', 'adminController@update_category');
+    Route::get('/admin/edit_category/{id}', 'adminController@edit_category')->name('admin.edit_category');
+    Route::post('/admin/edit_category/{id}', 'adminController@update_category');
+
+    Route::post('/admin/delete_category/{id}', 'adminController@delete_category');
 
     Route::get('/admin/all_sub_categories','adminController@all_sub_categories')->name('admin.all_sub_categories');
 

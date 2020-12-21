@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
 <div class="main-container">
     <div class="pd-ltr-20">
         <div class="card-box mb-30">
@@ -22,8 +23,7 @@
                                 class="form-control"
                                 type="text"
                                 name="category_name"
-                                value="Electronics"
-                                required
+                                value="{{ $category->category_name }}"
                             />
                         </div>
                            {{-- Server Side validation Error--}}
@@ -37,7 +37,7 @@
                             >Drescription</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <textarea  class="form-control" name="category_details" id="" cols="30" rows="10">Mobile Phones</textarea>
+                            <textarea  class="form-control" name="category_details" id="" cols="30" rows="10">{{ $category->category_description }}</textarea>
                         </div>
 
                         {{-- Server Side validation Error--}}
@@ -53,7 +53,6 @@
                             class="btn btn-primary"
                             type="submit"
                             name="submit"
-                            id=""
                             value="Edit Category"
                         />
                     </div>

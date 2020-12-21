@@ -1,8 +1,9 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
+
  <div class="main-container">
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
@@ -22,7 +23,6 @@
                   type="text"
                   placeholder="Enter Category Name..."
                   name="category_name"
-                  required
                   value="{{ old('category_name') }}"
                 />
               </div>
@@ -39,7 +39,7 @@
               >
 
               <div class="col-sm-12 col-md-10">
-                  <textarea class="form-control" name="category_details" id="" cols="30" rows="10" placeholder="Drescription..." required>{{ old('category_details') }}</textarea>
+                  <textarea class="form-control" name="category_details" id="" cols="30" rows="10" placeholder="Drescription...">{{ old('category_details') }}</textarea>
               </div>
 
                  {{-- Server Side validation Error--}}

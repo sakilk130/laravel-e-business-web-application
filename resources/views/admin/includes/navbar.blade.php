@@ -233,6 +233,7 @@
 <script src="/vendors/scripts/dashboard.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/deleteposter.js"></script>
+<script src="/js/deletecategory.js"></script>
 
 </body>
 </html>
