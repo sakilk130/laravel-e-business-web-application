@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="main-container">
-    <div class="pd-ltr-20" style="width: 1540px;">
+    <div class="pd-ltr-20" style="width: 1700px;">
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">Delivered Orders</h2>
         <table class="table table-bordered">
@@ -40,6 +40,7 @@
                 <td>{{ $order[$i]->created_at }}</td>
                 <td style="background-color:green; border: none; color: black; padding: 15px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px;" >{{ $order[$i]->status }}</td>
                 <td>
+                    <a href="{{ route('admin.invoice_delivered',$order[$i]->id) }}" class="btn btn-sm btn-primary icon-copy dw dw-down-arrow-11" style="height: 34.8px;">PDF</a>
                 <a href="#" data-toggle="modal" data-target="#deleteTask"  class="btn btn-sm btn-danger delete">Delete</a>
                 </td>
               </tr>
@@ -49,7 +50,6 @@
       </div>
     </div>
   </div>
-
 
     <!-- Delete Modal -->
     <div class="modal fade" id="deleteTask" tabindex="-1" role="dialog" aria-labelledby="deleteTaskTitle" aria-hidden="true">

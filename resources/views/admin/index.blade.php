@@ -6,7 +6,7 @@
 @section('content')
 
  <div class="main-container">
-    <div class="pd-ltr-20">
+    <div class="pd-ltr-20" style=" width: 1240px;">
       <div class="card-box pd-20 height-100-p mb-30">
         <div class="row align-items-center">
           <div class="col-md-4">
@@ -31,7 +31,7 @@
               </div>
               <div class="widget-data">
                 <div class="h4 mb-0">Total Products</div>
-                <div class="weight-600 font-14">100 products</div>
+                <div class="weight-600 font-14">{{ count($product) }} products</div>
               </div>
             </div>
           </div>
@@ -46,7 +46,7 @@
               </div>
               <div class="widget-data">
                 <div class="h4 mb-0">Pending Orders</div>
-                <div class="weight-600 font-14">500 Orders</div>
+                <div class="weight-600 font-14">{{ count($pendingorder) }} Orders</div>
               </div>
             </div>
           </div>
@@ -75,7 +75,7 @@
               </div>
               <div class="widget-data">
                 <div class="h4 mb-0">Total Users</div>
-                <div class="weight-600 font-14">2,000 users</div>
+                <div class="weight-600 font-14">{{ count($customer) }} users</div>
               </div>
             </div>
           </div>
@@ -92,6 +92,7 @@
               <th>Email</th>
               <th>Contact No.</th>
               <th>Shipping Address</th>
+              <th>Image</th>
               <th>Product Details</th>
               <th>Quantity</th>
               <th>Price</th>
@@ -100,20 +101,22 @@
             </tr>
           </thead>
           <tbody>
-
+            @for($i=0; $i<count($order); $i++)
             <tr>
-              <td class="table-plus">1</td>
-              <td>Sakil Khan</td>
-              <td>sakilk130@gmail.com</td>
-              <td>01721214996</td>
-              <td>Dhaka, Bangladesh</td>
-              <td>Apple, imac-2017, Ram:8GB,256GB SSD</td>
-              <td>1</td>
-              <td>98000</td>
-              <td>10/12/2020</td>
-              <td>Pending</td>
-            </tr>
+              <td class="table-plus">{{ $i+1 }}</td>
+              <td>{{ $order[$i]->name }}</td>
+              <td>{{ $order[$i]->email }}</td>
+              <td>+88{{ $order[$i]->phone }}</td>
+              <td>{{ $order[$i]->address }}</td>
+              <td><img style="height: 50px; weight:50px" src="/upload/{{ $order[$i]->product_image }}" alt=""></td>
+              <td>{{ $order[$i]->product_name }} {{ $order[$i]->product_description }}</td>
+              <td>{{ $order[$i]->quantity }}</td>
+              <td>{{ $order[$i]->product_price }}</td>
+              <td>{{ $order[$i]->created_at }}</td>
+              <td style="background-color:red; border: none; color: black; padding: 15px 32px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px;" >{{ $order[$i]->status }}</td>
 
+            </tr>
+            @endfor
           </tbody>
         </table>
       </div>

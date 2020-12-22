@@ -126,6 +126,9 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     // Notice
     Route::get('/admin/all_notice', 'adminController@all_notice')->name('admin.all_notice');
 });
+// Invoice Delivered
+Route::get('/admin/invoice_delivered/{id}', 'adminController@invoice_delivered')->name('admin.invoice_delivered');
+
 
 // Logout
 Route::get('/logout', 'logoutController@logout')->name('logout.logout');

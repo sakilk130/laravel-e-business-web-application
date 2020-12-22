@@ -13,15 +13,16 @@ use App\Http\Requests\Admin\NewCustomerRequest;
 use App\Http\Requests\Admin\EditCustomerRequest;
 use App\Http\Requests\Admin\AddPosterRequest;
 use App\Http\Requests\Admin\EditBlogRequest;
-use App\Notice;
-use App\Admin;
-use App\Poster;
+use App\Admin\Notice;
+use App\Admin\Admin;
+use App\Admin\Poster;
 use App\Admin\Customer;
 use App\Admin\Category;
 use Illuminate\Support\Facades\DB;
 use App\Admin\Subcategory;
 use App\Admin\Order;
 use App\Admin\Product;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class adminController extends Controller
 {
@@ -30,7 +31,25 @@ class adminController extends Controller
 
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();
-        return view('admin.index')->with('admin',$admin);
+
+        $order= DB::table('orders')
+                ->join('customers', 'orders.customer_id', '=', 'customers.id')
+                ->join('products', 'orders.product_id', '=', 'products.id')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->where('orders.shop_name',$email)
+                ->where('orders.status','Pending')
+                ->get();
+                // return $order;
+        $product = Product::where('shop_name',$email)->get();
+        $pendingorder = Order::where('shop_name',$email)->where('status','Pending')->get();
+        $customer = Customer::where('shop_name',$email)->get();
+
+        return view('admin.index',array('order'=>$order))
+              ->with('admin',$admin)
+              ->with('product',$product)
+              ->with('pendingorder',$pendingorder)
+              ->with('customer',$customer);
+
     }
 
     // admin_profile
@@ -754,5 +773,21 @@ class adminController extends Controller
 
         $notice=Notice::all();
         return view('admin.all-notice')->with('notice',$notice)->with('admin',$admin);
+    }
+
+    public function invoice_delivered(Request $req, $id){
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        $order= DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price', 'products.product_discount', 'products.shipping_cost')
+            ->where('orders.id',$id)
+            ->get();
+            // return $order;
+        // return view('admin.invoice-delivered_1', array('order'=>$order))->with('admin',$admin);
+
+        $pdf = PDF::loadView('admin.invoice-delivered', array('order'=>$order), array('admin'=>$admin));
+        return $pdf->download('invoice.pdf');
     }
 }

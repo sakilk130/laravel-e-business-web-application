@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\AdminStoreRequest;
-use App\Admin;
+use App\Admin\Admin;
 
 class loginController extends Controller
 {
