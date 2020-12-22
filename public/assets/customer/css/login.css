@@ -157,6 +157,14 @@ input[type=checkbox] {
   -o-appearance: checkbox !important;
   -ms-appearance: checkbox !important; }
 
+  input[type=file] {
+  outline: none;
+  box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  -ms-box-shadow: none !important; 
+  }
 input[type=radio] {
   appearance: radio !important;
   -moz-appearance: radio !important;

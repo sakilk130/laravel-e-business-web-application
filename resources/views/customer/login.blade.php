@@ -27,6 +27,7 @@
 
                     <div class="signin-form">
                         <h2 class="form-title">Sign in</h2>
+                        <p style="color: red; margin-bottom:30px">{{$customer_err}}</p>
                         <form method="POST" class="register-form" id="login-form">
                             
                             @csrf
@@ -70,11 +71,11 @@
                 </div>
             </div>
         </section>
-
     </div>
 
     <!-- JS -->
     <script src="/assets/customer/js/jquery-3.5.1.min.js"></script>
     <script src="/assets/customer/js/login.js"></script>
+
 </body>
 </html>
