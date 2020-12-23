@@ -8,6 +8,21 @@
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">All Products</h2>
+        <div>
+        <input class="card-box mb-30"
+        style="padding: 10px;
+        font-size: 17px;
+        border: 1px solid grey;
+        float: left;
+        width: 80%;
+        background: #f1f1f1;
+        margin-left:400px;
+        margin-bottom:20px;
+        max-width:300px"
+        type="text" placeholder="Search..." id="search">
+        </div>
+
+
         <table class="table table-bordered">
           <thead>
             <tr>
@@ -23,7 +38,7 @@
               <th>Last Update</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody id="product_table">
             @for($i=0; $i<count($product); $i++)
             <tr>
               <td class="table-plus">{{ $i+1 }}</td>
@@ -43,5 +58,4 @@
       </div>
     </div>
   </div>
-
   @endsection

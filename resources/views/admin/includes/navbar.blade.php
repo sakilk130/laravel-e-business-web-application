@@ -53,7 +53,8 @@
           href="/src/plugins/datatables/css/responsive.bootstrap4.min.css"
         />
         <link rel="stylesheet" type="text/css" href="/vendors/styles/style.css" />
-
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script
           async
@@ -237,5 +238,7 @@
 <script src="/js/deletesubcategory.js"></script>
 <script src="/js/deleteorder.js"></script>
 <script src="/js/deleteproduct.js"></script>
+<script src="/js/productSearch.js"></script>
+
 </body>
 </html>

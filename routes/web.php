@@ -43,6 +43,8 @@ Route::group(['middleware'=>['sessionVerify']], function(){
 
     Route::get('/admin/change_product_picture/{id}','adminController@change_product_picture' )->name('admin.change_product_picture');
     Route::post('/admin/change_product_picture/{id}', 'adminController@upload_product_picture');
+
+    Route::post('/admin/search_product','adminController@search_product');
 // Delete
     Route::post('/admin/delete_product/{id}', 'adminController@delete_product');
 

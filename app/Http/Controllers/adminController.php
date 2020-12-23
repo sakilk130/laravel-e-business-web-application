@@ -195,6 +195,22 @@ class adminController extends Controller
         // return $product;
         return view('admin.all-products',array('product'=>$product))->with('admin',$admin);
     }
+
+    // Search All Product
+    public function search_product(Request $req){
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+
+        $products= DB::table('products')
+        ->join('categories', 'products.category_ID', '=', 'categories.id')
+        ->join('subcategories', 'products.sub_category_ID', '=', 'subcategories.id')
+        ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
+        ->where('products.shop_name',$email)
+        ->where('products.product_name','like','%' .$req->get('searchQuery') . '%')
+        ->get();
+        return json_encode($products);
+    }
+
     //Add new product
     public function add_new_product(Request $req) {
         $email=$req->session()->get('email');
