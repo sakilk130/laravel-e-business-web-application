@@ -765,8 +765,21 @@ class adminController extends Controller
 
 
 
-    public function all_blog() {
-        return view('admin.all-blog');
+    public function all_blog(Request $req) {
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+
+        $client = new \GuzzleHttp\Client();
+
+        $response = $client->request('GET', 'http://localhost:3000/blogs');
+        $blog= json_decode($response->getBody(), true);
+
+        if($blog!=NULL){
+        return view('admin.all-blog')->with('admin',$admin)->with('blog',$blog);
+        }else{
+            return "SERVER IS RESPONDING";
+        }
     }
 
     // Edit Blog

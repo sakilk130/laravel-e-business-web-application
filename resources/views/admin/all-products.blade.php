@@ -12,7 +12,7 @@
         <input class="card-box mb-30"
         style="padding: 10px;
         font-size: 17px;
-        border: 1px solid grey;
+        border: 1px solid #1b00ff;
         float: left;
         width: 80%;
         background: #f1f1f1;

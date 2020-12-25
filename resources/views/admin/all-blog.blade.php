@@ -1,7 +1,7 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 <div class="main-container">
     <div class="pd-ltr-20">
@@ -10,35 +10,23 @@
         <div class="pd-20 card-box mb-30">
             <div class="row clearfix">
 
-                {{-- Blog Post-1 --}}
-                <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
-                    <div class="card card-box">
-                        <img class="card-img-top" src="/vendors/images/img2.jpg" alt="Card image cap">
-                        <div class="card-body">
-                            <a href="">
-                            <h5 class="card-title weight-500">Blog title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        </a>
-                            <a href="/admin/edit_blog" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
-                        </div>
-                    </div>
-                </div>
+                <!-- Blog Post -->
 
-                {{-- Blog Post-2 --}}
+                @for($i=0; $i<count($blog); $i++)
+
                 <div class="col-lg-3 col-md-6 col-sm-12 mb-30">
                     <div class="card card-box">
-                        <img class="card-img-top" src="/vendors/images/img2.jpg" alt="Card image cap">
+                        <img style="height: 170px; weight:100px" class="card-img-top" src="/upload/{{ $blog[$i]['image'] }}" alt="Card image cap">
                         <div class="card-body">
-                            <a href="">
-                                <h5 class="card-title weight-500">Blog title</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            </a>
-                            <a href="#" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-danger">Delete</a>
+                            <h5 class="card-title weight-500">{{ $blog[$i]['blog_title'] }}</h5>
+                            <p class="card-text">{{ str_limit($blog[$i]['blog_drescription'], $limit = 100, $end="...") }} <a style="color: green" href="">See More</a>  </p>
+                            <a href="/admin/edit_blog" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
                         </div>
                     </div>
                 </div>
+                @endfor
+
             </div>
         </div>
       </div>
