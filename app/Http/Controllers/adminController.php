@@ -773,21 +773,80 @@ class adminController extends Controller
         $client = new \GuzzleHttp\Client();
 
         $response = $client->request('GET', 'http://localhost:3000/blogs');
-        $blog= json_decode($response->getBody(), true);
 
-        if($blog!=NULL){
+        if($response->getStatusCode()==200){
+        $blog= json_decode($response->getBody(), true);
         return view('admin.all-blog')->with('admin',$admin)->with('blog',$blog);
         }else{
             return "SERVER IS RESPONDING";
         }
     }
 
-    // Edit Blog
-    public function edit_blog() {
-        return view('admin.edit-blog');
+    // One Blog
+     public function read_blog(Request $req, $id) {
+
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+
+        $client = new \GuzzleHttp\Client();
+
+        $api='http://localhost:3000/blog/'.$id;
+        $response = $client->request('GET', $api);
+
+
+        if($response->getStatusCode()==200){
+            $blog= json_decode($response->getBody(), true);
+            return view('admin.read-blog')->with('admin',$admin)->with('blog',$blog);
+        // return view('admin.all-blog')->with('admin',$admin)->with('blog',$blog);
+        }else{
+            return "SERVER IS RESPONDING";
+        }
     }
-    public function update_blog(EditBlogRequest $req ) {
+
+    // Edit Blog
+    public function edit_blog(Request $req, $id) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+
+        $client = new \GuzzleHttp\Client();
+
+        $api='http://localhost:3000/blog/edit/'.$id;
+
+        $response = $client->request('GET', $api);
+
+
+        if($response->getStatusCode()==200){
+            $blog= json_decode($response->getBody(), true);
+            return view('admin.edit-blog')->with('admin',$admin)->with('blog',$blog);
+        }else{
+            return "SERVER IS RESPONDING";
+        }
+    }
+    public function update_blog(EditBlogRequest $req,$id ) {
+
+        $blog_title= $req->blog_title;
+        $blog_drescription=$req->blog_details;
+        $updated_at=date("d/m/Y");
+
+        $client = new \GuzzleHttp\Client();
+
+        $api='http://localhost:3000/blog/edit/'.$id;
+
+        $response = $client->request('POST', $api, [
+            'form_params' =>[
+                'blog_title' => $blog_title,
+                'blog_drescription' => $blog_drescription,
+                'updated_at' => $updated_at,
+                'id'=>$id
+            ]
+        ]);
+       if($response->getStatusCode()==200){
         return redirect()->route('admin.all_blog');
+
+       }else{
+            return "SERVER IS NOT RESPONDING";
+        }
+
     }
 
     public function add_new_blog() {

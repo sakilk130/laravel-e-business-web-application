@@ -24,9 +24,8 @@ class EditBlogRequest extends FormRequest
     public function rules()
     {
         return [
-            'blog_title'=>'required|min:5|max:100|string',
-            'blog_details'=>'required|min:10|max:255|string',
-            'blog_image'=>'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'blog_title'=>'required|min:5|max:300|string',
+            'blog_details'=>'required|min:10|max:15000|string',
         ];
     }
 }
