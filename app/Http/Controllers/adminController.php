@@ -13,6 +13,7 @@ use App\Http\Requests\Admin\NewCustomerRequest;
 use App\Http\Requests\Admin\EditCustomerRequest;
 use App\Http\Requests\Admin\AddPosterRequest;
 use App\Http\Requests\Admin\EditBlogRequest;
+use App\Http\Requests\Admin\BlogRequest;
 use App\Admin\Notice;
 use App\Admin\Admin;
 use App\Admin\Poster;
@@ -761,7 +762,7 @@ class adminController extends Controller
         $task->delete();
 
         return response()->json('Poster deleted', 200);
-        }
+    }
 
 
 
@@ -846,15 +847,55 @@ class adminController extends Controller
        }else{
             return "SERVER IS NOT RESPONDING";
         }
+    }
+
+    // Delete
+    public function delete_blog_p($id){
+        $task = Blog::find($id);
+        $task->delete();
+
+        return response()->json('Blog deleted', 200);
+    }
+
+    public function add_new_blog(Request $req) {
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+        return view('admin.add-new-blog')->with('admin',$admin);
 
     }
 
-    public function add_new_blog() {
-        return view('admin.add-new-blog');
+    public function add_new_blog_p(BlogRequest $req) {
+        if($req->hasFile('image')){
+            $file = $req->file('image');
+            if($file->move('upload', $file->getClientOriginalName())){
+                $blog_title= $req->blog_title;
+                $blog_drescription=$req->blog_drescription;
+                $created_at=date("d/m/Y");
+                $client = new \GuzzleHttp\Client();
+                $image=$file->getClientOriginalName();
+                $response = $client->request('POST', 'http://localhost:3000/blogs', [
+                    'form_params' =>[
+                        'blog_title' => $blog_title,
+                        'blog_drescription' => $blog_drescription,
+                        'created_at' => $created_at,
+                        'image'=> $image
+                    ]
+                ]);
+                if($response->getStatusCode()==200){
+                    return redirect()->route('admin.all_blog');
+
+                }else{
+                        return "SERVER IS NOT RESPONDING";
+                    }
+            }else{
+                return "Failed Uploading Image";
+            }
+        }else{
+            return "No Image Selected";
+        }
+
     }
-    public function add_new_blog_p(EditBlogRequest $req) {
-        return redirect()->route('admin.all_blog');
-    }
+
     public function all_notice(Request $req) {
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();
@@ -872,7 +913,7 @@ class adminController extends Controller
             ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price', 'products.product_discount', 'products.shipping_cost')
             ->where('orders.id',$id)
             ->get();
-            // return $order;
+        // return $order;
         // return view('admin.invoice-delivered_1', array('order'=>$order))->with('admin',$admin);
 
         $pdf = PDF::loadView('admin.invoice-delivered', array('order'=>$order), array('admin'=>$admin));

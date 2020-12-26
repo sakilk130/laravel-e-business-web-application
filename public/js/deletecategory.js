@@ -23,7 +23,7 @@ $(document).on("click", ".delete", function () {
         let id = event.data.id;
         $.ajax({
             type: "POST",
-            url: "/admin/delete_category/" + id,
+            url: "/admin/delete_blog/" + id,
             success: function (data) {
                 // reqest message clear
                 $(msg).html("");

@@ -1,7 +1,7 @@
-@extends('admin.includes.navbar')
-@section('title',"Shop Name")
-@section('profileName',"Profile Name")
-@section('storeName',"Store Name")
+@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
+@section('title',$admin->shop_name)
+@section('profileName',$admin->username)
+@section('storeName',$admin->shop_name)
 @section('content')
 <div class="main-container">
     <div class="pd-ltr-20">
@@ -21,7 +21,6 @@
                       type="text"
                       placeholder="Blog Title..."
                       name="blog_title"
-                      required
                     />
                   </div>
 
@@ -43,13 +42,13 @@
                       cols="30"
                       rows="10"
                       placeholder="Blog Drescription..."
-                      name="blog_details"
-                      required
+                      name="blog_drescription"
+
                     ></textarea>
                   </div>
 
                         {{-- Server side validation --}}
-                        @error('blog_details')
+                        @error('blog_drescription')
                         <span style="margin:auto; color:red">{{ $message }}</span>
                         @enderror
 
@@ -64,13 +63,11 @@
                     <input
                       class="form-control"
                       type="file"
-                      name="blog_image"
-                      required
-
+                      name="image"
                     />
                   </div>
                         {{-- Server side validation --}}
-                        @error('blog_image')
+                        @error('image')
                         <span style="margin:auto; color:red">{{ $message }}</span>
                         @enderror
                 </div>

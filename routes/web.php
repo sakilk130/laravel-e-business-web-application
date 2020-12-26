@@ -124,6 +124,8 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/edit_blog/{id}', 'adminController@edit_blog')->name('admin.edit_blog');
     Route::post('/admin/edit_blog/{id}', 'adminController@update_blog');
 
+    // Route::get('/admin/delete_blog/{id}', 'adminController@delete_blog')->name('admin.delete_blog');
+    Route::post('/admin/delete_blog/{id}', 'adminController@delete_blog_p');
 
     Route::get('/admin/add_new_blog', 'adminController@add_new_blog')->name('admin.add_new_blog');
     Route::post('/admin/add_new_blog', 'adminController@add_new_blog_p');
