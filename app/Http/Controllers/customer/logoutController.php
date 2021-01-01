@@ -13,5 +13,6 @@ class logoutController extends Controller
         return redirect()->route('customer.login', $shopName);
 
     }
+    
 
 }

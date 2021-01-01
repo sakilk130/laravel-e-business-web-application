@@ -102,7 +102,7 @@ Route::group(['middleware'=>['sessionVerify']], function(){
 });
 
 // Logout
-Route::get('/logout', 'logoutController@logout')->name('logout.logout');
+Route::get('/live', 'logoutController@logout')->name('logout.logout');
 
 // End Shop Admin
 
@@ -153,3 +153,9 @@ Route::group(['middleware'=>['varifyCustomer']], function(){
 });
 
 //customer end ..................................................
+
+
+
+
+Route::get('/live', 'customer\live@index')->name('liveSearch');
+Route::post('/live', 'customer\live@livepost')->name('liveSearch');
