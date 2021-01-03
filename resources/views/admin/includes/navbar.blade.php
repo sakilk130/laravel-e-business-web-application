@@ -232,13 +232,14 @@
 <script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 <script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 <script src="/vendors/scripts/dashboard.js"></script>
-<script src="/js/main.js"></script>
+<script src="/js/deletecustomer.js"></script>
 <script src="/js/deleteposter.js"></script>
 <script src="/js/deletecategory.js"></script>
 <script src="/js/deletesubcategory.js"></script>
 <script src="/js/deleteorder.js"></script>
 <script src="/js/deleteproduct.js"></script>
 <script src="/js/productSearch.js"></script>
+<script src="/js/deleteblog.js"></script>
 
 </body>
 </html>

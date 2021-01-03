@@ -7,10 +7,10 @@ $.ajaxSetup({
 // Delete Popup
 $(document).on("click", ".delete", function () {
     let task = $(this).closest("tr").data("id");
-    let modal = $("#deleteTaskForm");
+    let modal = $("#deletecategory");
 
     // Delete Confirmation
-    $('#deleteTaskForm button[type="submit"]').click(
+    $('#deletecategory button[type="submit"]').click(
         {
             id: task,
         },
@@ -23,13 +23,13 @@ $(document).on("click", ".delete", function () {
         let id = event.data.id;
         $.ajax({
             type: "POST",
-            url: "/admin/delete_blog/" + id,
+            url: "/admin/delete_category/" + id,
             success: function (data) {
                 // reqest message clear
                 $(msg).html("");
 
-                $("#deleteTaskForm").find("h4").remove();
-                $("#deleteTaskForm").find('button[type="submit"]').remove();
+                $("#deletecategory").find("h4").remove();
+                $("#deletecategory").find('button[type="submit"]').remove();
 
                 // Show success message
                 $(msg).append(
@@ -47,13 +47,13 @@ $(document).on("click", ".delete", function () {
     }
 });
 
-$("#deleteTaskForm").submit(function (e) {
+$("#deletecategory").submit(function (e) {
     e.preventDefault();
 });
 
 // delete modal set to default
 $("#deleteTask").on("hidden.bs.modal", function (e) {
-    modal = $("#deleteTaskForm");
+    modal = $("#deletecategory");
     $(modal).find("#deleteTaskMessage").html("");
     $(modal).find(".modal-body").html("").append(`
         <div id="deleteTaskMessage"></div>

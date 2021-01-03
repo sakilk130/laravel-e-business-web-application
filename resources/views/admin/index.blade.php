@@ -83,7 +83,7 @@
       </div>
 
       <div class="card-box mb-30">
-        <h2 class="h4 pd-20">Recent Orders</h2>
+        <h2 class="h4 pd-20">Pending Orders</h2>
         <table class="table table-bordered">
           <thead>
             <tr>

@@ -17,7 +17,7 @@ $("body").on("keyup", "#search", function () {
                 // console.log(value);
                 tableRow =
                     "<tr><td>" +
-                    index +
+                    ++index +
                     "</td><td><img style='height:50px; weight:50px' src='/upload/" +
                     value.product_image +
                     "'></td><td>" +

@@ -857,6 +857,8 @@ class adminController extends Controller
         return response()->json('Blog deleted', 200);
     }
 
+
+
     public function add_new_blog(Request $req) {
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();

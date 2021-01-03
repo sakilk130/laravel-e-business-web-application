@@ -7,10 +7,10 @@ $.ajaxSetup({
 // Delete Popup
 $(document).on("click", ".delete", function () {
     let task = $(this).closest("tr").data("id");
-    let modal = $("#deleteTaskForm");
+    let modal = $("#deleteForm");
 
     // Delete Confirmation
-    $('#deleteTaskForm button[type="submit"]').click(
+    $('#deleteForm button[type="submit"]').click(
         {
             id: task,
         },
@@ -28,8 +28,8 @@ $(document).on("click", ".delete", function () {
                 // reqest message clear
                 $(msg).html("");
 
-                $("#deleteTaskForm").find("h4").remove();
-                $("#deleteTaskForm").find('button[type="submit"]').remove();
+                $("#deleteForm").find("h4").remove();
+                $("#deleteForm").find('button[type="submit"]').remove();
 
                 // Show success message
                 $(msg).append(
@@ -47,13 +47,13 @@ $(document).on("click", ".delete", function () {
     }
 });
 
-$("#deleteTaskForm").submit(function (e) {
+$("#deleteForm").submit(function (e) {
     e.preventDefault();
 });
 
 // delete modal set to default
 $("#deleteTask").on("hidden.bs.modal", function (e) {
-    modal = $("#deleteTaskForm");
+    modal = $("#deleteForm");
     $(modal).find("#deleteTaskMessage").html("");
     $(modal).find(".modal-body").html("").append(`
         <div id="deleteTaskMessage"></div>

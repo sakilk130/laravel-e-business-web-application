@@ -52,7 +52,7 @@
     <div class="modal fade" id="deleteTask" tabindex="-1" role="dialog" aria-labelledby="deleteTaskTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-              <form id="deleteTaskForm">
+              <form id="deletesubcategory">
                 <div class="modal-header">
                 <h5 class="modal-title" id="deleteTaskTitle">Delete Sub-Category</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
