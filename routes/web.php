@@ -140,4 +140,7 @@ Route::get('/admin/invoice_delivered/{id}', 'adminController@invoice_delivered')
 // Logout
 Route::get('/logout', 'logoutController@logout')->name('logout.logout');
 
+
+Route::get('/login/facebook', 'Auth\LoginController@redirectToProvider');
+Route::get('/login/facebook/callback', 'Auth\LoginController@handleProviderCallback');
 // End Shop Admin

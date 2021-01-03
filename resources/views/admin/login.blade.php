@@ -126,10 +126,9 @@
                     ></span>
                   </div>
                 </div>
+                  {{-- Error Message --}}
 
-                {{-- Error Message --}}
-
-                <span style="color: red">
+                  <span style="color: red">
                     {{ session('msg') }}
                 </span>
 
@@ -139,24 +138,29 @@
                   </div>
 
                 <div class="row pb-30">
-                  <div class="col-6">
-                    <div class="custom-control custom-checkbox">
-                      <input
-                        type="checkbox"
-                        class="custom-control-input"
-                        id="customCheck1"
-                      />
-                      <label class="custom-control-label" for="customCheck1"
-                        >Remember</label
-                      >
-                    </div>
-                  </div>
-                  <div class="col-6">
+                    <a href="http://localhost:8000/login/facebook" style="width: 100%;
+                    padding: 12px;
+                    border: none;
+                    border-radius: 4px;
+                    margin: 5px 0;
+                    opacity: 0.85;
+                    display: inline-block;
+                    font-size: 17px;
+                    line-height: 20px;
+                    text-align:center;
+                    text-decoration: none; background-color: #3B5998;color: white;">
+                        <i class="fa fa-facebook fa-fw"></i> Login with Facebook
+                    </a>
+
+                           {{-- <div class="col-6">
                     <div class="forgot-password">
                       <a href="#">Forgot Password</a>
                     </div>
-                  </div>
+                  </div> --}}
                 </div>
+
+
+
                 <div class="row">
                   <div class="col-sm-12">
                     <div class="input-group mb-0">
