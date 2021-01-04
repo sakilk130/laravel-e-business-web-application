@@ -31,7 +31,7 @@ class customerRegistration extends FormRequest
             'customerRepass' => 'required|same:customerPass',
             'phone' => 'required|regex:/(01)[0-9]/|min:11|max:11',
             'adress' => 'required',
-            'image' => 'required|image',
+            'image' => 'required',
 
         ];
     }
@@ -53,7 +53,7 @@ class customerRegistration extends FormRequest
             'phone.max' => 'maximum 11 degit avaiable',
             'adress.required' => 'Your adress is required',
             'image.required' => 'Image is required',
-            'image.image' => 'This is not an image',
+            //'image.image' => 'This is not an image',
 
  
 

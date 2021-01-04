@@ -121,7 +121,11 @@ Route::post('/{shopName}/customer/login', 'customer\c_loginController@fromPost')
 
 
 // product
-Route::get('/{shopName}/product','customer\productController@index')->name('product');
+Route::get('/{shopName}/product/{id}','customer\productController@index')->name('product');
+Route::post('/{shopName}/product/{id}','customer\productController@fromPost')->name('product');
+
+// wish
+Route::get('/{shopName}/wish','customer\wishController@index')->name('wish');
 
 // cart
 Route::get('/{shopName}/cart','customer\cartController@index')->name('cart');
@@ -142,13 +146,16 @@ Route::get('/{shopName}/shop/logout', 'customer\logoutController@index')->name('
 Route::get('/error', 'customer\errorController@index')->name('error');
 
 
+// shop
+Route::get('/{shopName}/shop','customer\shopController@index')->name('shop');
+Route::post('/{shopName}/price','customer\shopController@price')->name('shop.price');
+Route::post('/{shopName}/wish','customer\shopController@wish')->name('shop.wish');
 
 
 // middleware................................
 Route::group(['middleware'=>['varifyCustomer']], function(){
     
-    // shop
-    Route::get('/{shopName}/shop','customer\shopController@index')->name('shop');
+    
 
 });
 
