@@ -36,7 +36,7 @@
                 <td><img style="height: 50px; weight:50px" src="/upload/{{ $order[$i]->product_image }}" alt=""></td>
                 <td>{{ $order[$i]->product_name }} {{ $order[$i]->product_description }}</td>
                 <td>{{ $order[$i]->quantity }}</td>
-                <td>{{ ($order[$i]->product_price+$order[$i]->shipping_cost)-$order[$i]->product_discount }}</td>
+                <td>{{ ($order[$i]->product_price+$order[$i]->shipping_cost)-$order[$i]->product_discount }}BDT</td>
                 <td>{{ $order[$i]->created_at }}</td>
                 <td style="background-color:green; border: none; color: black; padding: 15px 10px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px;" >{{ $order[$i]->status }}</td>
                 <td>

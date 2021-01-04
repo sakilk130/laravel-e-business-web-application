@@ -350,6 +350,20 @@ class adminController extends Controller
             ->get();
         return view('admin.all-orders',array('order'=>$order))->with('admin',$admin);
     }
+       // Search All Order
+        public function search_order(Request $req){
+        $email=$req->session()->get('email');
+        $admin=Admin::where('email',$email)->first();
+
+        $order= DB::table('orders')
+            ->join('customers', 'orders.customer_id', '=', 'customers.id')
+            ->join('products', 'orders.product_id', '=', 'products.id')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price','products.product_discount', 'products.shipping_cost')
+            ->where('orders.shop_name',$email)
+            ->where('customers.email','like','%' .$req->get('searchQuery') . '%')
+            ->get();
+        return json_encode($order);
+    }
 
     // Pending Order
     public function pending_orders(Request $req) {

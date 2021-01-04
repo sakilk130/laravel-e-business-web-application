@@ -239,7 +239,6 @@
 <script src="/js/deleteorder.js"></script>
 <script src="/js/deleteproduct.js"></script>
 <script src="/js/productSearch.js"></script>
-<script src="/js/deleteblog.js"></script>
-
+<script src="/js/orderSearch.js"></script>
 </body>
 </html>

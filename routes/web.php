@@ -51,6 +51,8 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     // Orders
     Route::get('/admin/all_orders','adminController@all_orders')->name('admin.all_orders');
 
+    Route::post('/admin/search_order','adminController@search_order');
+
     Route::get('/admin/pending_orders','adminController@pending_orders')->name('admin.pending_orders');
 
     Route::get('/admin/edit_orders/{id}','adminController@edit_orders')->name('admin.edit_orders');
