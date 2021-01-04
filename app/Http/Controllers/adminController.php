@@ -345,7 +345,7 @@ class adminController extends Controller
        $order= DB::table('orders')
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
             ->join('products', 'orders.product_id', '=', 'products.id')
-            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price','products.product_discount', 'products.shipping_cost')
             ->where('orders.shop_name',$email)
             ->get();
         return view('admin.all-orders',array('order'=>$order))->with('admin',$admin);
@@ -358,7 +358,7 @@ class adminController extends Controller
            $order= DB::table('orders')
                 ->join('customers', 'orders.customer_id', '=', 'customers.id')
                 ->join('products', 'orders.product_id', '=', 'products.id')
-                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price','products.product_discount', 'products.shipping_cost')
                 ->where('orders.shop_name',$email)
                 ->where('orders.status','Pending')
                 ->get();
@@ -373,7 +373,7 @@ class adminController extends Controller
         $order= DB::table('orders')
                 ->join('customers', 'orders.customer_id', '=', 'customers.id')
                 ->join('products', 'orders.product_id', '=', 'products.id')
-                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price','products.product_discount', 'products.shipping_cost')
                 ->where('orders.id',$id)
                 ->get();
         return view('admin.edit-orders', array('order'=>$order))->with('admin',$admin);
@@ -395,7 +395,7 @@ class adminController extends Controller
         $order= DB::table('orders')
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
             ->join('products', 'orders.product_id', '=', 'products.id')
-            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price','products.product_discount', 'products.shipping_cost')
             ->where('orders.shop_name',$email)
             ->where('orders.status','In Process')
             ->get();
@@ -410,7 +410,7 @@ class adminController extends Controller
         $order= DB::table('orders')
                 ->join('customers', 'orders.customer_id', '=', 'customers.id')
                 ->join('products', 'orders.product_id', '=', 'products.id')
-                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price','products.product_discount', 'products.shipping_cost')
                 ->where('orders.id',$id)
                 ->get();
         return view('admin.edit-in-process-orders', array('order'=>$order))->with('admin',$admin);
@@ -432,7 +432,7 @@ class adminController extends Controller
         $order= DB::table('orders')
             ->join('customers', 'orders.customer_id', '=', 'customers.id')
             ->join('products', 'orders.product_id', '=', 'products.id')
-            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+            ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price','products.product_discount', 'products.shipping_cost')
             ->where('orders.shop_name',$email)
             ->where('orders.status','Delivered')
             ->get();

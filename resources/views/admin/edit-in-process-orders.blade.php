@@ -88,7 +88,7 @@
                             >Price</label
                         >
                         <div class="col-sm-12 col-md-10">
-                            <p class="form-control">{{ $order[0]->product_price }} BDT</p>
+                            <p class="form-control">{{ ($order[0]->product_price+$order[0]->shipping_cost)-$order[0]->product_discount }} BDT</p>
                         </div>
                     </div>
                     <!-- Order Date -->

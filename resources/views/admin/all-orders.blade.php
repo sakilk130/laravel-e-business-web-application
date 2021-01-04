@@ -35,7 +35,7 @@
               <td><img style="height: 50px; weight:50px" src="/upload/{{ $order[$i]->product_image }}" alt=""></td>
               <td>{{ $order[$i]->product_name }} {{ $order[$i]->product_description }}</td>
               <td>{{ $order[$i]->quantity }}</td>
-              <td>{{ $order[$i]->product_price }}</td>
+              <td>{{ ($order[$i]->product_price+$order[$i]->shipping_cost)-$order[$i]->product_discount }}</td>
               <td>{{ $order[$i]->created_at }}</td>
               <td>{{ $order[$i]->status }}</td>
             </tr>
