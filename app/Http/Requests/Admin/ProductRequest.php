@@ -29,12 +29,13 @@ class ProductRequest extends FormRequest
             'product_name'=>'required|min:5',
             'product_brand'=>'required|min:5',
             'product_description'=>'required|min:10',
-            'shipping_charge'=>'required|numeric',
+            'shipping_charge'=>'required|numeric|gt:0',
             'product_availability'=>'required|min:5',
-            'product_stock'=>'required|numeric',
-            'price'=>'required|numeric',
-            'discount'=>'required|numeric',
+            'product_stock'=>'required|numeric|gt:0',
+            'price'=>'required|numeric|gt:0',
+            'discount'=>'required|integer|min:0',
             'product_image'=>'mimes:jpeg,jpg,png,gif|required|max:10000',
         ];
     }
+
 }

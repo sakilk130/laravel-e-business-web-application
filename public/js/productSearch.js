@@ -31,7 +31,9 @@ $("body").on("keyup", "#search", function () {
                     "</td><td>" +
                     value.in_stock +
                     "</td><td>" +
-                    value.product_price +
+                    (value.product_price +
+                        value.shipping_cost -
+                        value.product_discount) +
                     "</td><td>" +
                     value.created_at +
                     "</td><td>" +

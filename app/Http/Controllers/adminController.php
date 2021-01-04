@@ -189,7 +189,7 @@ class adminController extends Controller
         $product= DB::table('products')
             ->join('categories', 'products.category_ID', '=', 'categories.id')
             ->join('subcategories', 'products.sub_category_ID', '=', 'subcategories.id')
-            ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
+            ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at','products.product_discount', 'products.shipping_cost', 'categories.category_name', 'subcategories.sub_category_name')
             ->where('products.shop_name',$email)
             ->get();
 
@@ -205,7 +205,7 @@ class adminController extends Controller
         $products= DB::table('products')
         ->join('categories', 'products.category_ID', '=', 'categories.id')
         ->join('subcategories', 'products.sub_category_ID', '=', 'subcategories.id')
-        ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
+        ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock','products.product_discount', 'products.shipping_cost', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
         ->where('products.shop_name',$email)
         ->where('products.product_name','like','%' .$req->get('searchQuery') . '%')
         ->get();
@@ -261,7 +261,7 @@ class adminController extends Controller
         $product= DB::table('products')
             ->join('categories', 'products.category_ID', '=', 'categories.id')
             ->join('subcategories', 'products.sub_category_ID', '=', 'subcategories.id')
-            ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
+            ->select('products.id', 'products.product_name', 'products.product_brand','products.product_price','products.product_image', 'products.in_stock', 'products.created_at', 'products.product_discount', 'products.shipping_cost', 'products.updated_at', 'categories.category_name', 'subcategories.sub_category_name')
             ->where('products.shop_name',$email)
             ->get();
             // return $product;

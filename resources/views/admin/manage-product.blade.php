@@ -35,7 +35,7 @@
               <td>{{ $product[$i]->sub_category_name}}</td>
               <td>{{ $product[$i]->product_brand}}</td>
               <td>{{ $product[$i]->in_stock}}</td>
-              <td>{{ $product[$i]->product_price}} BDT</td>
+              <td>{{ ($product[$i]->product_price+$product[$i]->shipping_cost)-$product[$i]->product_discount}} BDT</td>
               <td>{{ $product[$i]->created_at}}</td>
               <td>{{ $product[$i]->updated_at}}</td>
               <th>
