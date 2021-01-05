@@ -10,7 +10,7 @@ use App\wishDB;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 
-class cartController extends Controller
+class orderController extends Controller
 {
     public function index(Request $req, $shopName)
     {

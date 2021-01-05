@@ -131,6 +131,7 @@ Route::get('/{shopName}/wish','customer\wishController@index')->name('wish');
 // cart
 Route::get('/{shopName}/cart','customer\cartController@index')->name('cart');
 Route::get('/{shopName}/cart/delete/{cart_id}','customer\cartController@delete')->name('cart.delete');
+Route::post('/{shopName}/cart/order/{cart_id}','customer\cartController@order')->name('cart.order');
 
 // blog
 Route::get('/{shopName}/blog','customer\blogController@index')->name('blog');
@@ -169,3 +170,10 @@ Route::group(['middleware'=>['varifyCustomer']], function(){
 
 
 Route::post('/{shopName}/live', 'customer\liveSearchController@index')->name('liveSearch');
+
+
+Route::post('/checkout/{shopName}/{cart_id}','CheckoutController@checkout')->name('checkout');
+Route::post('/checkout','CheckoutController@afterpayment')->name('checkout.credit-card');
+
+
+Route::get('/order','customer\orderController@index')->name('order');

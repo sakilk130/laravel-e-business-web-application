@@ -52,38 +52,42 @@
                     </thead>
                     <tbody>
                     @if (count($cart)>0)
-                        @for ($i = 0; $i < count($cart); $i++)
-                        
-                        <tr>
-                            <td class="cart_product">
-                                <a href=""><img src="/uploads/{{$cart[$i]->product_image}}" height="100px" alt=""></a>
-                            </td>
-                            <td class="cart_description">
-                                <h4><a href="">{{$cart[$i]->product_name}}</a></h4>
-                                <p>Avaiable products: {{$cart[$i]->in_stock}}</p>
-                            </td>
-                            <td class="cart_price">
-                                <p>${{$cart[$i]->product_price}}</p>
-                            </td>
-                            <td class="cart_quantity">
-                                <div class="cart_quantity_button">
-                                    <input class="cart_quantity_input" disabled type="text" name="quantity" value="{{$cart[$i]->quantity}}" autocomplete="off" size="2">
-                                </div>
-                            </td>
-                            <td class="cart_total">
-                                <p class="cart_total_price">${{$cart[$i]->quantity*$cart[$i]->product_price}}</p>
-                            </td>
-                            <td class="cart_delete">
-                                <a class="cart_quantity_delete" href="{{route('cart.delete', [$shopName, $cart[$i]->cart_id])}}"><i class="fa fa-times"></i></a>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-fefault cart">
-                                    <i class="fa fa-shopping-cart"></i>
-                                    Order
-                                </button>
-                            </td>
-                        </tr>
-
+                    @for ($i = 0; $i < count($cart); $i++)
+                        <form action="{{route('checkout', [$shopName, $cart[$i]->cart_id])}}" method="POST">
+                            <tr>
+                                <td class="cart_product">
+                                    <a href=""><img src="/uploads/{{$cart[$i]->product_image}}" height="100px" alt=""></a>
+                                </td>
+                                <td class="cart_description">
+                                    <h4><a href="">{{$cart[$i]->product_name}}</a></h4>
+                                    <p>Avaiable products: {{$cart[$i]->in_stock}}</p>
+                                </td>
+                                <td class="cart_price">
+                                    <p>${{$cart[$i]->product_price}}</p>
+                                </td>
+                                <td class="cart_quantity">
+                                    <div class="cart_quantity_button">
+                                        <input type="hidden" name="product_id" value="{{$cart[$i]->product_id}}">
+                                        <input type="hidden" name="customer_id" value="{{$customer_id}}">
+                                        <input type="hidden" name="price" value="{{$cart[$i]->quantity*$cart[$i]->product_price}}">
+                                        <input type="hidden" name="quantity" value="{{$cart[$i]->quantity}}">
+                                        <input class="cart_quantity_input" disabled type="text" name="" value="{{$cart[$i]->quantity}}" autocomplete="off" size="2">
+                                    </div>
+                                </td>
+                                <td class="cart_total">
+                                    <p class="cart_total_price">${{$cart[$i]->quantity*$cart[$i]->product_price}}</p>
+                                </td>
+                                <td class="cart_delete">
+                                    <a class="cart_quantity_delete" href="{{route('cart.delete', [$shopName, $cart[$i]->cart_id])}}"><i class="fa fa-times"></i></a>
+                                </td>
+                                <td>
+                                    <button type="submit" class="btn btn-fefault cart">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        Order
+                                    </button>
+                                </td>
+                            </tr>
+                        </form>
                     @endfor
                 @else
                 <tr>
