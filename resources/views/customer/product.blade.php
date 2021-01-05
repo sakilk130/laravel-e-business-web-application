@@ -111,7 +111,9 @@
 								
 								<h1>{{$products[0]->product_name}}</h1>
 								<div style="position: relative; bottom:10px;">
-									@if ($avarage_star==1)
+									@if ($avarage_star==0)
+										<span class="fa fa-star"></span><span class="fa fa-star "></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
+									@elseif ($avarage_star==1)
 										<span class="fa fa-star checked"></span><span class="fa fa-star "></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>
 									@elseif ($avarage_star== 2)
 										<span class="fa fa-star checked"></span><span class="fa fa-star checked"></span><span class="fa fa-star"></span><span class="fa fa-star"></span><span class="fa fa-star"></span>

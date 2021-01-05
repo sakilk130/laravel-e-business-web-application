@@ -44,12 +44,18 @@ class productController extends Controller
                     ->where('shop_name', $shopName)
                     ->where('product_id', $id)
                     ->get();   
-        $star_sum = DB::table('review')
-                        ->sum('star');
         
-        $row_num= count($review);    
+        if(count($review)>0){
+            $star_sum = DB::table('review')
+            ->sum('star');
+
+            $row_num= count($review);    
+
+            $avarage_star=round($star_sum/$row_num ); 
+        }else{
+            $avarage_star = 0;
+        }           
         
-        $avarage_star=round($star_sum/$row_num );
         $wish = DB::table('wish')
                     ->join('products', 'wish.product_id', '=', 'products.id')
                     ->where('wish.customer_id', $customer_id)

@@ -37,7 +37,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href=""><i class="fa fa-user"></i>{{$customer}}</a></li>
                             <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
-                            <li><a href="cart.html"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="{{route('cart', $shopName)}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="{{route('shop.logout', $shopName)}}"><i class="fa fa-lock"></i> Logout</a></li>
                         </ul>
                     </div>
@@ -81,10 +81,64 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search"/>
+                        <input type="text" id="live" name="live" placeholder="Search" autocomplete="off"/>
+                        <table >
+                            <tbody id="tbody" class="table table-dark col-sm-3 mt-sm-2 p-5" style="background-color: #f0f0e9; font-family: 'Roboto,sans-serif'">
+                              
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div><!--/header-bottom-->
 </header><!--/header-->
+
+<script src="/assets/customer/js/jquery.js"></script>
+<script src="/assets/customer/js/price-range.js"></script>
+<script src="/assets/customer/js/jquery.scrollUp.min.js"></script>
+<script src="/assets/customer/js/bootstrap.min.js"></script>
+<script src="/assets/customer/js/jquery.prettyPhoto.js"></script>
+<script src="/assets/customer/js/main.js"></script>
+
+
+<script>
+    $(document).ready(function() {
+
+        $('#live').on('keyup', function() {
+            var value = $(this).val();
+            
+            $.ajax({
+                type: 'post',
+                url: '{{ route("liveSearch", $shopName) }}',
+                data: {
+                    'live': value
+                },
+                success: function(data) {
+                    var new_data = JSON.parse(data);
+                    var tableRow='';
+                    $("#tbody").html('');
+                
+                    if(value.length==0){
+                        $("#tbody").html('');
+                    
+                    }else{
+                        
+                        $.each( new_data, function( index, value ){
+                        
+                            tableRow = "<a href='/{{$shopName}}/product/"+value.id+"'><tr style='padding-bottom:205px'><td><img src='/uploads/"+value.product_image+"' alt='' height='40px'></td><td style='font-size:14px; width:76px'>"+value.product_name+"</td></tr></a>";
+                        
+                            $("#tbody").append(tableRow);
+                        });
+                    }
+                    
+                },
+
+            });
+            
+            
+        });
+
+    });
+</script>

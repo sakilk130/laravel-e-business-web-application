@@ -166,5 +166,4 @@ Route::group(['middleware'=>['varifyCustomer']], function(){
 
 
 
-Route::get('/live', 'customer\live@index')->name('liveSearch');
-Route::post('/live', 'customer\live@livepost')->name('liveSearch');
+Route::post('/{shopName}/live', 'customer\liveSearchController@index')->name('liveSearch');
