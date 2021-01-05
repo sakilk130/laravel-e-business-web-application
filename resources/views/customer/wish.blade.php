@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Blog | E-Shopper</title>
+    <title>Product Details | E-Shopper</title>
     <link href="/assets/customer/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/customer/css/font-awesome.min.css" rel="stylesheet">
     <link href="/assets/customer/css/prettyPhoto.css" rel="stylesheet">
@@ -21,60 +21,22 @@
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/assets/customer/images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/assets/customer/images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/assets/customer/images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="/assets/customer/images/ico/apple-touch-icon-57-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" href="/assets/customer/images/ico/apple-touch-icon-57-precomposed.png">
+	<!-- Add icon library -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head><!--/head-->
 
 <body>
-	@include('customer.header');
-	
-	<section>
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
+    @for ($i = 0; $i < count($wish); $i++)
+        @if ($wish[$i]->customer_id=$customer_id && $wish[$i]->shop_name=$shopName )
+            {{$wish[$i]->wish_id}}
+        @endif
+    @endfor
+    
 
-						@include('customer.cetagory')
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="/assets/customer/images/home/shipping.jpg" alt="" />
-						</div><!--/shipping-->
-					</div>
-				</div>
-				<div class="col-sm-9">
-					<div class="blog-post-area">
-						<h2 class="title text-center">Latest From our Blog</h2>
-
-					@for ($i = 0; $i < count($blogs); $i++)
-						<div class="single-blog-post">
-							<h3>{{$blogs[$i]->blog_title}}</h3>
-							<a href="">
-								<img src="/uploads/{{$blogs[$i]->image}}" alt="">
-							</a>
-							<p>{{$blogs[$i]->blog_drescription}}</p>
-							<a  class="btn btn-primary" href="{{route('blog.single', [$shopName, $blogs[$i]->id])}}">Read More</a>
-						</div>
-					@endfor
-						<div class="pagination-area">
-							<ul class="pagination">
-								<li><a href="" class="active">1</a></li>
-								<li><a href="">2</a></li>
-								<li><a href="">3</a></li>
-								<li><a href=""><i class="fa fa-angle-double-right"></i></a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-	
-	{{-- footer --}}
-	@include('customer.footer')
-
-  
     <script src="/assets/customer/js/jquery.js"></script>
 	<script src="/assets/customer/js/price-range.js"></script>
-	<script src="/assets/customer/js/jquery.scrollUp.min.js"></script>
+    <script src="/assets/customer/js/jquery.scrollUp.min.js"></script>
 	<script src="/assets/customer/js/bootstrap.min.js"></script>
     <script src="/assets/customer/js/jquery.prettyPhoto.js"></script>
     <script src="/assets/customer/js/main.js"></script>

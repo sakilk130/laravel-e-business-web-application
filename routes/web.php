@@ -134,9 +134,11 @@ Route::get('/{shopName}/cart/delete/{cart_id}','customer\cartController@delete')
 
 // blog
 Route::get('/{shopName}/blog','customer\blogController@index')->name('blog');
+Route::post('/{shopName}/blog','customer\blogController@fromPost')->name('blog');
 
 // blog_Single
-Route::get('/{shopName}/blog/single', 'customer\blogSingleController@index')->name('blog.single');
+Route::get('/{shopName}/blog/single/{id}', 'customer\blogSingleController@index')->name('blog.single');
+Route::post('/{shopName}/blog/single/{id}', 'customer\blogSingleController@fromPost')->name('blog.single');
 
 // contct support
 Route::get('/{shopName}/customer/contact', 'customer\contactController@index')->name('customer.contact');

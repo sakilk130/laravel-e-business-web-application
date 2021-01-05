@@ -32,7 +32,13 @@ class blogController extends Controller
                     ->where('customer_id', $customer_id)
                     ->get();
 
-        return view("customer.blog", compact('shop', 'categories', 'customer', 'shopName', 'cart'));
+        $blogs = DB::table('blogs')
+                    ->where('shop_name', $shopName)
+                    ->get(); 
+
+        return view("customer.blog", compact('shop', 'categories', 'customer', 'shopName', 'cart', 'blogs'));
 
     }
+
+    
 }
