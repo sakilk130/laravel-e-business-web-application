@@ -123,6 +123,7 @@ Route::post('/{shopName}/customer/login', 'customer\c_loginController@fromPost')
 // product
 Route::get('/{shopName}/product/{id}','customer\productController@index')->name('product');
 Route::post('/{shopName}/product/{id}','customer\productController@fromPost')->name('product');
+Route::post('/{shopName}/rating/{id}','customer\productController@rating')->name('product.rating');
 
 // wish
 Route::get('/{shopName}/wish','customer\wishController@index')->name('wish');
