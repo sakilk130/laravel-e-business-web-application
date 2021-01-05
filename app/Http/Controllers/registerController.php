@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreRegRequest;
 use Illuminate\Http\Request;
-use App\Admin;
+use App\Admin\Admin;
 
 class registerController extends Controller
 {
@@ -22,6 +22,7 @@ class registerController extends Controller
         $admin->address=$req->address;
         $admin->registration_date=date("Y/m/d");
         $admin->shop_name=$req->store_name;
+        $admin->type='admin';
 
         if($admin->save()){
             return redirect()->route('login.login');

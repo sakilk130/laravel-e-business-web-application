@@ -13,9 +13,10 @@ class loginController extends Controller
     }
     public function verify(AdminStoreRequest $req){
 
-        $admin  = Admin::where('email', $req->email)->where('password', $req->password)->first();
+        $admin  = Admin::where('email', $req->email)->where('password', $req->password)->where('type','admin')->first();
         if($admin!=NULL){
             $req->session()->put('email',$req->email);
+            $req->session()->put('type','admin');
             return response()->json(['error' => false,'success'=> true],200);
     	}else{
             // $req->session()->flash('msg','invalid username/password');

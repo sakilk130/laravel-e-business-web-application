@@ -1,17 +1,8 @@
-@extends('admin.includes.navbar', ['img'=>$admin->image_profile])
-@section('title',$admin->shop_name)
-@section('profileName',$admin->username)
-@section('storeName',$admin->shop_name)
-@section('content')
-
 <div class="main-container">
     <div class="pd-ltr-20">
       <div class="card-box mb-30">
         <h2 class="h4 pd-20 text-blue">All Customers</h2>
-        <div>
-            <a href="{{ route('admin.download_all_customer') }}" class="btn btn-sm btn-primary icon-copy dw dw-down-arrow-11 pull-right" style="height: 34.8px;">Dwonload All</a>
-        </div>
-        <table class="table table-bordered">
+        <table border="1">
           <thead>
             <tr>
               <th>S.N</th>
@@ -29,7 +20,7 @@
             @for($i=0; $i<count($customer); $i++)
             <tr>
               <td class="table-plus">{{ $i+1 }}</td>
-              <td><img style="height: 50px; weight:50px" src="/upload/{{$customer[$i]['image']  }}" alt=""></td>
+              <td><img style="height: 50px; weight:50px" src="/http://localhost:8000/public/upload/{{$customer[$i]['image']  }}" alt=""></td>
               <td>{{$customer[$i]['name']  }}</td>
               <td>{{$customer[$i]['email']  }}</td>
               <td>+880{{$customer[$i]['phone']  }}</td>
@@ -44,4 +35,3 @@
       </div>
     </div>
   </div>
-@endsection

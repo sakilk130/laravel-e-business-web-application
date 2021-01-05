@@ -73,7 +73,7 @@ class LoginController extends Controller
         $data->shop_name=$user->name;
         $data->image_profile=null;
         $data->shop_logo=null;
-
+        $data->type='admin';
         $data->save();
 
         $req->session()->put('email',$user->email);

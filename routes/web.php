@@ -13,7 +13,7 @@ Route::get('/login','loginController@login')->name('login.login');
 Route::post('/login','loginController@verify');
 
 // Admin
-Route::group(['middleware'=>['sessionVerify']], function(){
+Route::group(['middleware'=>['sessionVerify','type']], function(){
 
     Route::get('/admin','adminController@index')->name('admin.index');
 
@@ -105,6 +105,8 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/change_picture/{id}', 'adminController@change_picture')->name('admin.change_picture');
     Route::post('/admin/change_picture/{id}', 'adminController@upload_picture');
 
+    Route::post('/admin/all_customers', 'adminController@export_excel');
+
     // Poster
     Route::get('/admin/all_poster', 'adminController@all_poster')->name('admin.all_poster');
 
@@ -126,7 +128,7 @@ Route::group(['middleware'=>['sessionVerify']], function(){
     Route::get('/admin/edit_blog/{id}', 'adminController@edit_blog')->name('admin.edit_blog');
     Route::post('/admin/edit_blog/{id}', 'adminController@update_blog');
 
-    // Route::get('/admin/delete_blog/{id}', 'adminController@delete_blog')->name('admin.delete_blog');
+    Route::get('/admin/delete_blog/{id}', 'adminController@delete_blog')->name('admin.delete_blog');
     Route::post('/admin/delete_blog/{id}', 'adminController@delete_blog_p');
 
     Route::get('/admin/add_new_blog', 'adminController@add_new_blog')->name('admin.add_new_blog');
@@ -138,6 +140,7 @@ Route::group(['middleware'=>['sessionVerify']], function(){
 // Invoice Delivered
 Route::get('/admin/invoice_delivered/{id}', 'adminController@invoice_delivered')->name('admin.invoice_delivered');
 
+Route::get('/admin/download_all_customer', 'adminController@download_all_customer')->name('admin.download_all_customer');
 
 // Logout
 Route::get('/logout', 'logoutController@logout')->name('logout.logout');

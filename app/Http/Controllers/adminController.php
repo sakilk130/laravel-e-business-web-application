@@ -24,6 +24,7 @@ use App\Admin\Subcategory;
 use App\Admin\Order;
 use App\Admin\Product;
 use Barryvdh\DomPDF\Facade as PDF;
+use Dompdf\Dompdf;
 
 class adminController extends Controller
 {
@@ -32,7 +33,6 @@ class adminController extends Controller
 
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();
-
         $order= DB::table('orders')
                 ->join('customers', 'orders.customer_id', '=', 'customers.id')
                 ->join('products', 'orders.product_id', '=', 'products.id')
@@ -40,6 +40,14 @@ class adminController extends Controller
                 ->where('orders.shop_name',$email)
                 ->where('orders.status','Pending')
                 ->get();
+                $sum= DB::table('orders')
+                ->join('customers', 'orders.customer_id', '=', 'customers.id')
+                ->join('products', 'orders.product_id', '=', 'products.id')
+                ->select('orders.id', 'orders.quantity', 'orders.status','orders.created_at','orders.updated_at', 'customers.name', 'customers.email', 'customers.phone', 'customers.address', 'products.product_name', 'products.product_image', 'products.product_description', 'products.product_price')
+                ->where('orders.shop_name',$email)
+                ->where('orders.status','Delivered')
+                ->sum('products.product_price');
+
                 // return $order;
         $product = Product::where('shop_name',$email)->get();
         $pendingorder = Order::where('shop_name',$email)->where('status','Pending')->get();
@@ -49,7 +57,8 @@ class adminController extends Controller
               ->with('admin',$admin)
               ->with('product',$product)
               ->with('pendingorder',$pendingorder)
-              ->with('customer',$customer);
+              ->with('customer',$customer)
+              ->with('sum',$sum);
 
     }
 
@@ -592,11 +601,11 @@ class adminController extends Controller
     public function all_customers(Request $req) {
         $email=$req->session()->get('email');
         $admin  = Admin::where('email',$email)->first();
+
         $customer  = Customer::where('shop_name', $email)->get();
         // return $customer;
         return view('admin.all-customers')->with('admin',$admin)->with('customer',$customer);
     }
-
     // Add New Customer
     public function add_new_customer(Request $req) {
         $email=$req->session()->get('email');
@@ -864,13 +873,38 @@ class adminController extends Controller
     }
 
     // Delete
-    public function delete_blog_p($id){
-        $task = Blog::find($id);
-        $task->delete();
+    public function delete_blog(Request $req, $id){
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
 
-        return response()->json('Blog deleted', 200);
+        $client = new \GuzzleHttp\Client();
+
+        $api='http://localhost:3000/blog/delete/'.$id;
+
+        $response = $client->request('GET', $api);
+
+
+        if($response->getStatusCode()==200){
+            $blog= json_decode($response->getBody(), true);
+            return view('admin.delete-blog')->with('admin',$admin)->with('blog',$blog);
+        }else{
+            return "SERVER IS RESPONDING";
+        }
     }
+    public function delete_blog_p(Request $req,$id ) {
 
+        $client = new \GuzzleHttp\Client();
+
+        $api='http://localhost:3000/blog/delete/'.$id;
+
+        $response = $client->request('POST', $api);
+       if($response->getStatusCode()==200){
+        return redirect()->route('admin.all_blog');
+
+       }else{
+            return "SERVER IS NOT RESPONDING";
+        }
+    }
 
 
     public function add_new_blog(Request $req) {
@@ -934,5 +968,16 @@ class adminController extends Controller
 
         $pdf = PDF::loadView('admin.invoice-delivered', array('order'=>$order), array('admin'=>$admin));
         return $pdf->download('invoice.pdf');
+    }
+
+    // All customer_Pdf
+
+    public function download_all_customer(Request $req){
+        $email=$req->session()->get('email');
+        $admin  = Admin::where('email',$email)->first();
+
+        $customer  = Customer::where('shop_name', $email)->get();
+        $pdf = PDF::loadView('admin.download-all-customer', array('customer'=>$customer));
+        return $pdf->download('all_customer.pdf');
     }
 }
