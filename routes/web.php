@@ -130,6 +130,7 @@ Route::get('/{shopName}/wish','customer\wishController@index')->name('wish');
 
 // cart
 Route::get('/{shopName}/cart','customer\cartController@index')->name('cart');
+Route::get('/{shopName}/cart/delete/{cart_id}','customer\cartController@delete')->name('cart.delete');
 
 // blog
 Route::get('/{shopName}/blog','customer\blogController@index')->name('blog');

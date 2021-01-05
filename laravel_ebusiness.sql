@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 05, 2021 at 07:35 AM
+-- Generation Time: Jan 05, 2021 at 10:02 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -102,7 +102,7 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2021_01_05_051128_review', 1);
+(1, '2021_01_05_070249_review', 1);
 
 -- --------------------------------------------------------
 
@@ -149,8 +149,18 @@ CREATE TABLE `review` (
   `ditails` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `star` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `shopName` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `shop_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_time` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `review`
+--
+
+INSERT INTO `review` (`id`, `review_name`, `review_email`, `ditails`, `star`, `product_id`, `shop_name`, `created_at`, `created_time`) VALUES
+(1, 'user1', 'user1@gmail.com', 'Lorem Ipsum is simply a dummy text of the printing and typesetting industry.', 5, 2, 'shop1', '2021-01-05', '07:24:12'),
+(2, 'user2', 'user2@gmail.com', 'Lorem Ipsum is simply a dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s when an unknown printer took a galley of type and scrambled it to make a type specimen book.', 3, 2, 'shop1', '2021-01-05', '08:34:12');
 
 -- --------------------------------------------------------
 
@@ -250,7 +260,8 @@ ALTER TABLE `products`
 -- Indexes for table `review`
 --
 ALTER TABLE `review`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `review_product_id_foreign` (`product_id`);
 
 --
 -- Indexes for table `shop`
@@ -312,7 +323,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shop`
@@ -343,6 +354,12 @@ ALTER TABLE `cart`
   ADD CONSTRAINT `cart_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `cart_ibfk_2` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`),
   ADD CONSTRAINT `cart_ibfk_3` FOREIGN KEY (`shop_name`) REFERENCES `shop` (`shop_name`);
+
+--
+-- Constraints for table `review`
+--
+ALTER TABLE `review`
+  ADD CONSTRAINT `review_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Constraints for table `wish`

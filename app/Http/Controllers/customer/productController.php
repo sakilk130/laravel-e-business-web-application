@@ -60,10 +60,32 @@ class productController extends Controller
     }
     public function fromPost(Request $req, $shopName, $id)
     {
-        $product_id = $req->product_id;
-        $quantity = $req->quantity;
 
-        return redirect()->route('cart', $shopName);
+        $customer = $req->session()->get('customer');
+
+        $customer_check =  customerDB::where('name', $customer)
+                                ->get();
+        
+        // if(count($customer_check>0)){
+            $customer_id = $customer_check[0]->id;
+
+            $cart = DB::table('cart')->insert(
+                ['product_id'=> $req->product_id,
+                'customer_id'=> $customer_id,
+                'shop_name'=> $shopName,
+                'quantity'=> $req->quantity
+                ]
+            );
+
+            if(! $cart){
+                echo "not";
+            }else{
+                return redirect()->route('cart', $shopName);
+            }
+
+        // }
+
+        
     }
 
     public function rating(Request $req, $shopName, $id)
@@ -84,9 +106,9 @@ class productController extends Controller
             );
 
         if(! $review){
-            echo "not";
-        }else{
             echo "ok";
+        }else{
+            return redirect()->route('product', [$shopName, $req->product_id]);
         }
 
     }
