@@ -32,11 +32,11 @@
 					@endphp
 
 					@if (count($check)>0)
-						<li ><button class="btn_hov" style="color: red"><i class="fa fa-plus-square"></i> Add to wishlist</a></button></li>
-						<li><a href="#"><i class="fa fa-plus-square"></i>Add to cart</a></li>
+						<li ><a href="#" class="btn_hov" style="color: #f79831; text-align: center"><i class="fa fa-plus-square"></i> Add to wishlist</a></a></li>
+						{{-- <li><a href="#"><i class="fa fa-plus-square"></i>Add to cart</a></li> --}}
 					@else
-						<li ><button class="btn_hov wish"><i class="fa fa-plus-square"></i> Add to wishlist</a></button></li>
-						<li><a href="#"><i class="fa fa-plus-square"></i>Add to cart</a></li>
+						<li ><a href="/{{$shopName}}/wish/{{$products[$i]->id}}" class="btn_hov"><i class="fa fa-plus-square"></i> Add to wishlist</a></li>
+						{{-- <li><a href="#"><i class="fa fa-plus-square"></i>Add to cart</a></li> --}}
 					@endif
 				    
 				</ul>

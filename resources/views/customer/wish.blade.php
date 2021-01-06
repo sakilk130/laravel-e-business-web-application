@@ -27,12 +27,52 @@
 </head><!--/head-->
 
 <body>
-    @for ($i = 0; $i < count($wish); $i++)
-        @if ($wish[$i]->customer_id=$customer_id && $wish[$i]->shop_name=$shopName )
-            {{$wish[$i]->wish_id}}
-        @endif
-    @endfor
+   
     
+
+    @include('customer.header');
+
+      <div class="container"> 
+        @for ($i = 0; $i < count($wish); $i++)
+        @if ($wish[$i]->customer_id=$customer_id && $wish[$i]->shop_name=$shopName )
+
+            @php
+                $products = DB::table('products')
+                        ->where('shop_name', $shopName)
+                        ->where('id', $wish[$i]->product_id)
+                        ->get();
+            @endphp
+            <div class="col-sm-4">
+                <div class="product-image-wrapper">
+                    <div class="single-products">
+                        <div class="productinfo text-center">
+                            <img src="/uploads/{{$products[0]->product_image}}" width="120px" height="255px" alt="" />
+                            <h2>${{$products[0]->product_price}}</h2>
+                            <p>{{$products[0]->product_name}}</p>
+                            <a href="/{{$shopName}}/product/{{$products[0]->id}}" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>View Product</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        @endif
+        @endfor              
+        
+      </div>
+
+	{{-- footer --}}
+	@include('customer.footer')
+  
+    <script src="/assets/customer/js/jquery.js"></script>
+	<script src="/assets/customer/js/bootstrap.min.js"></script>
+	<script src="/assets/customer/js/jquery.scrollUp.min.js"></script>
+	<script src="/assets/customer/js/price-range.js"></script>
+    <script src="/assets/customer/js/jquery.prettyPhoto.js"></script>
+	<script src="/assets/customer/js/main.js"></script>
+	<script src="assets/customer/js/ajax.js"></script>
+	<script>
+
+    </script>
 
     <script src="/assets/customer/js/jquery.js"></script>
 	<script src="/assets/customer/js/price-range.js"></script>

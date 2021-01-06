@@ -120,46 +120,60 @@ Route::post('/{shopName}/customer/login', 'customer\c_loginController@fromPost')
 
 
 
-// product
-Route::get('/{shopName}/product/{id}','customer\productController@index')->name('product');
-Route::post('/{shopName}/product/{id}','customer\productController@fromPost')->name('product');
-Route::post('/{shopName}/rating/{id}','customer\productController@rating')->name('product.rating');
 
-// wish
-Route::get('/{shopName}/wish','customer\wishController@index')->name('wish');
-
-// cart
-Route::get('/{shopName}/cart','customer\cartController@index')->name('cart');
-Route::get('/{shopName}/cart/delete/{cart_id}','customer\cartController@delete')->name('cart.delete');
-Route::post('/{shopName}/cart/order/{cart_id}','customer\cartController@order')->name('cart.order');
-
-// blog
-Route::get('/{shopName}/blog','customer\blogController@index')->name('blog');
-Route::post('/{shopName}/blog','customer\blogController@fromPost')->name('blog');
-
-// blog_Single
-Route::get('/{shopName}/blog/single/{id}', 'customer\blogSingleController@index')->name('blog.single');
-Route::post('/{shopName}/blog/single/{id}', 'customer\blogSingleController@fromPost')->name('blog.single');
-
-// contct support
-Route::get('/{shopName}/customer/contact', 'customer\contactController@index')->name('customer.contact');
-
-// logout
-Route::get('/{shopName}/shop/logout', 'customer\logoutController@index')->name('shop.logout');
-
-// error
-Route::get('/error', 'customer\errorController@index')->name('error');
-
-
-// shop
-Route::get('/{shopName}/shop','customer\shopController@index')->name('shop');
-Route::post('/{shopName}/price','customer\shopController@price')->name('shop.price');
-Route::post('/{shopName}/wish','customer\shopController@wish')->name('shop.wish');
 
 
 // middleware................................
 Route::group(['middleware'=>['varifyCustomer']], function(){
+    // product
+    Route::get('/{shopName}/product/{id}','customer\productController@index')->name('product');
+    Route::post('/{shopName}/product/{id}','customer\productController@fromPost')->name('product');
+    Route::post('/{shopName}/rating/{id}','customer\productController@rating')->name('product.rating');
+
+    // wish
+    Route::get('/{shopName}/wish','customer\wishController@index')->name('wish');
+    Route::get('/{shopName}/wish/{id}','customer\wishController@save')->name('wish.id');
+
+    // cart
+    Route::get('/{shopName}/cart','customer\cartController@index')->name('cart');
+    Route::get('/{shopName}/cart/delete/{cart_id}','customer\cartController@delete')->name('cart.delete');
+    Route::post('/{shopName}/cart/order/{cart_id}','customer\cartController@order')->name('cart.order');
+
+    // blog
+    Route::get('/{shopName}/blog','customer\blogController@index')->name('blog');
+    Route::post('/{shopName}/blog','customer\blogController@fromPost')->name('blog');
+
+    // blog_Single
+    Route::get('/{shopName}/blog/single/{id}', 'customer\blogSingleController@index')->name('blog.single');
+    Route::post('/{shopName}/blog/single/{id}', 'customer\blogSingleController@fromPost')->name('blog.single');
+
+    // contct support
+    Route::get('/{shopName}/customer/contact', 'customer\contactController@index')->name('customer.contact');
+
+    // logout
+    Route::get('/{shopName}/shop/logout', 'customer\logoutController@index')->name('shop.logout');
+
+    // error
+    Route::get('/error', 'customer\errorController@index')->name('error');
     
+    
+    
+    // shop
+    Route::get('/{shopName}/shop','customer\shopController@index')->name('shop');
+    Route::post('/{shopName}/price','customer\shopController@price')->name('shop.price');
+    Route::post('/{shopName}/wish','customer\shopController@wish')->name('shop.wish');
+
+
+
+    Route::post('/{shopName}/live', 'customer\liveSearchController@index')->name('liveSearch');
+
+
+    Route::post('/checkout/{shopName}/{cart_id}','CheckoutController@checkout')->name('checkout');
+    Route::post('/checkout','CheckoutController@afterpayment')->name('checkout.credit-card');
+
+
+    Route::get('/{shopName}/order','customer\orderController@index')->name('order');
+    Route::get('/{shopName}/order','customer\orderController@download')->name('order.download');
     
 
 });
@@ -169,11 +183,5 @@ Route::group(['middleware'=>['varifyCustomer']], function(){
 
 
 
-Route::post('/{shopName}/live', 'customer\liveSearchController@index')->name('liveSearch');
 
 
-Route::post('/checkout/{shopName}/{cart_id}','CheckoutController@checkout')->name('checkout');
-Route::post('/checkout','CheckoutController@afterpayment')->name('checkout.credit-card');
-
-
-Route::get('/order','customer\orderController@index')->name('order');

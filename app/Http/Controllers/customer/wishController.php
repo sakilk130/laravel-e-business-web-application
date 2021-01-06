@@ -27,7 +27,39 @@ class wishController extends Controller
                                 ->get();
         $customer_id = $customer_check[0]->id;
 
-        return view("customer.wish", compact('wish', 'shopName', 'customer_id'));
+
+        $shop =  shopDB::where('shop_name', $shopName)
+                                ->get();
+
+        $products = DB::table('products')
+                        ->where('shop_name', $shopName)
+                        ->get();
+
+        $categories = DB::table('categories')
+                        ->where('shop_name', $shopName)
+                        ->get();
+        return view("customer.wish", compact('wish', 'shopName', 'customer_id', 'shop', 'products', 'categories', 'customer'));
+        
+    }
+
+    public function save(Request $req, $shopName, $id){
+
+        $customer = $req->session()->get('customer');
+        $customer_check =  customerDB::where('name', $customer)
+                                ->get();
+        $customer_id = $customer_check[0]->id;
+        
+        $wish = DB::table('wish')->insert(
+            ['product_id' => $id,
+            'customer_id' => $customer_id,
+            'shop_name' => $shopName
+            ]
+        );
+        if(! $wish){
+            echo "can't insert";
+        }else{
+            return redirect()->route('shop', $shopName);
+        }
         
     }
 }

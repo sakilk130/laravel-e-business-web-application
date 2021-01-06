@@ -36,7 +36,7 @@
                     <div class="shop-menu clearfix pull-right">
                         <ul class="nav navbar-nav">
                             <li><a href=""><i class="fa fa-user"></i>{{$customer}}</a></li>
-                            <li><a href=""><i class="fa fa-star"></i> Wishlist</a></li>
+                            <li><a href="{{route('wish', $shopName)}}"><i class="fa fa-star"></i> Wishlist</a></li>
                             <li><a href="{{route('cart', $shopName)}}"><i class="fa fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="{{route('shop.logout', $shopName)}}"><i class="fa fa-lock"></i> Logout</a></li>
                         </ul>
@@ -75,7 +75,7 @@
                                 </ul>
                             </li> 
                             <li><a href="404.html">404</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
+                            <li><a href="/{{$shopName}}/order">Order Histry</a></li>
                         </ul>
                     </div>
                 </div>

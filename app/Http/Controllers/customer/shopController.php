@@ -62,47 +62,46 @@ class shopController extends Controller
 
     }
 
-    public function wish(Request $req, $shopName)
+    public function wish(Request $req, $shopName, $id)
     {
-       $product_id= $req->product_id;
-       $customer = $req->session()->get('customer');
+    //    $product_id= $req->product_id;
+    //    $customer = $req->session()->get('customer');
 
-       $customer_check =  customerDB::where('name', $customer)
-                                ->get();
-       $customer_id = $customer_check[0]->id;
+    //    $customer_check =  customerDB::where('name', $customer)
+    //                             ->get();
+    //    $customer_id = $customer_check[0]->id;
                            
                                 
-       $check = DB::table('wish')
-                    ->where('product_id', $product_id)
-                    ->where('customer_id', $customer_id)
-                    ->where('shop_name', $shopName)
-                    ->get();
+    //    $check = DB::table('wish')
+    //                 ->where('product_id', $product_id)
+    //                 ->where('customer_id', $customer_id)
+    //                 ->where('shop_name', $shopName)
+    //                 ->get();
                     
-        // if(count($check)==0){
+    //     // if(count($check)==0){
 
-        //     // $wishDB = new wishDB;
+    //     //     // $wishDB = new wishDB;
 
-        //     // $wishDB->product_id = $product_id;
-        //     // $wishDB->customer_id = $customer_id;
-        //     // $wishDB->shopName = $shopName;
+    //     //     // $wishDB->product_id = $product_id;
+    //     //     // $wishDB->customer_id = $customer_id;
+    //     //     // $wishDB->shopName = $shopName;
 
-        //     // $wishDB->save();
+    //     //     // $wishDB->save();
 
 
-        //     // if(!$wishDB->save()){
-        //     //     echo "not";
-        //     // }else{
-        //     //     echo "done";
-        //     // }
-        //     echo "ok";
+    //     //     // if(!$wishDB->save()){
+    //     //     //     echo "not";
+    //     //     // }else{
+    //     //     //     echo "done";
+    //     //     // }
+    //     //     echo "ok";
             
 
-        // }else{
-        //     echo $product_id;
-        // } 
-        echo $product_id;
-
-
+    //     // }else{
+    //     //     echo $product_id;
+    //     // } 
+    //     echo $product_id;
+       echo "ok";
 
     }
 

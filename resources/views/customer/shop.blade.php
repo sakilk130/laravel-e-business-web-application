@@ -534,22 +534,22 @@
             });
 
 
-			// wishlish
-			$(".wish").click(function() {
-				var product_id = $('#product_id').val();
+			// // wishlish
+			// $(".wish").click(function() {
+			// 	var product_id = $('#product_id').val();
 
-				$.ajax({
-                    type: 'post',
-                    url: '{{ route("shop.wish", $shopName) }}',
-                    data: {
-						'product_id': product_id,
-                    },
-                    success: function(data) {
-						alert(data);
-                    },
+			// 	$.ajax({
+            //         type: 'post',
+            //         url: '{{ route("shop.wish", $shopName) }}',
+            //         data: {
+			// 			'product_id': product_id,
+            //         },
+            //         success: function(data) {
+			// 			alert(data);
+            //         },
 
-                });
-            });
+            //     });
+            // });
                 
 
         });
