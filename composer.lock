@@ -4,6 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "e454f3bb0a0dc4088428113dc582382a",
     "packages": [
         {
@@ -24,11 +25,37 @@
                 "dompdf/dompdf": "^0.8",
                 "illuminate/support": "^5.5|^6|^7|^8",
                 "php": ">=7"
+=======
+    "content-hash": "82448c9ea83083b70976680cb219badf",
+    "packages": [
+        {
+            "name": "barryvdh/laravel-dompdf",
+            "version": "v0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/barryvdh/laravel-dompdf.git",
+                "reference": "5b99e1f94157d74e450f4c97e8444fcaffa2144b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/barryvdh/laravel-dompdf/zipball/5b99e1f94157d74e450f4c97e8444fcaffa2144b",
+                "reference": "5b99e1f94157d74e450f4c97e8444fcaffa2144b",
+                "shasum": ""
+            },
+            "require": {
+                "dompdf/dompdf": "^1",
+                "illuminate/support": "^5.5|^6|^7|^8",
+                "php": "^7.1 || ^8.0"
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
+<<<<<<< HEAD
                     "dev-master": "0.8-dev"
+=======
+                    "dev-master": "0.9-dev"
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
                 },
                 "laravel": {
                     "providers": [
@@ -62,7 +89,11 @@
             ],
             "support": {
                 "issues": "https://github.com/barryvdh/laravel-dompdf/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/barryvdh/laravel-dompdf/tree/master"
+=======
+                "source": "https://github.com/barryvdh/laravel-dompdf/tree/v0.9.0"
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
             },
             "funding": [
                 {
@@ -70,7 +101,11 @@
                     "type": "github"
                 }
             ],
+<<<<<<< HEAD
             "time": "2020-09-07T11:50:18+00:00"
+=======
+            "time": "2020-12-27T12:05:53+00:00"
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
         },
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -287,6 +322,7 @@
         },
         {
             "name": "dompdf/dompdf",
+<<<<<<< HEAD
             "version": "v0.8.6",
             "source": {
                 "type": "git",
@@ -297,6 +333,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/dompdf/dompdf/zipball/db91d81866c69a42dad1d2926f61515a1e3f42c5",
                 "reference": "db91d81866c69a42dad1d2926f61515a1e3f42c5",
+=======
+            "version": "v1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dompdf/dompdf.git",
+                "reference": "45d260f2f6c6a542e0db3459470374c986a46d93"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dompdf/dompdf/zipball/45d260f2f6c6a542e0db3459470374c986a46d93",
+                "reference": "45d260f2f6c6a542e0db3459470374c986a46d93",
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
                 "shasum": ""
             },
             "require": {
@@ -304,11 +352,19 @@
                 "ext-mbstring": "*",
                 "phenx/php-font-lib": "^0.5.2",
                 "phenx/php-svg-lib": "^0.3.3",
+<<<<<<< HEAD
                 "php": "^7.1"
             },
             "require-dev": {
                 "mockery/mockery": "^1.3",
                 "phpunit/phpunit": "^7.5",
+=======
+                "php": "^7.1 || ^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3",
+                "phpunit/phpunit": "^7.5 || ^8 || ^9",
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
                 "squizlabs/php_codesniffer": "^3.5"
             },
             "suggest": {
@@ -353,9 +409,15 @@
             "homepage": "https://github.com/dompdf/dompdf",
             "support": {
                 "issues": "https://github.com/dompdf/dompdf/issues",
+<<<<<<< HEAD
                 "source": "https://github.com/dompdf/dompdf/tree/master"
             },
             "time": "2020-08-30T22:54:22+00:00"
+=======
+                "source": "https://github.com/dompdf/dompdf/tree/v1.0.1"
+            },
+            "time": "2020-12-31T13:25:19+00:00"
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -2473,6 +2535,70 @@
             "time": "2020-06-01T09:10:00+00:00"
         },
         {
+<<<<<<< HEAD
+=======
+            "name": "stripe/stripe-php",
+            "version": "v7.67.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stripe/stripe-php.git",
+                "reference": "935d2c67912007f6d17b6c08a62050252c509129"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/935d2c67912007f6d17b6c08a62050252c509129",
+                "reference": "935d2c67912007f6d17b6c08a62050252c509129",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "2.17.1",
+                "php-coveralls/php-coveralls": "^2.1",
+                "phpunit/phpunit": "^5.7",
+                "squizlabs/php_codesniffer": "^3.3",
+                "symfony/process": "~3.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Stripe\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Stripe and contributors",
+                    "homepage": "https://github.com/stripe/stripe-php/contributors"
+                }
+            ],
+            "description": "Stripe PHP Library",
+            "homepage": "https://stripe.com/",
+            "keywords": [
+                "api",
+                "payment processing",
+                "stripe"
+            ],
+            "support": {
+                "issues": "https://github.com/stripe/stripe-php/issues",
+                "source": "https://github.com/stripe/stripe-php/tree/v7.67.0"
+            },
+            "time": "2020-12-09T19:00:34+00:00"
+        },
+        {
+>>>>>>> c366bdf831b244ef6e50ba5a5051c75b16a0c31b
             "name": "swiftmailer/swiftmailer",
             "version": "v6.2.3",
             "source": {
